@@ -43,7 +43,7 @@ function BodyClassController() {
 
 function App() {
   return (
-    <Router basename="/SmartTableNZ">
+    <Router basename="/SmartTable">
       <ScrollToTop /> {/* 👈 add here */}
       <BodyClassController />
       <Routes>
