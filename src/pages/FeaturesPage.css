@@ -85,7 +85,7 @@
   align-items: center;
   justify-content: center;
   gap: 60px;
-  padding: 60px 0;
+  padding: 50px 0;
   flex-wrap: wrap;
 }
 
@@ -236,7 +236,7 @@
 
 .carousel-centered-wrapper {
   text-align: center;
-  padding: 80px 20px;
+  padding: 20px 20px;
   max-width: 1500px;
   margin: 0 auto;
 }
