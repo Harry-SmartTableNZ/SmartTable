@@ -1,0 +1,532 @@
+.full-banner {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom, #000000, #0a1b36, #1b3662);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  padding: 0 20px;
+  padding-top: 120px; /* Adjust to your header height */
+}
+
+.banner-content {
+  max-width: 700px;
+  margin-top: 100px; /* spacing from top header */
+}
+
+.banner-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.banner-content p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+.banner-button {
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.banner-button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.why-smart-table {
+  padding: 80px 20px;
+  width: 100%;
+}
+
+.why-smart-table .content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.benefit-card {
+  background: rgba(27, 54, 98, 0.85);
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: left;
+  color: white;
+  box-shadow: none;
+  transition: transform 0.2s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.benefit-card h4 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.benefit-card p {
+  font-size: 0.95rem;
+}
+
+.highlighted-feature {
+  padding: 80px 20px 80px 20px; /* more consistent with other sections */
+  width: 100%;
+}
+
+.highlighted-feature .content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.highlighted-feature p {
+  color: white;
+}
+
+.ready-to-start {
+  padding: 20px 20px 60px 20px;
+  width: 100%;
+}
+
+.ready-to-start .content-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.ready-to-start p {
+  color: white;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 15px 40px;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.demo-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* or center if you want the button centered */
+}
+
+.kiosk-steps-section {
+  padding: 20px 20px 40px 20px;
+  width: 100%;
+}
+
+.kiosk-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.kiosk-text {
+  flex: 1 1 400px;
+}
+
+.kiosk-image {
+  flex: 1 1 400px;
+  text-align: center;
+  background: none; /* Remove background */
+  border-radius: 0; /* Remove rounded corners */
+  box-shadow: none; /* Remove shadow */
+  padding: 0; /* Remove extra spacing */
+}
+
+.kiosk-image img {
+  max-width: 100%;
+  height: auto;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: white;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.swiper {
+  overflow: visible !important;
+}
+
+.swiper-slide {
+  overflow: visible;
+}
+
+.swiper-slide-active {
+  z-index: 10;
+}
+
+.swiper-slide-active img {
+  transform: scale(1.1);
+  transition: transform 0.4s ease;
+  z-index: 10;
+}
+
+.swiper,
+.swiper-wrapper,
+.swiper-slide,
+.swiper-slide-active {
+  overflow: visible !important;
+}
+
+.faq-section {
+  padding-top: 0;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.faq-item {
+  background: transparent;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 0;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item .arrow {
+  transition: transform 0.3s ease;
+  font-size: 0.9rem;
+  margin-left: 8px;
+}
+
+.faq-item[open] .arrow {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  margin-top: 8px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.feature-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+  padding-top: 32px;
+}
+
+.feature-card {
+  background: #1b3662;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.feature-card-image {
+  width: calc(100% - 32px); /* Add horizontal padding */
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 16px; /* Center and space from edge */
+}
+.feature-card-text {
+  padding: 16px;
+  color: white;
+}
+
+.feature-card-text h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.feature-card-text p {
+  font-size: 14px;
+  opacity: 0.85;
+  margin: 0;
+}
+
+/* Ensure all section content aligns left */
+.content-wrapper {
+  text-align: left;
+}
+
+/* Specifically for headings and text elements */
+.section-title,
+.section-subtitle,
+.benefit-card h4,
+.benefit-card p,
+.feature-card-text h3,
+.feature-card-text p,
+.kiosk-text p,
+.faq-question,
+.faq-answer,
+.demo-content p {
+  text-align: left;
+}
+
+.feature-tag-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.feature-tag {
+  display: inline-block;
+  width: auto;
+  max-width: 100%;
+  word-wrap: break-word;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 40px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.feature-tag:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.features-section {
+  padding: 20px 20px 20px 20px !important;
+  margin-bottom: 0 !important;
+}
+
+.features-section .content-wrapper {
+  margin-bottom: 0 !important; /* prevent extra gap below content */
+}
+
+.feature-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.feature-overlay-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 80%;
+  max-height: 90%;
+  overflow: auto;
+}
+
+.feature-overlay-content img {
+  max-width: 100%;
+  max-height: 300px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.why-smart-table-icons {
+  background-color: transparent;
+  color: #001f3f;
+  padding: 60px 20px;
+}
+
+.smart-table-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  text-align: center;
+}
+
+.smart-table-icon-card .icon {
+  font-size: 36px;
+  background-color: #4f9dff;
+  color: white;
+  border-radius: 12px;
+  padding: 15px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.smart-table-icon-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.smart-table-icon-card p {
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.selected-feature-display {
+  margin-top: 0 !important;
+  background-color: transaprent;
+  border-radius: 12px;
+  color: white;
+  padding: 5px;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px; /* Add controlled spacing between children */
+}
+
+.selected-feature-image {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  border-radius: 0;
+  margin-bottom: 20px;
+  box-shadow: none;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 480px) {
+  .banner-content h1 {
+    font-size: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .feature-tag-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 per row */
+      gap: 12px 16px;
+      gap: 16px;
+      padding: 0 30px;
+      box-sizing: border-box;
+    }
+
+    .feature-tag-grid > * {
+      width: 100%;
+      max-width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .feature-tag {
+      font-size: 0.85rem;
+      padding: 10px 14px;
+    }
+  }
+
+  .banner-content p {
+    font-size: 1rem;
+  }
+
+  .full-banner {
+    padding: 0 15px;
+    padding-top: 100px;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .smart-table-icon-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .feature-tag-grid {
+    justify-content: center;
+    padding-bottom: 0; /* Shrinks green gap */
+    padding-top: 10px; /* Optional – keep some breathing space on top */
+  }
+
+  .feature-tag {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 10px 10px;
+  }
+}
+
+@media (max-width: 600px) {
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .smart-table-icon-grid {
+    grid-template-columns: 1fr;
+  }
+}

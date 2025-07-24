@@ -1,0 +1,58 @@
+/* Override any global styles that might affect this component */
+.responsive-header,
+.responsive-header *,
+.responsive-header *::before,
+.responsive-header *::after {
+  box-sizing: border-box !important;
+}
+
+.app-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 0;
+  z-index: 100;
+  background: none; /* or a semi-transparent background if needed */
+}
+
+.app-header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.app-header-logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+/* Responsive logo for small screens */
+@media (max-width: 768px) {
+  .app-header-logo img {
+    height: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header-logo img {
+    height: 30px;
+  }
+}
+
+.app-header-box {
+  background-color: rgba(27, 54, 98, 0.4); /* semi-transparent */
+  backdrop-filter: blur(12px); /* blur effect */
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  border-radius: 35px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.app-header-box nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}

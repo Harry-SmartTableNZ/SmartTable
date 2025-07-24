@@ -1,0 +1,121 @@
+.contact-page {
+  padding-top: 120px;
+  padding-bottom: 50px;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.contact-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 20px;
+  margin-bottom: 50px;
+}
+
+.contact-page-content-wrapper {
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.contact-left {
+  flex: 1 1 300px;
+}
+
+.contact-subtitle {
+  color: #00bcd4;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.contact-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+.contact-description {
+  font-size: 16px;
+  color: #ccc;
+}
+
+.contact-right {
+  flex: 1 1 300px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-label {
+  font-weight: 500;
+}
+
+.required-asterisk {
+  color: #00bcd4;
+}
+
+.form-input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.form-textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  resize: vertical;
+}
+
+.privacy-checkbox-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.privacy-text {
+  flex: 1;
+}
+
+.privacy-link {
+  color: #00bcd4;
+  text-decoration: underline;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
+
+.submit-button {
+  padding: 10px 20px;
+  background-color: #00bcd4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset-button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
