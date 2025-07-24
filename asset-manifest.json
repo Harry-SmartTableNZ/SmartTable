@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/SmartTable/static/css/main.db52dc50.css",
+    "main.css": "/SmartTable/static/css/main.9fa77df5.css",
     "main.js": "/SmartTable/static/js/main.4694ae81.js",
     "static/js/453.2e38ae9d.chunk.js": "/SmartTable/static/js/453.2e38ae9d.chunk.js",
     "static/media/KDS.png": "/SmartTable/static/media/KDS.be35b852d408078a6dd4.png",
@@ -14,12 +14,12 @@
     "static/media/Image 2.jpg": "/SmartTable/static/media/Image 2.416cf8782005f9aafea2.jpg",
     "static/media/Image 4.jpg": "/SmartTable/static/media/Image 4.d40973a9312c1fa94f2f.jpg",
     "index.html": "/SmartTable/index.html",
-    "main.db52dc50.css.map": "/SmartTable/static/css/main.db52dc50.css.map",
+    "main.9fa77df5.css.map": "/SmartTable/static/css/main.9fa77df5.css.map",
     "main.4694ae81.js.map": "/SmartTable/static/js/main.4694ae81.js.map",
     "453.2e38ae9d.chunk.js.map": "/SmartTable/static/js/453.2e38ae9d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.db52dc50.css",
+    "static/css/main.9fa77df5.css",
     "static/js/main.4694ae81.js"
   ]
 }
