@@ -43,7 +43,7 @@ function BodyClassController() {
 
 function App() {
   return (
-    <>
+    <Router>
       <ScrollToTop />
       <BodyClassController />
       <Routes>
@@ -53,7 +53,7 @@ function App() {
         <Route path="/Features*" element={<FeaturesPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </Router>
   );
 }
 
