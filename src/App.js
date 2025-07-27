@@ -43,8 +43,8 @@ function BodyClassController() {
 
 function App() {
   return (
-    <Router basename="/smarttable">
-      <ScrollToTop /> {/* 👈 add here */}
+    <>
+      <ScrollToTop />
       <BodyClassController />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -53,7 +53,7 @@ function App() {
         <Route path="/Features*" element={<FeaturesPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </Router>
+    </>
   );
 }
 
