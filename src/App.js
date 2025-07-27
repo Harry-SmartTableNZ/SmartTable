@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import FeaturesPage from "./pages/FeaturesPage";
 import ContactPage from "./pages/ContactPage";
 import PricingPage from "./pages/PricingPage";
+import UberEatsPrivacyPage from "./pages/UberEatsPrivacyPage";
 
 // Wrapper to manage body class dynamically
 function BodyClassController() {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/Features*" element={<FeaturesPage />} />
+        <Route path="/ubereats-privacy-policy" element={<UberEatsPrivacyPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
