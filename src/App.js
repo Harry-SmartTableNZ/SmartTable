@@ -53,7 +53,7 @@ function App() {
         <Route path="/Features*" element={<FeaturesPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-  <Router />
+    </Router>
   );
 }
 
