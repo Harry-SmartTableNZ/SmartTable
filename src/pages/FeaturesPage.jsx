@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Image12 from "../assets/images/Table Kiosk.png";
 import Image1 from "../assets/images/POS.png";
 import Image2 from "../assets/images/KDS.png";
+import Image3 from "../assets/images/Multiple POSKDS.png";
 import Image4 from "../assets/images/Sales.png";
 import Image9 from "../assets/images/Loyalty.png";
 
@@ -118,7 +119,7 @@ const FeaturesPage = () => {
                 title: "Multiple Syncing POS/KDS",
                 content:
                   "Use unlimited POS and KDS devices across your venue - Always in syce",
-                image: Image1,
+                image: Image3,
                 subFeatures: [
                   {
                     title: "Multi-Terminal POS & KDS Sync",

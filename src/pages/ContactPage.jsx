@@ -36,6 +36,7 @@ const ContactPage = () => {
                 name="_next"
                 value="https://smarttable.co.nz/thank-you"
               />
+              <input type="hidden" name="_method" value="POST" />
               <input type="text" name="_honey" className="hidden" />
 
               <label className="form-label">
@@ -56,7 +57,9 @@ const ContactPage = () => {
               <label className="form-label">Phone</label>
               <input type="tel" name="phone" className="form-input" />
 
-              <label className="form-label">Message</label>
+              <label className="form-label">
+                Message<span className="required-asterisk"> *</span>
+              </label>
               <textarea
                 name="message"
                 rows="4"

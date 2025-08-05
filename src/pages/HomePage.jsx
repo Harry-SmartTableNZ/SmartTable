@@ -19,7 +19,7 @@ const HomePage = () => {
     },
     {
       title: "Multiple POS & KDS",
-      img: require("../assets/images/POS.png"),
+      img: require("../assets/images/Multiple POSKDS.png"),
       desc: "Serve diverse communities with support for multiple languages.",
     },
     {
