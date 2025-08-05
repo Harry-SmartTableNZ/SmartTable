@@ -12,6 +12,10 @@ const ContactPage = () => {
     event.preventDefault(); // Stop the normal redirect
     setLoading(true);
 
+    // Copy email input into _replyto before sending
+    const emailValue = event.target.email.value;
+    event.target._replyto.value = emailValue;
+
     const formData = new FormData(event.target);
 
     try {
@@ -61,6 +65,7 @@ const ContactPage = () => {
               <input type="hidden" name="_captcha" value="false" />
               <input type="hidden" name="_template" value="table" />
               <input type="hidden" name="_honey" />
+              <input type="hidden" name="_replyto" id="hidden-replyto" />
 
               <label className="form-label">
                 Name<span className="required-asterisk"> *</span>
@@ -70,10 +75,10 @@ const ContactPage = () => {
               <label className="form-label">
                 Email<span className="required-asterisk"> *</span>
               </label>
-              {/* ✅ Changed name to _replyto for auto-response */}
+              {/* ✅ Keep as "email" so it shows in your inbox */}
               <input
                 type="email"
-                name="_replyto"
+                name="email"
                 required
                 className="form-input"
               />
