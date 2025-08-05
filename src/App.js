@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import FeaturesPage from "./pages/FeaturesPage";
 import ContactPage from "./pages/ContactPage";
 import PricingPage from "./pages/PricingPage";
+import ThankYouPage from "./pages/ThankYouPage";
 
 // Wrapper to manage body class dynamically
 function BodyClassController() {
@@ -50,6 +51,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/Features*" element={<FeaturesPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

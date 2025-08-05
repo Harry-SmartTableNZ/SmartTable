@@ -1,8 +1,38 @@
 import "./ContactPage.css";
 import Footer from "./components/Footer";
 import AppHeader from "./components/AppHeader";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const ContactPage = () => {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Stop the normal redirect
+    setLoading(true);
+
+    const formData = new FormData(event.target);
+
+    try {
+      await fetch("https://formsubmit.co/contact@smarttable.co.nz", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      // ✅ Go straight to Thank You page without ugly URL
+      navigate("/thank-you");
+    } catch (error) {
+      console.error("Form submit error:", error);
+      alert("Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="contact-page">
       <AppHeader />
@@ -21,23 +51,16 @@ const ContactPage = () => {
 
           {/* Right Side (Form) */}
           <div className="contact-right">
-            <form
-              action="https://formsubmit.co/contact@smarttable.co.nz"
-              method="POST"
-              className="contact-form"
-            >
+            <form onSubmit={handleSubmit} className="contact-form">
+              {/* Hidden fields */}
               <input
                 type="hidden"
                 name="_autoresponse"
                 value="Thank you for contacting Smart Table! We'll get back to you shortly."
               />
-              <input
-                type="hidden"
-                name="_next"
-                value="https://smarttable.co.nz/thank-you"
-              />
-              <input type="hidden" name="_method" value="POST" />
-              <input type="text" name="_honey" className="hidden" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_honey" />
 
               <label className="form-label">
                 Name<span className="required-asterisk"> *</span>
@@ -47,9 +70,10 @@ const ContactPage = () => {
               <label className="form-label">
                 Email<span className="required-asterisk"> *</span>
               </label>
+              {/* ✅ Changed name to _replyto for auto-response */}
               <input
                 type="email"
-                name="email"
+                name="_replyto"
                 required
                 className="form-input"
               />
@@ -68,8 +92,12 @@ const ContactPage = () => {
               />
 
               <div className="button-container">
-                <button type="submit" className="submit-button">
-                  Submit
+                <button
+                  type="submit"
+                  className="submit-button"
+                  disabled={loading}
+                >
+                  {loading ? "Sending..." : "Submit"}
                 </button>
                 <button type="reset" className="reset-button">
                   Reset

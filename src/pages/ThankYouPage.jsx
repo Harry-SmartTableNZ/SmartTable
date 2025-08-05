@@ -1,8 +1,16 @@
 import "./ThankYouPage.css";
 import Footer from "./components/Footer";
 import AppHeader from "./components/AppHeader";
+import { useEffect } from "react";
 
 const ThankYouPage = () => {
+  useEffect(() => {
+    // Remove query string immediately after page loads
+    if (window.location.search) {
+      window.history.replaceState({}, document.title, "/thank-you");
+    }
+  }, []);
+
   return (
     <div className="thankyou-page">
       <AppHeader />
