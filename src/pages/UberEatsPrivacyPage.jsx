@@ -39,7 +39,7 @@ const UberEatsPrivacyPage = () => {
                 <li>Synchronize menu items and availability between restaurant systems and UberEats</li>
                 <li>Generate reports and analytics for restaurant management</li>
                 <li>Provide technical support and system maintenance</li>
-                <li>Comply with legal and regulatory requirements</li>
+{/*                 <li>Comply with legal and regulatory requirements</li> */}
               </ul>
             </div>
 
