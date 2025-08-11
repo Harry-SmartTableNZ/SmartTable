@@ -13,7 +13,7 @@ const HomePage = () => {
       desc: "Create a seamless online experience with your brand front and center.",
     },
     {
-      title: "Kitchen Disply System",
+      title: "Kitchen Display System",
       img: require("../assets/images/KDS.png"),
       desc: "Give your customers more reasons to return with custom rewards.",
     },
@@ -54,7 +54,7 @@ const HomePage = () => {
     },
     {
       title: "Delievery App Integration",
-      img: require("../assets/images/POS.png"),
+      img: require("../assets/images/Delivery.png"),
       desc: "Serve diverse communities with support for multiple languages.",
     },
   ];

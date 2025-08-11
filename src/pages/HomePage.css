@@ -332,9 +332,11 @@
 .feature-tag-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px 16px;
-  justify-content: center;
-  padding: 20px 0;
+  justify-content: center; /* centered like your mock */
+  gap: 14px 20px;
+  max-width: 960px; /* stops the line from running wall-to-wall */
+  margin: 24px auto 0;
+  padding: 0 12px; /* keeps pill edges off the sides */
 }
 
 .feature-tag {
@@ -437,7 +439,7 @@
 
 .selected-feature-display {
   margin-top: 0 !important;
-  background-color: transaprent;
+  background-color: transparent;
   border-radius: 12px;
   color: white;
   padding: 5px;
@@ -465,6 +467,15 @@
 @media (max-width: 480px) {
   .banner-content h1 {
     font-size: 2rem;
+    .feature-tag-grid {
+      max-width: 100%;
+      padding: 0 8px;
+      gap: 10px 12px;
+    }
+    .feature-tag {
+      padding: 8px 12px;
+      font-size: 0.86rem;
+    }
   }
 
   @media (max-width: 768px) {
@@ -475,6 +486,10 @@
       gap: 16px;
       padding: 0 30px;
       box-sizing: border-box;
+      .feature-tag {
+        padding: 9px 14px;
+        font-size: 0.9rem;
+      }
     }
 
     .feature-tag-grid > * {
@@ -528,5 +543,14 @@
 
   .smart-table-icon-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 450px) {
+  /* Tighten the overall container */
+  .feature-tag-grid {
+    padding: 5px 5px; /* minimal side padding */
+    gap: 8px 1px; /* smaller gaps between pills */
+    justify-content: center;
   }
 }

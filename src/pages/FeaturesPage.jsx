@@ -11,6 +11,7 @@ import Image2 from "../assets/images/KDS.png";
 import Image3 from "../assets/images/Multiple POSKDS.png";
 import Image4 from "../assets/images/Sales.png";
 import Image9 from "../assets/images/Loyalty.png";
+import Image10 from "../assets/images/Delivery.png";
 
 import "./FeaturesPage.css";
 import AppHeader from "./components/AppHeader";
@@ -276,7 +277,7 @@ const FeaturesPage = () => {
                 title: "Delivery Service Integration",
                 content:
                   "Sync with platforms like Uber Eats or DoorDash with minimal setup.",
-                image: Image1,
+                image: Image10,
                 subFeatures: [
                   {
                     title:
