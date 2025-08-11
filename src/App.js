@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import FeaturesPage from "./pages/FeaturesPage";
 import ContactPage from "./pages/ContactPage";
 import PricingPage from "./pages/PricingPage";
+import UberEatsPrivacyPage from "./pages/UberEatsPrivacyPage";
 import ThankYouPage from "./pages/ThankYouPage";
 
 // Wrapper to manage body class dynamically
@@ -53,6 +54,7 @@ function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/Features*" element={<FeaturesPage />} />
+        <Route path="/ubereats-privacy-policy" element={<UberEatsPrivacyPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
