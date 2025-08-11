@@ -550,7 +550,15 @@
   /* Tighten the overall container */
   .feature-tag-grid {
     padding: 5px 5px; /* minimal side padding */
-    gap: 8px 1px; /* smaller gaps between pills */
+    gap: 8px 3px; /* smaller gaps between pills */
     justify-content: center;
+  }
+
+  /* higher specificity than button.feature-tag */
+  .features-section .feature-tag,
+  button.feature-tag {
+    font-size: 0.82rem !important; /* use !important only if needed */
+    padding: 6px 10px; /* optional: tighter pill */
+    line-height: 1.2;
   }
 }
