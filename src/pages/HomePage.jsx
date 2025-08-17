@@ -62,7 +62,7 @@ const HomePage = () => {
   const [selectedFeature, setSelectedFeature] = useState(featureHighlights[0]);
 
   return (
-    <div className="home-page">
+    <div>
       <AppHeader />
       <section className="full-banner">
         <div className="banner-content">
