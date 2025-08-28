@@ -5,13 +5,17 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import Image12 from "../assets/images/Table Kiosk.png";
-import Image1 from "../assets/images/POS.png";
-import Image2 from "../assets/images/KDS.png";
-import Image3 from "../assets/images/Multiple POSKDS.png";
-import Image4 from "../assets/images/Sales.png";
+import Image1 from "../assets/images/POS 1.png";
+import Image2 from "../assets/images/KDS 1.png";
+import Image3 from "../assets/images/Multi KDS.png";
+import Image4 from "../assets/images/Online Ordering 1.png";
+import Image5 from "../assets/images/Online Reservation 1.png";
+import Image6 from "../assets/images/QR Ordering 1.png";
+import Image7 from "../assets/images/Sales Analytics.png";
+import Image8 from "../assets/images/Stock Management.png";
 import Image9 from "../assets/images/Loyalty.png";
-import Image10 from "../assets/images/Delivery.png";
+import Image10 from "../assets/images/Uber Eats.png";
+import Image11 from "../assets/images/Table Kiosk.png";
 
 import "./FeaturesPage.css";
 import AppHeader from "./components/AppHeader";
@@ -68,28 +72,28 @@ const FeaturesPage = () => {
               {
                 title: "Point of Sales (POS)",
                 content:
-                  "A powerful point-of-sale system designed for speed, ease, and flexibility.",
+                  "A powerful point-of-sale system designed for speed, ease, and flexibility",
                 image: Image1,
                 subFeatures: [
                   {
                     title: "Table Management",
                     content:
-                      "Manage tables visually, update availability in real-time, and improve front-of-house efficiency.",
+                      "Manage tables visually, update availability in real-time, and improve front-of-house efficiency",
                   },
                   {
                     title: "Menu Customisation",
                     content:
-                      "Create unique menu layouts, hide/show items, and tailor selections to different times or areas.",
+                      "Create unique menu layouts, hide/show items, and tailor selections to different times or areas",
                   },
                   {
                     title: "Sync With KDS",
                     content:
-                      "Orders flow instantly to the kitchen with no delay or confusion.",
+                      "Orders flow instantly to the kitchen with no delay or confusion",
                   },
                   {
                     title: "Multiple Payment Methods",
                     content:
-                      "Accept EFTPOS, QR Pay, cash, and split payments with a seamless checkout experience.",
+                      "Accept EFTPOS, cash, and split payments with a seamless checkout experience",
                   },
                 ],
               },
@@ -102,17 +106,17 @@ const FeaturesPage = () => {
                   {
                     title: "Order Management",
                     content:
-                      "Customise what's displayed and track prep time for every order.",
+                      "Customise what's displayed and track prep time for every order",
                   },
                   {
                     title: "Multiple KDS",
                     content:
-                      "Customise menu view for each KDS by section or station.",
+                      "Customise menu view for each KDS by section or station",
                   },
                   {
                     title: "Sync With POS",
                     content:
-                      "Real-time sync with POS ensures accuracy and eliminates confusion.",
+                      "Real-time sync with POS ensures accuracy and eliminates confusion",
                   },
                 ],
               },
@@ -130,12 +134,12 @@ const FeaturesPage = () => {
                   {
                     title: "Station-Specific KDS Assignment",
                     content:
-                      "Assign KDS screens to individual kitchen stations for better workflow.",
+                      "Assign KDS screens to individual kitchen stations for better workflow",
                   },
                   {
                     title: "Tailored Sync for Your Workflow",
                     content:
-                      "Control how POS and KDS sync, based on your restaurant’s flow.",
+                      "Control how POS and KDS sync, based on your restaurant’s flow",
                   },
                 ],
               },
@@ -143,7 +147,7 @@ const FeaturesPage = () => {
                 title: "Sales and Analytics",
                 content:
                   "Gain Actionable Insights into your restaurant's performance",
-                image: Image4,
+                image: Image7,
                 subFeatures: [
                   {
                     title: "Total Sales & Number of orders",
@@ -170,23 +174,23 @@ const FeaturesPage = () => {
               {
                 title: "Inventory Management",
                 content:
-                  "Keep track of stock, ingredients, and suppliers from one dashboard.",
-                image: Image1,
+                  "Keep track of stock, ingredients, and suppliers from one dashboard",
+                image: Image8,
                 subFeatures: [
                   {
                     title: "Stock Management",
                     content:
-                      "Customise what's displayed and track prep time for every order.",
+                      "Customise what's displayed and track prep time for every order",
                   },
                   {
                     title: "Auto Alarm System",
                     content:
-                      "Customise menu view for each KDS by section or station.",
+                      "Customise menu view for each KDS by section or station",
                   },
                   {
                     title: "Sync With POS",
                     content:
-                      "Real-time sync with POS ensures accuracy and eliminates confusion.",
+                      "Real-time sync with POS ensures accuracy and eliminates confusion",
                   },
                 ],
               },
@@ -195,7 +199,7 @@ const FeaturesPage = () => {
               {
                 title: "Online Ordering",
                 content: "Oneline Ordering Integrated with POS & KDS",
-                image: Image1,
+                image: Image4,
                 subFeatures: [
                   {
                     title:
@@ -214,8 +218,8 @@ const FeaturesPage = () => {
               {
                 title: "Online Reservations",
                 content:
-                  "Enable guests to book tables from your website or partner platforms.",
-                image: Image1,
+                  "Enable guests to book tables from your website or partner platforms",
+                image: Image5,
                 subFeatures: [
                   {
                     title:
@@ -234,8 +238,8 @@ const FeaturesPage = () => {
               {
                 title: "QR Code Ordering",
                 content:
-                  "Guests can scan, view the menu, and order directly from their table.",
-                image: Image1,
+                  "Guests can scan, view the menu, and order directly from their table",
+                image: Image6,
                 subFeatures: [
                   {
                     title:
@@ -253,13 +257,13 @@ const FeaturesPage = () => {
               {
                 title: "Loyalty Program",
                 content:
-                  "Custom loyalty and voucher tools for customers, staff and companies.",
+                  "Custom loyalty and voucher tools for customers, staff and companies",
                 image: Image9,
                 subFeatures: [
                   {
                     title: "Loyalty for Regulars or Companies",
                     content:
-                      "Add frequent customers or businesses into the POS system with a loyalty balance they can spend as cash.",
+                      "Add frequent customers or businesses into the POS system with a loyalty balance they can spend as cash",
                   },
                   {
                     title: "Voucher Management",
@@ -269,22 +273,22 @@ const FeaturesPage = () => {
                   {
                     title: "Staff Discount",
                     content:
-                      "Assign preconfigured credit or discount allowances to staff members.",
+                      "Assign preconfigured credit or discount allowances to staff members",
                   },
                 ],
               },
               {
                 title: "Delivery Service Integration",
                 content:
-                  "Sync with platforms like Uber Eats or DoorDash with minimal setup.",
+                  "Sync with platforms like Uber Eats or DoorDash with minimal setup",
                 image: Image10,
                 subFeatures: [
                   {
                     title:
-                      "No more additional tablets for different Delivery apps.",
+                      "No more additional tablets for different Delivery apps",
                   },
                   {
-                    title: "No manual setup - we connect it all for you.",
+                    title: "No manual setup - we connect it all for you",
                   },
                   {
                     title:
@@ -297,41 +301,41 @@ const FeaturesPage = () => {
               {
                 title: "Table Order Kiosk",
                 content:
-                  "Mountable touchscreen kiosks that let customers order directly at their table.",
-                image: Image12,
+                  "Mountable touchscreen kiosks that let customers order directly at their table",
+                image: Image11,
                 subFeatures: [
                   {
                     title: "Table Management",
                     content:
-                      "Manage tables visually, update availability in real-time, and improve front-of-house efficiency.",
+                      "Manage tables visually, update availability in real-time, and improve front-of-house efficiency",
                   },
                   {
                     title: "Menu Customisation",
                     content:
-                      "Create unique menu layouts, hide/show items, and tailor selections to different times or areas.",
+                      "Create unique menu layouts, hide/show items, and tailor selections to different times or areas",
                   },
                   {
                     title: "Sync With KDS",
                     content:
-                      "Orders flow instantly to the kitchen with no delay or confusion.",
+                      "Orders flow instantly to the kitchen with no delay or confusion",
                   },
                   {
                     title: "Multiple Payment Methods",
                     content:
-                      "Accept EFTPOS, QR Pay, cash, and split payments with a seamless checkout experience.",
+                      "Accept EFTPOS, cash, and split payments with a seamless checkout experience",
                   },
                 ],
               },
               {
                 title: "Smart Ordering in 3 Steps",
                 content:
-                  "A simple overview of how customers order via the Smart Table Kiosk.",
+                  "A simple overview of how customers order via the Smart Table Kiosk",
                 isCarousel: true,
               },
               {
                 title: "Table Kiosk FAQ",
                 content:
-                  "Frequently asked questions about how Smart Table Kiosk works.",
+                  "Frequently asked questions about how Smart Table Kiosk works",
                 isFaq: true,
               },
             ],
@@ -448,12 +452,6 @@ const FeaturesPage = () => {
                           question: "Can customers customise their orders?",
                           answer:
                             "Yes, customers can modify their orders using the menu options and add special instructions, which are sent directly to both the POS and KDS.",
-                        },
-                        {
-                          question:
-                            "How is this beneficial over ordering through QR code?",
-                          answer:
-                            "Ordering via QR codes requires scanning, accessing a website, and manually entering payment details. With Smart Table, customers enjoy a hassle-free ordering experience with a fully integrated and streamlined system.",
                         },
                       ].map((item, faqIndex) => (
                         <details className="faq-item" key={faqIndex}>

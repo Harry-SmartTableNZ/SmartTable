@@ -5,57 +5,64 @@ import "./HomePage.css";
 import AppHeader from "./components/AppHeader";
 import { Link } from "react-router-dom";
 
+import Icon1 from "../assets/images/Icon 1.png";
+import Icon2 from "../assets/images/Icon 2.png";
+import Icon3 from "../assets/images/Icon 3.png";
+import Icon4 from "../assets/images/Icon 4.png";
+import Icon5 from "../assets/images/Icon 5.png";
+import Icon6 from "../assets/images/Icon 6.png";
+
 const HomePage = () => {
   const featureHighlights = [
     {
       title: "Point of Sales (POS)",
-      img: require("../assets/images/POS.png"),
-      desc: "Create a seamless online experience with your brand front and center.",
+      img: require("../assets/images/POS 1.png"),
+      desc: "Process orders and payments quickly with an intuitive POS system designed for speed and reliability.",
     },
     {
       title: "Kitchen Display System",
-      img: require("../assets/images/KDS.png"),
-      desc: "Give your customers more reasons to return with custom rewards.",
+      img: require("../assets/images/KDS 1.png"),
+      desc: "Replace paper dockets with real-time digital displays that streamline kitchen operations.",
     },
     {
       title: "Multiple POS & KDS",
-      img: require("../assets/images/Multiple POSKDS.png"),
-      desc: "Serve diverse communities with support for multiple languages.",
+      img: require("../assets/images/Multi KDS.png"),
+      desc: "Run several POS and KDS stations at once for seamless service across busy restaurants.",
     },
     {
       title: "Online Ordering",
-      img: require("../assets/images/POS.png"),
-      desc: "Serve diverse communities with support for multiple languages.",
+      img: require("../assets/images/Online Ordering 1.png"),
+      desc: "Allow customers to place orders directly from your branded online menu for convenience and efficiency.",
     },
     {
       title: "Online Reservation",
-      img: require("../assets/images/POS.png"),
-      desc: "Serve diverse communities with support for multiple languages.",
+      img: require("../assets/images/Online Reservation 1.png"),
+      desc: "Manage bookings effortlessly with a smart reservation system that prevents overbooking.",
     },
     {
       title: "QR Ordering",
-      img: require("../assets/images/POS.png"),
-      desc: "Serve diverse communities with support for multiple languages.",
+      img: require("../assets/images/QR Ordering 1.png"),
+      desc: "Enable contactless ordering by letting guests scan a QR code to browse the menu and place orders.",
     },
     {
       title: "Sales Analytics",
-      img: require("../assets/images/Sales.png"),
-      desc: "Serve diverse communities with support for multiple languages.",
+      img: require("../assets/images/Sales Analytics.png"),
+      desc: "Gain valuable insights with reports that track sales trends, top items, and customer preferences.",
     },
     {
       title: "Inventory Management",
-      img: require("../assets/images/POS.png"),
-      desc: "Serve diverse communities with support for multiple languages.",
+      img: require("../assets/images/Stock Management.png"),
+      desc: "Monitor stock levels in real time to reduce waste and keep your supplies in check.",
     },
     {
       title: "Loyalty Program",
       img: require("../assets/images/Loyalty.png"),
-      desc: "Serve diverse communities with support for multiple languages.",
+      desc: "Encourage repeat business with customizable rewards and customer loyalty features.",
     },
     {
       title: "Delievery App Integration",
-      img: require("../assets/images/Delivery.png"),
-      desc: "Serve diverse communities with support for multiple languages.",
+      img: require("../assets/images/Uber Eats.png"),
+      desc: "Connect with leading delivery platforms like Uber Eats to expand your reach and grow sales.",
     },
   ];
 
@@ -92,38 +99,43 @@ const HomePage = () => {
           <div className="smart-table-icon-grid">
             {[
               {
-                icon: "⚡",
+                img: Icon1,
                 title: "Speed Up Service",
                 desc: "Reduce wait times and serve more customers with faster, more efficient ordering and processing.",
               },
               {
-                icon: "💸",
+                img: Icon2,
                 title: "Cut Down Costs",
                 desc: "Lower your labor expenses by automating routine tasks with integrated technology.",
               },
               {
-                icon: "🧩",
+                img: Icon3,
                 title: "All-in-One System",
                 desc: "POS, KDS, QR ordering, loyalty programs, and more—all managed in a single platform.",
               },
               {
-                icon: "💬",
+                img: Icon4,
                 title: "Boost Customer Experience",
                 desc: "Interactive, contactless, and personalized—customers enjoy smooth and modern dining.",
               },
               {
-                icon: "📈",
+                img: Icon5,
                 title: "Actionable Insights",
                 desc: "Access powerful analytics to make data-driven decisions and grow your business.",
               },
               {
-                icon: "📦",
+                img: Icon6,
                 title: "Scalable & Flexible",
                 desc: "Whether you're a small cafe or a multi-location chain, Smart Table grows with you.",
               },
             ].map((item, i) => (
               <div className="smart-table-icon-card" key={i}>
-                <div className="icon">{item.icon}</div>
+                <img
+                  className="icon-img"
+                  src={item.img}
+                  alt={item.title}
+                  loading="lazy"
+                />
                 <h4>{item.title}</h4>
                 <p>{item.desc}</p>
               </div>
@@ -226,12 +238,6 @@ const HomePage = () => {
                 question: "Can customers customise their orders?",
                 answer:
                   "Yes, customers can modify their orders using the menu options and add special instructions, which are sent directly to both the POS and KDS.",
-              },
-              {
-                question:
-                  "How is this beneficial over ordering through QR code?",
-                answer:
-                  "Ordering via QR codes requires scanning, accessing a website, and manually entering payment details. With Smart Table, customers enjoy a hassle-free ordering experience with a fully integrated and streamlined system.",
               },
             ].map((item, index) => (
               <details className="faq-item" key={index}>
