@@ -423,7 +423,7 @@
   margin-bottom: 15px;
   display: inline-block;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25); /* subtle depth */
-  background: #2a5fb7; /* fallback bg while image loads */
+  background: #1c3d72; /* fallback bg while image loads */
   padding: 5px;
 }
 
