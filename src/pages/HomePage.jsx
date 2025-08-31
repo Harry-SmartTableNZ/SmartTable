@@ -145,9 +145,14 @@ const HomePage = () => {
       </section>
 
       <section id="features" className="features-section">
+        {/* 제목과 가로줄은 content-wrapper */}
         <div className="content-wrapper">
           <h2 className="section-title">Features</h2>
           <hr className="section-divider" />
+        </div>
+
+        {/* feature-pill 부분만 패딩 없는 wrapper */}
+        <div className="feature-content-wrapper">
           <div className="feature-tag-grid">
             {featureHighlights.map((feature, index) => (
               <button

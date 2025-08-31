@@ -221,7 +221,6 @@ const buttonStyle = {
 
 const buttonContainerStyle = {
   backgroundColor: "#transparent",
-  padding: "16px",
   borderRadius: "10px",
   marginTop: "20px",
 };

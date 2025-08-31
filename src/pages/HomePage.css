@@ -343,6 +343,7 @@
   display: inline-block;
   width: auto;
   max-width: 100%;
+  min-width: 0;
   word-wrap: break-word;
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -484,8 +485,8 @@
     .feature-tag-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr); /* 2 per row */
-      gap: 12px 16px;
-      gap: 16px;
+      gap: 12px;
+      padding-inline: 16px;
       padding: 0 30px;
       box-sizing: border-box;
       .feature-tag {
@@ -562,5 +563,19 @@
     font-size: 0.82rem !important; /* use !important only if needed */
     padding: 6px 10px; /* optional: tighter pill */
     line-height: 1.2;
+  }
+}
+
+.feature-content-wrapper {
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 1200px; /* 필요 시 */
+  box-sizing: border-box;
+}
+
+/* 모바일: 작은 화면일 때 */
+@media (max-width: 480px) {
+  .feature-content-wrapper {
+    padding: 0px !important; /* 좌우 패딩 제거 */
   }
 }

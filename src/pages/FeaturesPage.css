@@ -196,6 +196,7 @@
   display: flex;
   box-shadow: 0 0 24px rgba(0, 160, 255, 0.1);
   margin-bottom: 40px;
+  padding: 10px 24px;
 }
 
 .segmented-tab-button {
@@ -222,7 +223,7 @@
 
 @media only screen and (max-width: 500px) {
   .segmented-tab-background {
-    padding: 0px;
+    padding: 0px 10px;
   }
 
   .segmented-tab-button {

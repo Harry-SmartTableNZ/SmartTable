@@ -130,8 +130,8 @@
   width: 100% !important;
   height: 100vh !important;
   background-color: rgba(27, 54, 98, 1) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
+  backdrop-filter: blur(40px) !important;
+  -webkit-backdrop-filter: blur(40px) !important;
   z-index: 999 !important;
   transition: right 0.3s ease !important;
   overflow-y: auto !important;
