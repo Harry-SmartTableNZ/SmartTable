@@ -282,7 +282,9 @@ const HomePage = () => {
 
         {/* PREMIUM */}
         <div className="plan-block">
-          <h3 className="premium-subheader">Premium — $150 / month</h3>
+          <h3 className="premium-subheader">
+            Premium — $150 / month (Includes Standard Features){" "}
+          </h3>
           <p className="plan-desc">
             Perfect for fully-operating restaurants looking for advanced
             functionality and growth.
