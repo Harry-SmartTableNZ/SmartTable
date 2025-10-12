@@ -150,7 +150,7 @@
 }
 
 .kiosk-steps-section {
-  padding: 20px 20px 40px 20px;
+  padding: 20px 0px 40px 0px;
   width: 100%;
 }
 
@@ -369,8 +369,10 @@
   margin-bottom: 0 !important;
 }
 
+/* 공통 wrapper의 좌우 패딩을 고정 */
 .features-section .content-wrapper {
-  margin-bottom: 0 !important; /* prevent extra gap below content */
+  padding-left: 20px; /* 기존 섹션들 padding 값과 동일하게 */
+  padding-right: 20px;
 }
 
 .feature-overlay {
@@ -578,4 +580,629 @@
   .feature-content-wrapper {
     padding: 0px !important; /* 좌우 패딩 제거 */
   }
+}
+
+.sol-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+@media (min-width: 720px) {
+  .sol-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+.sol-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  background: #fff;
+  border: 1px solid #e6ebf1;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #0b1220;
+  box-shadow: 0 8px 20px rgba(2, 6, 23, 0.06);
+  transition: transform 0.16s ease, box-shadow 0.16s ease,
+    border-color 0.16s ease;
+}
+.sol-card:hover,
+.sol-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.12);
+  border-color: rgba(14, 165, 233, 0.35);
+}
+
+.sol-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 12px;
+  background: rgba(14, 165, 233, 0.08);
+  color: #0ea5e9;
+}
+.sol-text {
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+.why-smart-table-icons {
+  /* optional: deepen the backdrop just for this section */
+  background: radial-gradient(
+      1200px 600px at 20% -10%,
+      #16355d 0%,
+      transparent 60%
+    ),
+    radial-gradient(900px 500px at 100% 20%, #0f2747 0%, transparent 60%);
+  padding-top: clamp(28px, 4vw, 48px);
+  padding-bottom: clamp(28px, 4vw, 48px);
+}
+
+/* Title & divider on dark */
+.why-smart-table-icons .section-title {
+  color: #eaf2ff;
+}
+.why-smart-table-icons .section-divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.08)
+  );
+  margin: 16px 0 28px;
+}
+
+/* ===== “solutions” cards (darker / glass) ===== */
+.sol-card {
+  background: rgba(255, 255, 255, 0.08); /* translucent glass */
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.18);
+  backdrop-filter: blur(8px); /* subtle glass blur */
+  -webkit-backdrop-filter: blur(8px);
+  color: #e9f1ff; /* brighter text */
+}
+.sol-card:hover,
+.sol-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(2, 6, 23, 0.35);
+  border-color: rgba(56, 189, 248, 0.55); /* brighter blue edge */
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* icon pill tweaks for dark */
+.sol-icon {
+  background: rgba(56, 189, 248, 0.18); /* cyan-ish glow */
+  color: #7dd3fc;
+  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.35);
+}
+.sol-text {
+  color: #e9f1ff;
+}
+
+/* ===== Feature “pills” below to match dark look ===== */
+.features-section .feature-tag {
+  background: rgba(255, 255, 255, 0.06);
+  color: #dbe8ff;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 6px 16px rgba(2, 6, 23, 0.25);
+}
+.features-section .feature-tag:hover,
+.features-section .feature-tag:focus-visible {
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(56, 189, 248, 0.12);
+  color: #f6fbff;
+}
+
+/* optional: soften section spacing to feel tighter on dark */
+.features-section .section-title {
+  color: #eaf2ff;
+}
+.features-section .section-divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.08)
+  );
+}
+
+/* ===== Features: two-tier container matches your site width/padding ===== */
+.feature-content-wrapper.two-tier {
+  max-width: 1100px; /* same as other sections */
+  margin: 0 auto;
+  padding: 0 20px; /* respect your global padding */
+  display: grid;
+  gap: 40px;
+}
+@media (min-width: 900px) {
+  .feature-content-wrapper.two-tier {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+}
+
+/* 프리뷰 영역 위/아래 여백 */
+.selected-feature-display {
+  margin: 40px auto;
+  max-width: 900px;
+}
+
+/* 제목: 글자 길이만큼만 밑줄 */
+.plan-subheader {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 40px 0 12px;
+  color: #eaf2ff;
+  padding-bottom: 10px;
+  display: inline-block; /* 텍스트 폭만 차지 */
+  position: relative;
+}
+.plan-subheader::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%; /* inline-block 폭 = 글자 끝까지만 */
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #06b6d4);
+  border-radius: 2px;
+}
+
+.premium-subheader {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 40px 0 12px;
+  color: #eaf2ff;
+  padding-bottom: 10px;
+  display: inline-block; /* 텍스트 폭만 차지 */
+  position: relative;
+}
+
+.premium-subheader::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%; /* inline-block 폭 = 글자 끝까지만 */
+  height: 3px;
+  background: linear-gradient(90deg, #f472b6, #ec4899);
+  border-radius: 2px;
+}
+
+/* 설명: 고정 margin-left 대신 text-indent로 안전하게 */
+.plan-desc {
+  margin: 4px 0 24px;
+  font-size: 1.05rem;
+  color: #cdd9f8;
+}
+
+/* (선택) pill 왼쪽 정렬을 강제하고 싶으면 사용 */
+.features-section .feature-tag-grid {
+  justify-content: flex-start;
+}
+
+/* plan-block 전체를 같은 기준선에서 시작 */
+.plan-block {
+  padding-left: 20px; /* 위 content-wrapper 와 동일 */
+  margin: 0;
+}
+
+.plan-block {
+  max-width: 1100px; /* .content-wrapper와 동일 */
+  margin: 0 auto; /* 가운데 정렬(왼쪽 기준선 동일해짐) */
+  padding: 0 20px; /* 좌우 패딩도 동일 */
+}
+
+/* 기본값: pill은 가운데 */
+.features-section .feature-tag-grid {
+  justify-content: center;
+}
+
+/* Basic 구역에 이미 클래스가 있으니 확실히 고정하고 싶다면 */
+.feature-grid-basic {
+  justify-content: center !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.selected-feature-display {
+  position: relative;
+}
+
+/* 동그란 닫기 버튼 */
+.feature-close {
+  position: absolute;
+  top: -14px; /* 필요시 미세조정 */
+  right: -14px; /* 필요시 미세조정 */
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: flex; /* ⟵ 정중앙 정렬 */
+  align-items: center; /* ⟵ 수직 가운데 */
+  justify-content: center; /* ⟵ 수평 가운데 */
+  line-height: 1; /* ⟵ 글자 높이 보정 */
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.15s ease, background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.feature-close:hover,
+.feature-close:focus-visible {
+  transform: scale(1.06);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.95);
+  outline: none;
+}
+
+/* App Features 헤더(.content-wrapper) 다음에 오는 첫 plan-block의 제목 마진만 줄이기 */
+.features-section .content-wrapper + .plan-block .plan-subheader {
+  margin-top: 5px; /* 원하는 값으로 조절 */
+}
+
+/* ===== Optional Add-Ons grid ===== */
+.addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.addon-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 6px 16px rgba(2, 6, 23, 0.25);
+  transition: transform 0.16s ease, box-shadow 0.16s ease,
+    border-color 0.16s ease;
+}
+
+.addon-card:hover,
+.addon-card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.35);
+  border-color: rgba(56, 189, 248, 0.55); /* cyan edge like other pills */
+}
+
+.addon-media img {
+  display: block;
+  width: 120px; /* tweak if you want larger thumbs */
+  height: auto;
+  border-radius: 12px;
+}
+
+.addon-body {
+  color: #eaf2ff;
+}
+
+.addon-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+
+.addon-desc {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Mobile: stack media on top for very small screens */
+@media (max-width: 420px) {
+  .addon-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .addon-media img {
+    width: 100%;
+    max-width: 420px;
+  }
+}
+
+/* Ensures the section divider is white for all sections */
+.why-smart-table-icons .section-divider,
+.features-section .section-divider,
+.highlighted-feature .section-divider {
+  border: 0;
+  height: 1px;
+  background-color: white; /* Solid white divider */
+}
+
+.segmented-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  background: #eaf3ff;
+  border-radius: 9999px;
+  padding: 6px;
+}
+
+.segmented-tabs button {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.segmented-tabs button.active {
+  background: white;
+  color: #007bff;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Feature split layout (desktop/tablet) ===== */
+.feature-split-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.feature-split-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.feature-split-image {
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.feature-split-image img {
+  width: 100%;
+  max-width: 650px; /* 이미지 크게 */
+  min-width: 420px; /* 과도한 축소 방지 (모바일에서 해제) */
+  height: auto;
+  border-radius: 16px;
+  object-fit: contain;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.feature-split-text {
+  flex: 1 1 50%;
+  color: #eaf2ff;
+}
+
+.feature-split-text h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.feature-split-text p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== Tablet 이하: 세로 스택 & 여백 축소 ===== */
+@media (max-width: 900px) {
+  .feature-split-row {
+    flex-direction: column;
+    gap: 28px;
+    margin: 40px 0;
+    text-align: left; /* 필요하면 center로 바꿔도 됨 */
+  }
+
+  .feature-split-row.reverse {
+    flex-direction: column-reverse;
+  }
+
+  .feature-split-image,
+  .feature-split-text {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .feature-split-image img {
+    max-width: 100%;
+    min-width: 0; /* ← 축소 제한 해제 (중요) */
+  }
+}
+
+@media (max-width: 640px) {
+  /* 한 줄 레이아웃 → 세로 스택 */
+  .feature-split-row {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+  }
+
+  /* reverse 행도 동일하게 처리 */
+  .feature-split-row.reverse {
+    flex-direction: column !important;
+  }
+
+  /* 이미지 영역: 전체 폭으로 확장 */
+  .feature-split-image {
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  /* 이미지 크기: 화면 꽉 채우기 */
+  .feature-split-image img {
+    width: 90%;
+    max-width: 480px;
+    min-width: unset !important;
+    height: auto;
+    border-radius: 14px;
+    object-fit: contain;
+  }
+
+  /* 텍스트 영역도 폭 제한 없이 */
+  .feature-split-text {
+    width: 90%;
+    text-align: center;
+    color: #eaf2ff;
+  }
+
+  /* 타이포 살짝 축소 */
+  .feature-split-text h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .feature-split-text p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+.feature-split-image img {
+  background: transparent !important; /* ⬅️ ensures no background fill */
+  box-shadow: none !important; /* ⬅️ removes any glow or shadow */
+}
+
+/* ===== Hero: photo background ===== */
+.full-banner--image {
+  position: relative;
+  min-height: 68vh; /* 데스크톱 기본 높이 */
+  display: grid;
+  place-items: center;
+  padding: 0 24px;
+  color: #fff;
+
+  /* 배경 이미지 */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* iOS 대응 (fixed는 종종 버그) */
+}
+
+/* 그라데이션 오버레이 (위 진한 -> 아래 살짝) */
+.full-banner__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 12, 28, 0.72) 0%,
+    rgba(5, 12, 28, 0.35) 40%,
+    rgba(5, 12, 28, 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+/* 기존 .banner-content 배치 보정 */
+.full-banner--image .banner-content {
+  position: relative; /* overlay 위에 오도록 */
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.full-banner--image .banner-content h1 {
+  margin: 0 0 14px;
+  line-height: 1.05;
+}
+
+.full-banner--image .banner-content p {
+  margin: 0 auto 20px;
+  max-width: 720px;
+  opacity: 0.95;
+}
+
+/* 버튼이 배경과 대비되도록 */
+.full-banner--image .banner-button {
+  background: #31bdf2;
+  color: #061126;
+  border: 0;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+}
+
+/* 반응형 */
+@media (max-width: 1024px) {
+  .full-banner--image {
+    min-height: 60vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .full-banner--image {
+    min-height: 54vh;
+    padding: 0 18px;
+  }
+  .full-banner--image .banner-content h1 {
+    font-size: clamp(26px, 6vw, 38px);
+  }
+  .full-banner--image .banner-content p {
+    font-size: 15px;
+  }
+}
+
+.sol-card {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.segmented-tab-background-wrapper1 > .segmented-tab-background1 {
+  max-width: 1100px; /* match your content-wrapper width */
+  width: 100%;
+  margin: 0 auto;
+}
+
+.segmented-tab-background-wrapper1 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.segmented-tab-background1 {
+  width: 90%;
+  max-width: 800px;
+  background: #f0f9ff;
+  border-radius: 999px;
+  padding: 10px;
+  display: flex;
+  margin-bottom: 40px;
+  padding: 5px 18px;
+  margin-top: 30px;
+}
+
+@media only screen and (max-width: 500px) {
+  .segmented-tab-background1 {
+    padding: 0px 10px;
+  }
+}
+
+.segmented-tab-wrapper {
+  padding: 40px 20px 60px;
+  text-align: center;
+  margin-top: 50px;
 }

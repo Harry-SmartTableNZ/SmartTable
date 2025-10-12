@@ -43,14 +43,11 @@ const ResponsiveNav = () => {
             Features
           </Link>
           <div className="responsive-dropdown-content">
-            <Link
-              to="/Features#operations"
-              className="responsive-dropdown-link"
-            >
-              Restaurant Operations
+            <Link to="/Features#Standard" className="responsive-dropdown-link">
+              Standard Features
             </Link>
-            <Link to="/Features#front" className="responsive-dropdown-link">
-              Front-of-House Features
+            <Link to="/Features#Premium" className="responsive-dropdown-link">
+              Premium Features
             </Link>
             <Link to="/Features#addons" className="responsive-dropdown-link">
               Optional Add-Ons
@@ -109,22 +106,22 @@ const ResponsiveNav = () => {
           {isFeaturesOpen && (
             <div className="responsive-mobile-dropdown-links">
               <Link
-                to="/Features#operations"
+                to="/Features#Standard Features"
                 className={`responsive-mobile-nav-link ${
-                  isActive("/Features", "#operations") ? "active" : ""
+                  isActive("/Features", "#Standard Features") ? "active" : ""
                 }`}
                 onClick={closeMobileMenu}
               >
-                Restaurant Operations
+                Standard Features
               </Link>
               <Link
-                to="/Features#front"
+                to="/Features#Premium Features"
                 className={`responsive-mobile-nav-link ${
-                  isActive("/Features", "#front") ? "active" : ""
+                  isActive("/Features", "#Premium Features") ? "active" : ""
                 }`}
                 onClick={closeMobileMenu}
               >
-                Front-of-House Features
+                Premium Features
               </Link>
               <Link
                 to="/Features#addons"

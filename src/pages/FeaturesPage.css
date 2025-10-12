@@ -83,16 +83,13 @@
 .feature-split-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 60px;
-  padding: 50px 0;
-  flex-wrap: wrap;
+  gap: 40px;
+  margin: 30px 0;
 }
 
 .feature-split-row.reverse {
   flex-direction: row-reverse;
 }
-
 .feature-split-image {
   flex: 1 1 50%;
   max-width: 600px;
@@ -177,37 +174,47 @@
 }
 
 .segmented-tab-wrapper {
-  padding: 100px 20px 60px;
+  padding: 30px 20px 60px;
   text-align: center;
-  margin-top: 80px;
+  margin-top: 50px;
 }
 
 .segmented-tab-background-wrapper {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .segmented-tab-background {
-  width: 100%;
+  width: 90%;
   max-width: 800px;
   background: #f0f9ff;
   border-radius: 999px;
   padding: 10px;
   display: flex;
-  box-shadow: 0 0 24px rgba(0, 160, 255, 0.1);
   margin-bottom: 40px;
-  padding: 10px 24px;
+  padding: 5px 18px;
+  margin-top: 60px;
 }
 
 .segmented-tab-button {
-  border: none;
+  flex: 1;
   background: transparent;
-  border-radius: 999px;
-  font-weight: 600;
-  color: #1e293b;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 9999px;
   cursor: pointer;
-  font-size: 0.95rem;
-  transition: all 0.2s ease;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.segmented-tab-background-wrapper > .segmented-tab-background {
+  max-width: 1100px; /* match your content-wrapper width */
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 50px;
 }
 
 .segmented-tab-button:hover {
@@ -216,9 +223,11 @@
 
 .segmented-tab-button.active {
   background: white;
-  color: #2563eb;
-  box-shadow: 0 0 15px rgba(249, 115, 22, 0.15);
-  transform: scale(1.05);
+  color: #007bff;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding-left: 28px; /* ← add this line */
+  padding-right: 20px; /* keep right padding normal */
 }
 
 @media only screen and (max-width: 500px) {
@@ -238,7 +247,7 @@
 .carousel-centered-wrapper {
   text-align: center;
   padding: 20px 20px;
-  max-width: 1500px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -257,7 +266,7 @@
 }
 
 .carousel-container {
-  max-width: 120%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -269,13 +278,13 @@
 }
 
 .carousel-image-wrapper {
-  max-width: 1500px;
+  max-width: 1200px;
   width: 100%;
   padding: 0 20px;
 }
 
 .carousel-image-wrapper img {
-  width: 200%;
+  width: 100%;
   height: auto;
   object-fit: contain;
 }
@@ -292,4 +301,130 @@
   max-width: 1100px;
   margin: 40px auto 0;
   padding: 0 20px;
+}
+
+/* =============== FeaturesPage → HomePage 스타일 스킨 =============== */
+/* ===== Feature split layout (desktop/tablet) ===== */
+.features-page-skin .feature-split-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin: 30px 0;
+  max-width: 1200px; /* HomePage와 비슷한 컨텐츠 폭 */
+  margin: 40px auto; /* 화면 중앙 배치 */
+  padding: 0 40px; /* 좌우 여백(거터) */
+  gap: 30px; /* 이미지/텍스트 간 거리 */
+}
+
+.features-page-skin .feature-split-row.reverse {
+  flex-direction: row-reverse;
+}
+
+.features-page-skin .feature-split-image {
+  flex: 1 1 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.features-page-skin .feature-split-text {
+  flex: 1 1 50%;
+  color: #eaf2ff;
+}
+
+.features-page-skin .feature-split-text h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.features-page-skin .feature-split-text p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ===== Tablet 이하: 세로 스택 & 여백 축소 ===== */
+@media (max-width: 900px) {
+  .features-page-skin .feature-split-row {
+    flex-direction: column;
+    gap: 28px;
+    margin: 40px 0;
+    text-align: center; /* 필요하면 center로 바꿔도 됨 */
+  }
+
+  .features-page-skin .feature-split-row.reverse {
+    flex-direction: column-reverse;
+  }
+
+  .features-page-skin .feature-split-image,
+  .features-page-skin .feature-split-text {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  /* 한 줄 레이아웃 → 세로 스택 */
+  .features-page-skin .feature-split-row {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+  }
+
+  /* reverse 행도 동일하게 처리 */
+  .features-page-skin .feature-split-row.reverse {
+    flex-direction: column !important;
+  }
+
+  /* 이미지 영역: 전체 폭으로 확장 */
+  .features-page-skin .feature-split-image {
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  /* 텍스트 영역도 폭 제한 없이 */
+  .features-page-skin .feature-split-text {
+    width: 90%;
+    text-align: center;
+    color: #eaf2ff;
+  }
+
+  /* 타이포 살짝 축소 */
+  .features-page-skin .feature-split-text h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .features-page-skin .feature-split-text p {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+}
+
+/* 탭 아래 전체 콘텐츠 레인도 동일하게 */
+.features-page-skin .segmented-tab-features {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 태블릿 이하에서 거터 살짝 줄이기 */
+@media (max-width: 1024px) {
+  .features-page-skin .feature-split-row {
+    margin: 30px auto;
+    padding: 0 28px;
+    gap: 40px;
+  }
+}
+
+.features-page-skin .feature-split-image img {
+  background: transparent !important; /* ⬅️ ensures no background fill */
+  box-shadow: none !important; /* ⬅️ removes any glow or shadow */
 }
