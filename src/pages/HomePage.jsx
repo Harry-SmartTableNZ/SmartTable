@@ -449,7 +449,7 @@ const HomePage = () => {
                     title: "Service Display - ($30/month)",
                     content:
                       "Front-of-house screens that keep staff updated on which orders are ready to serve. Improves communication between kitchen and floor staff, ensuring smooth service. Helps reduce delays and ensures customers receive their food at the right time.",
-                    images: [require("../assets/images/Coming Soon3.png")],
+                    images: [require("../assets/images/Coming Soon1.png")],
                   },
                 ].map((feature, index) => (
                   <div
