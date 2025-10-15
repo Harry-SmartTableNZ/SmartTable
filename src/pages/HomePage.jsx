@@ -435,7 +435,6 @@ const HomePage = () => {
                 </section>
               </>
             )}
-
             {activeTab === "kitchen" && (
               <>
                 {[
@@ -473,49 +472,35 @@ const HomePage = () => {
                 ))}
               </>
             )}
-
             {activeTab === "displays" && (
-              <>
+              <div className="feature-text-only">
                 {[
                   {
                     title: "Pickup & Service Display - ($30/month)",
                     content:
                       "Dedicated display for pickup counters showing ready orders. Guests can clearly see when their order is ready without staff intervention. Streamlines hand-off, reduces congestion, and keeps operations flowing smoothly.",
-                    images: [require("../assets/images/Coming Soon1.png")],
                   },
                   {
                     title: "Customer Facing Display - ($30/month)",
                     content:
                       "Checkout-facing screen that shows items, totals, and payment details in real time. Improves transparency, builds trust, and allows guests to confirm their orders. Also supports tips, split payments, and digital receipt options.",
-                    images: [require("../assets/images/Coming Soon1.png")],
                   },
                   {
                     title: "Digital Menu Display - ($30/month)",
                     content:
                       "Dynamic digital boards that update automatically with your POS. Supports daypart scheduling, promotions, and live price syncing. Reduces printing costs and keeps menus accurate across all locations.",
-                    images: [require("../assets/images/Coming Soon1.png")],
                   },
                 ].map((feature, index) => (
                   <div
                     key={index}
-                    className={`feature-split-row ${
-                      index % 2 === 0 ? "normal" : "reverse"
-                    }`}
-                    style={{ padding: "30px 0" }}
+                    className="feature-text-block"
+                    style={{ padding: "18px 0" }}
                   >
-                    <div className="feature-split-image">
-                      <FeatureGallery
-                        images={feature.images}
-                        alt={feature.title}
-                      />
-                    </div>
-                    <div className="feature-split-text">
-                      <h3>{feature.title}</h3>
-                      <p>{feature.content}</p>
-                    </div>
+                    <h3 className="feature-text-title">{feature.title}</h3>
+                    <p className="feature-text-desc">{feature.content}</p>
                   </div>
                 ))}
-              </>
+              </div>
             )}
           </div>
         </div>
