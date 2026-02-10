@@ -377,8 +377,11 @@ const HomePage = () => {
                 {[
                   {
                     title: [
-                      "14 inch Self-Ordering Kiosk -$100 per month",
-                      "21 inch Self-Ordering Kiosk -$200 per month",
+                      "14 inch Self-Ordering Kiosk",
+                      "$100/month/kiosk",
+                      "",
+                      "21 inch Self-Ordering Kiosk",
+                      "$200/month/kiosk",
                     ],
                     content:
                       "Elevate your guest experience with our versatile freestanding or counter-top kiosks. Decide between our compact 14-inch model or the high-impact 21-inch display to perfectly suit your restaurant's unique floor plan and budget. Both options empower guests to browse your full menu at their own pace and complete payments without staff assistance, drastically reducing peak-hour wait times. Whether you are looking for a space-saving solution or a visual powerhouse to showcase your dishes, these kiosks are the ideal tool for any quick-service environment looking to streamline operations and maximize efficiency.",
@@ -421,7 +424,7 @@ const HomePage = () => {
                                 key={i}
                                 style={{
                                   display: "block",
-                                  marginBottom: "2px",
+                                  minHeight: line === "" ? "20px" : "auto",
                                 }}
                               >
                                 {line}
