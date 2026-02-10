@@ -11,7 +11,8 @@ function PricingCalculator() {
 
   const ADDON_PRICES = {
     kds: 30,
-    selfKiosk: 180,
+    selfKiosk14inch: 100,
+    selfKiosk21inch: 200,
     tableKiosk: 40,
     portableTablet: 25,
     serviceDisplay: 30,
@@ -22,7 +23,8 @@ function PricingCalculator() {
 
   const ADDON_MAX_QTY = {
     kds: 5,
-    selfKiosk: 5,
+    selfKiosk14inch: 5,
+    selfKiosk21inch: 5,
     tableKiosk: 50,
     portableTablet: 20,
     serviceDisplay: 5,
@@ -33,7 +35,8 @@ function PricingCalculator() {
 
   const addonList = [
     { key: "kds", label: "Kitchen Display System" },
-    { key: "selfKiosk", label: "Self Ordering Kiosk" },
+    { key: "selfKiosk14inch", label: "Self-Ordering Kiosk - 14 Inch " },
+    { key: "selfKiosk21inch", label: "Self-Ordering Kiosk - 21 Inch " },
     { key: "tableKiosk", label: "Table Order Kiosk" },
     { key: "portableTablet", label: "Portable Tablet" },
     { key: "serviceDisplay", label: "Service Display" },
@@ -50,7 +53,8 @@ function PricingCalculator() {
   const [addonsQuestion, setAddonsQuestion] = useState("no");
   const [addons, setAddons] = useState({
     kds: { enabled: false, qty: 1 },
-    selfKiosk: { enabled: false, qty: 1 },
+    selfKiosk14inch: { enabled: false, qty: 1 },
+    selfKiosk21inch: { enabled: false, qty: 1 },
     tableKiosk: { enabled: false, qty: 1 },
     portableTablet: { enabled: false, qty: 1 },
     serviceDisplay: { enabled: false, qty: 1 },
@@ -71,7 +75,9 @@ function PricingCalculator() {
 
   // 하드웨어 포함 안내
   const isIncludingHardware = (key) =>
-    key === "selfKiosk" || key === "tableKiosk" || key === "portableTablet";
+    (key === "selfKiosk14inch") | (key === "selfKiosk21inch") ||
+    key === "tableKiosk" ||
+    key === "portableTablet";
 
   return (
     <div className="calc-grid">

@@ -119,7 +119,7 @@ const HomePage = () => {
     },
     {
       title: "Staff Timesheets",
-      img: require("../assets/images/Coming Soon1.png"),
+      img: require("../assets/images/Staff Timesheet.png"),
       desc: "Track staff logins and work hours for payroll accuracy and operational visibility.",
     },
     {
@@ -376,11 +376,14 @@ const HomePage = () => {
               <>
                 {[
                   {
-                    title: "Self-Ordering Kiosk - ($180/month/kiosk)",
+                    title: [
+                      "14 inch Self-Ordering Kiosk -$100 per month",
+                      "21 inch Self-Ordering Kiosk -$200 per month",
+                    ],
                     content:
-                      "Freestanding or counter-top kiosks that empower guests to browse menus at their own pace. Customers can place and pay for orders without staff assistance, reducing wait times. Perfect for quick-service environments looking to streamline ordering and payment.",
+                      "Elevate your guest experience with our versatile freestanding or counter-top kiosks. Decide between our compact 14-inch model or the high-impact 21-inch display to perfectly suit your restaurant's unique floor plan and budget. Both options empower guests to browse your full menu at their own pace and complete payments without staff assistance, drastically reducing peak-hour wait times. Whether you are looking for a space-saving solution or a visual powerhouse to showcase your dishes, these kiosks are the ideal tool for any quick-service environment looking to streamline operations and maximize efficiency.",
                     images: [
-                      require("../assets/images/Kiosk 1.png"),
+                      require("../assets/images/Self-Ordering Kiosk.png"),
                       // add more images here when available
                     ],
                   },
@@ -411,7 +414,21 @@ const HomePage = () => {
                       />
                     </div>
                     <div className="feature-split-text">
-                      <h3>{feature.title}</h3>
+                      <h3>
+                        {Array.isArray(feature.title)
+                          ? feature.title.map((line, i) => (
+                              <span
+                                key={i}
+                                style={{
+                                  display: "block",
+                                  marginBottom: "2px",
+                                }}
+                              >
+                                {line}
+                              </span>
+                            ))
+                          : feature.title}
+                      </h3>
                       <p>{feature.content}</p>
                     </div>
                   </div>

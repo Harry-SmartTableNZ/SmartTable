@@ -15,9 +15,7 @@ import Image9 from "../assets/images/Online Reservation 1.png";
 import Image10 from "../assets/images/Loyalty.png";
 import Image11 from "../assets/images/Custom Discount.png";
 import Image12 from "../assets/images/Uber Eats.png";
-import Image13 from "../assets/images/Coming Soon1.png";
 import Image14 from "../assets/images/Coming Soon1.png";
-import Image15 from "../assets/images/Kiosk 1.png";
 import Image16 from "../assets/images/Kiosk 1.png";
 import Image17 from "../assets/images/Table Kiosk.png";
 import Image18 from "../assets/images/KDS 1.png";
@@ -26,6 +24,8 @@ import Image20 from "../assets/images/Coming Soon1.png";
 import Image21 from "../assets/images/Coming Soon1.png";
 import Image22 from "../assets/images/Coming Soon1.png";
 import Image23 from "../assets/images/QR Ordering 1.png";
+import Image24 from "../assets/images/Staff Timesheet.png";
+import Image25 from "../assets/images/Self-Ordering Kiosk.png";
 
 import "./FeaturesPage.css";
 import AppHeader from "./components/AppHeader";
@@ -167,7 +167,7 @@ const FeaturesPage = () => {
                   title: "Staff Timesheets",
                   content:
                     "Track staff clock-ins and clock-outs directly through your POS, linked to assigned shifts. Automatically calculate hours worked and export timesheets for payroll. Gain clear visibility into attendance, overtime, and scheduling efficiency across your team.",
-                  image: Image13,
+                  image: Image24,
                 },
                 {
                   title: "Inventory Management",
@@ -181,7 +181,7 @@ const FeaturesPage = () => {
                   title: "Self Ordering Kiosk",
                   content:
                     "Empower customers to browse the menu, customize items, and place orders at a freestanding kiosk. Reduce queues and wait times during peak hours while improving order accuracy. Perfect for fast-paced venues that want to streamline service without extra staff.",
-                  image: Image15,
+                  image: Image25,
                 },
                 {
                   title: "Portable Tablet",
