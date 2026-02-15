@@ -45,6 +45,304 @@
   background-color: rgba(255, 255, 255, 0.15);
 }
 
+/* Layout Container */
+.banner-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  position: relative;
+  z-index: 2;
+  gap: 40px;
+}
+
+.banner-left {
+  flex: 1;
+  color: #fff;
+  text-align: left;
+}
+
+.banner-left h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.banner-left h1 span {
+  display: block; /* Ensures the span starts on a new line */
+  margin-top: 30px; /* <--- THIS adds the space you pointed to */
+
+  /* Keep your existing font styles below */
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #f0f0f0;
+}
+
+.banner-trust-badges {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Specialist Card */
+.banner-right {
+  flex: 0 0 300px;
+}
+
+.specialist-card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  color: #333;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.specialist-card h3 {
+  margin: 20px 0;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.specialist-card select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.form-submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: #000080; /* Red like Lightspeed */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.form-disclaimer {
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 900px) {
+  .banner-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .banner-left {
+    text-align: center;
+  }
+  .banner-left h1 {
+    font-size: 2.5rem;
+  }
+  .banner-right {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+/* Form Step Indicator */
+.form-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.step {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #666;
+  background: #fff;
+}
+
+.step.active {
+  border-color: #000080;
+  color: #000080;
+}
+
+.step.completed {
+  background: #000080;
+  border-color: #000080;
+  color: white;
+}
+
+.step-line {
+  height: 2px;
+  width: 60px;
+  background: #ccc;
+}
+
+.step-line.filled {
+  background: #000080;
+}
+
+/* Form Inputs for Step 2 */
+.step-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* Smooth Fade In */
+.fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.back-link {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.8rem;
+  margin-top: 15px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Specialist Card Container */
+.specialist-card {
+  background: #ffffff; /* Explicit white background */
+  padding: 30px;
+  border-radius: 12px;
+  color: #333333; /* Dark text for the labels and titles */
+}
+
+/* Fix for Input Visibility */
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #cccccc; /* Visible border */
+  border-radius: 6px;
+  background-color: #ffffff; /* White background for the box */
+  color: #000000 !important; /* DARK BLACK TEXT so you can see what you type */
+  font-size: 1rem;
+}
+
+/* Ensure placeholder text is visible but slightly lighter */
+.form-input::placeholder {
+  color: #888888;
+}
+
+/* Ensure labels are visible */
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #444444;
+  text-align: left;
+}
+
+/* 1. Desktop Standard (Keeps your original "Full Banner" look) */
+.full-banner {
+  height: 100vh; /* Forces full screen height on desktop */
+  width: 100%;
+  background: linear-gradient(to bottom, #1a1a1a, #15294d, #2d4f8a);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  position: relative;
+  padding: 0 20px;
+  padding-top: 120px;
+  overflow: hidden; /* Keeps things tight on desktop */
+}
+
+/* 2. Mobile Specific Fix (Applies only to screens smaller than 900px) */
+@media (max-width: 700px) {
+  .full-banner {
+    height: auto; /* Allow the background to grow with the form */
+    min-height: 100vh; /* Ensure it's at least full screen */
+    padding-bottom: 60px; /* Space at the bottom so the box doesn't hit the edge */
+    display: block; /* Switch from flex to block for better scrolling behavior */
+  }
+
+  .banner-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 40px;
+  }
+
+  .banner-right {
+    width: 100%;
+    max-width: 400px; /* Limits width so it doesn't look stretched on tablets */
+    margin: 0 auto;
+  }
+
+  /* Prevent the contact box from clipping through the photo */
+  .specialist-card {
+    position: relative;
+    z-index: 5;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .full-banner {
+    /* Adjust this value (e.g., 140px to 180px) until the text is fully visible */
+    padding-top: 80px !important;
+
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .banner-left h1 {
+    /* Optionally shrink the font slightly so more text fits on the screen */
+    font-size: 2.2rem;
+    margin-top: 20px;
+  }
+}
+
 .why-smart-table {
   padding: 80px 20px;
   width: 100%;
@@ -606,7 +904,9 @@
   text-decoration: none;
   color: #0b1220;
   box-shadow: 0 8px 20px rgba(2, 6, 23, 0.06);
-  transition: transform 0.16s ease, box-shadow 0.16s ease,
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
     border-color 0.16s ease;
 }
 .sol-card:hover,
@@ -633,11 +933,8 @@
 
 .why-smart-table-icons {
   /* optional: deepen the backdrop just for this section */
-  background: radial-gradient(
-      1200px 600px at 20% -10%,
-      #16355d 0%,
-      transparent 60%
-    ),
+  background:
+    radial-gradient(1200px 600px at 20% -10%, #16355d 0%, transparent 60%),
     radial-gradient(900px 500px at 100% 20%, #0f2747 0%, transparent 60%);
   padding-top: clamp(28px, 4vw, 48px);
   padding-bottom: clamp(28px, 4vw, 48px);
@@ -772,7 +1069,7 @@
   bottom: 0;
   width: 100%; /* inline-block 폭 = 글자 끝까지만 */
   height: 3px;
-  background: linear-gradient(90deg, #f472b6, #ec4899);
+  background: linear-gradient(90deg, #a020f0, #bf40bf);
   border-radius: 2px;
 }
 
@@ -837,7 +1134,9 @@
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
   cursor: pointer;
   z-index: 2;
-  transition: transform 0.15s ease, background-color 0.15s ease,
+  transition:
+    transform 0.15s ease,
+    background-color 0.15s ease,
     border-color 0.15s ease;
 }
 
@@ -871,7 +1170,9 @@
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 6px 16px rgba(2, 6, 23, 0.25);
-  transition: transform 0.16s ease, box-shadow 0.16s ease,
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
     border-color 0.16s ease;
 }
 
@@ -1205,7 +1506,7 @@
   padding: 40px 20px 60px;
   text-align: center;
   margin-top: 50px;
-  margin-bottom: 20px;
+  margin-bottom: 2 0px;
 }
 
 /* ============ Displays (text-only, full width) ============ */

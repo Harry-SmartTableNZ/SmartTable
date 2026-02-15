@@ -86,43 +86,43 @@ const FeaturesPage = () => {
                 {
                   title: "Point of Sales (POS)",
                   content:
-                    "A robust point-of-sale system that lets your staff process orders quickly, manage payments seamlessly, and sync data across all devices in real-time. Designed for speed and reliability, it keeps your service running smoothly even during peak hours. Every transaction, discount, and modification is tracked with precision for complete operational visibility.",
+                    "A robust point-of-sale system that lets your staff process orders quickly, manage payments seamlessly, and sync data across all devices in real-time.",
                   image: Image1,
                 },
                 {
                   title: "Table Management",
                   content:
-                    "Visually manage your entire floor plan with drag-and-drop table assignments, real-time status tracking, and color-coded availability. Whether it’s dine-in, pickup, or delivery, staff can instantly see which tables are occupied or ready for the next guests. The result is smoother seating flow and reduced waiting times.",
+                    "Visually manage your entire floor plan with drag-and-drop table assignments, real-time status tracking, and color-coded availability.",
                   image: Image2,
                 },
                 {
                   title: "Menu Management",
                   content:
-                    "Easily customize and update your menu items, prices, and categories with flexible scheduling options for breakfast, lunch, and dinner. Include allergen notes, preparation times, and required modifiers to guide both staff and customers. Changes sync instantly across POS, kiosks, and online orders.",
+                    "Easily customize and update your menu items, prices, and categories with flexible scheduling options for breakfast, lunch, and dinner. Changes sync instantly across POS, kiosks, and online orders.",
                   image: Image3,
                 },
                 {
                   title: "Sales & Analytics",
                   content:
-                    "Gain deep insights into your business performance with real-time dashboards showing total sales, popular items, and order trends. Compare day, week, and month statistics to identify growth patterns and seasonal shifts. Export detailed reports for accounting and forecasting at the click of a button.",
+                    "Gain deep insights into your business performance with real-time dashboards showing total sales, popular items, and order trends. Compare day, week, and month statistics to identify growth patterns and seasonal shifts. ",
                   image: Image4,
                 },
                 {
                   title: "Order Records",
                   content:
-                    "Access a complete history of every order by table, date, or staff member, with filters for payments, refunds, and discounts. Quickly reprint receipts, review previous dockets, or check transaction notes for auditing. It’s your central logbook for transparent and accountable service operations.",
+                    "Access a complete history of every order by table, date, or staff member, with filters for payments, refunds, and discounts. Quickly reprint receipts, review previous dockets, or check transaction notes for auditing.",
                   image: Image5,
                 },
                 {
                   title: "Staff Access Control",
                   content:
-                    "Assign roles and permissions to your team to safeguard sensitive data and maintain accountability. Limit access to key functions such as voids, refunds, and reports, ensuring each user sees only what they need. Manage roles easily as your team grows and your operation scales.",
+                    "Assign roles and permissions to your team to safeguard sensitive data and maintain accountability. Limit access to key functions such as voids, refunds, and reports, ensuring each user sees only what they need.",
                   image: Image6,
                 },
                 {
                   title: "Multiple Payment Type",
                   content:
-                    "Accept cash, EFTPOS, credit card, or contactless payments with built-in split bill options for groups. Transactions automatically sync with the POS and are logged for reporting. Simplify end-of-day reconciliation and reduce manual input errors for faster, accurate closings.",
+                    "Accept cash, EFTPOS, credit card, or contactless payments with built-in split bill options for groups. Transactions automatically sync with the POS and are logged for reporting.",
                   image: Image7,
                 },
               ],
@@ -130,49 +130,49 @@ const FeaturesPage = () => {
                 {
                   title: "Online Ordering",
                   content:
-                    "Allow customers to browse your live menu and place orders directly from your website or mobile devices. Orders instantly sync with your POS and kitchen display, clearly marked for pickup or delivery. Boost revenue and reduce phone orders with a seamless online experience.",
+                    "Allow customers to browse your live menu and place orders directly from your website or mobile devices. Orders instantly sync with your POS and kitchen display, clearly marked for pickup or delivery.",
                   image: Image8,
                 },
                 {
                   title: "Online Reservation",
                   content:
-                    "Let guests book tables online with real-time availability linked to your POS seating plan. Reservations appear instantly on your dashboard, helping your team prepare for incoming bookings. Send automatic confirmations or reminders to reduce no-shows and improve table turnover.",
+                    "Let guests book tables online with real-time availability linked to your POS seating plan. Reservations appear instantly on your dashboard, helping your team prepare for incoming bookings.",
                   image: Image9,
                 },
                 {
                   title: "QR Ordering",
                   content:
-                    "Empower your guests with a seamless, contactless ordering experience. With QR Ordering, customers can simply scan a QR code at their table to instantly access your digital menu, customize their selections, and place orders directly from their own devices. Orders are sent straight to the POS and kitchen displays in real time, reducing wait times and improving service efficiency — all without the need for additional hardware.",
+                    "Empower your guests with a seamless, contactless ordering experience. With QR Ordering, customers can simply scan a QR code at their table to instantly access your digital menu, customize their selections, and place orders directly from their own devices.",
                   image: Image23,
                 },
                 {
                   title: "Loyalty Program",
                   content:
-                    "Reward loyal customers with points, cashbacks, or digital vouchers directly integrated into your POS. Track every redemption and purchase to build personalized promotions that keep guests returning. Increase repeat business while maintaining full control over program rules and budgets.",
+                    "Reward loyal customers with points, cashbacks, or digital vouchers directly integrated into your POS. Track every redemption and purchase to build personalized promotions that keep guests returning.",
                   image: Image10,
                 },
                 {
                   title: "Custom Discount",
                   content:
-                    "Create flexible discounts and promotions that can be applied per item, order, or customer group. From happy hour specials to staff perks, each discount is tracked in reports for transparency. Manage promotional campaigns easily without affecting your accounting accuracy.",
+                    "Create flexible discounts and promotions that can be applied per item, order, or customer group. From happy hour specials to staff perks, each discount is tracked in reports for transparency.",
                   image: Image11,
                 },
                 {
                   title: "Uber Eats Integration",
                   content:
-                    "Connect your Uber Eats account directly to Smart Table to eliminate manual tablet handling. Incoming delivery orders appear instantly in your POS and KDS, tagged by channel and order type. This integration saves time, prevents errors, and keeps all sales data unified.",
+                    "Connect your Uber Eats account directly to Smart Table to eliminate manual tablet handling. Incoming delivery orders appear instantly in your POS and KDS, tagged by channel and order type.",
                   image: Image12,
                 },
                 {
                   title: "Staff Timesheets",
                   content:
-                    "Track staff clock-ins and clock-outs directly through your POS, linked to assigned shifts. Automatically calculate hours worked and export timesheets for payroll. Gain clear visibility into attendance, overtime, and scheduling efficiency across your team.",
+                    "Track staff clock-ins and clock-outs directly through your POS, linked to assigned shifts. Automatically calculate hours worked and export timesheets for payroll.",
                   image: Image24,
                 },
                 {
                   title: "Inventory Management",
                   content:
-                    "Monitor stock levels, ingredient usage, and supplier orders in real-time to prevent shortages. Receive automatic alerts when items run low and generate purchase orders instantly. Maintain tighter cost control with live inventory data across all connected devices.",
+                    "Monitor stock levels, ingredient usage, and supplier orders in real-time to prevent shortages. Receive automatic alerts when items run low and generate purchase orders instantly.",
                   image: Image14,
                 },
               ],
@@ -180,49 +180,49 @@ const FeaturesPage = () => {
                 {
                   title: "Self Ordering Kiosk",
                   content:
-                    "Empower customers to browse the menu, customize items, and place orders at a freestanding kiosk. Reduce queues and wait times during peak hours while improving order accuracy. Perfect for fast-paced venues that want to streamline service without extra staff.",
+                    "Empower customers to browse the menu, customize items, and place orders at a freestanding kiosk. Reduce queues and wait times during peak hours while improving order accuracy.",
                   image: Image25,
                 },
                 {
                   title: "Portable Tablet",
                   content:
-                    "Equip your staff with lightweight tablets to take orders from anywhere in the venue. Orders sync directly with the kitchen display and POS in real-time. Improve efficiency and guest satisfaction by cutting down on wait times and unnecessary walking.",
+                    "Equip your staff with lightweight tablets to take orders from anywhere in the venue. Orders sync directly with the kitchen display and POS in real-time.",
                   image: Image16,
                 },
                 {
                   title: "Table Order Kiosk",
                   content:
-                    "Install mountable touchscreen kiosks at each table for guests to order directly without waiting for service. Increase average spend with built-in upselling prompts and easy reordering. Every order is automatically sent to the kitchen and POS for seamless fulfillment.",
+                    "Install mountable touchscreen kiosks at each table for guests to order directly without waiting for service. Increase average spend with built-in upselling prompts and easy reordering.",
                   image: Image17,
                 },
                 {
                   title: "Kitchen Display System",
                   content:
-                    "Replace paper dockets with digital kitchen screens that update instantly as new orders arrive. Organize by station, display timers, and track preparation status for faster service. Reduce mistakes and paper waste while keeping chefs fully in sync with the front of house.",
+                    "Replace paper dockets with digital kitchen screens that update instantly as new orders arrive. Organize by station, display timers, and track preparation status for faster service.",
                   image: Image18,
                 },
                 {
                   title: "Service Display",
                   content:
-                    "Show ready orders on a staff-facing screen to streamline communication between kitchen and service teams. Highlight completed items, pending plates, and pickup priorities. Ensure faster service delivery and a smoother flow between kitchen and staff.",
+                    "Show ready orders on a staff-facing screen to streamline communication between kitchen and service teams. Highlight completed items, pending plates, and pickup priorities.",
                   image: Image19,
                 },
                 {
                   title: "Pickup & Service Display",
                   content:
-                    "Offer customers a clear view of their order status on a pickup screen in real-time. Display order numbers, progress updates, and notifications for ready-to-collect items. Ideal for takeaway counters and cafes that handle high-volume online or app-based orders.",
+                    "Offer customers a clear view of their order status on a pickup screen in real-time. Display order numbers, progress updates, and notifications for ready-to-collect items.",
                   image: Image20,
                 },
                 {
                   title: "Customer Facing Display",
                   content:
-                    "Enhance transparency at checkout with a dual-screen setup showing the customer’s order details, pricing, and promotional content. Encourage upsells while providing confidence and clarity during every transaction. A modern, professional experience for your counter.",
+                    "Enhance transparency at checkout with a dual-screen setup showing the customer’s order details, pricing, and promotional content. Encourage upsells while providing confidence and clarity during every transaction.",
                   image: Image21,
                 },
                 {
                   title: "Digital Menu Display",
                   content:
-                    "Showcase your live menu and promotions on digital screens that automatically update from your POS system. Schedule content by time or day to feature happy hour specials or limited-time offers. Keep guests informed and engaged while reducing print costs.",
+                    "Showcase your live menu and promotions on digital screens that automatically update from your POS system. Schedule content by time or day to feature happy hour specials or limited-time offers.",
                   image: Image22,
                 },
                 {
@@ -340,7 +340,7 @@ const FeaturesPage = () => {
                                 }`}
                                 onClick={() =>
                                   setOpenIndex(
-                                    isOpen ? null : `${index}-${subIndex}`
+                                    isOpen ? null : `${index}-${subIndex}`,
                                   )
                                 }
                               >

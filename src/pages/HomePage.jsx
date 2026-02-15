@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import Footer from "./components/Footer";
-import ImageCarousel from "./components/ImageCarousel"; // unchanged; optional for your steps section
+import ImageCarousel from "./components/ImageCarousel";
 import "./HomePage.css";
 import AppHeader from "./components/AppHeader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import heroImg from "../assets/images/FullBanner.jpeg";
+import ReCAPTCHA from "react-google-recaptcha";
 
 /** Mini gallery for each feature (thumbs + main image) */
 function FeatureGallery({ images = [], alt }) {
@@ -36,7 +37,69 @@ function FeatureGallery({ images = [], alt }) {
 }
 
 const HomePage = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("ordering");
+  const [loading, setLoading] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState("");
+
+  // --- Form State ---
+  const [formStep, setFormStep] = useState(1);
+  const [formData, setFormData] = useState({
+    businessType: "",
+    tables: "",
+    fullName: "",
+    email: "",
+    phone: "",
+    company: "",
+  });
+
+  const handleNextStep = (e) => {
+    e.preventDefault();
+    if (formData.businessType && formData.tables) {
+      setFormStep(2);
+    } else {
+      alert("Please select both options to continue.");
+    }
+  };
+
+  const handleFinalSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!recaptchaToken) {
+      alert("Please verify that you are not a robot.");
+      return;
+    }
+
+    setLoading(true);
+
+    const submitData = new FormData();
+    submitData.append("Full Name", formData.fullName);
+    submitData.append("Email", formData.email);
+    submitData.append("Phone", formData.phone);
+    submitData.append("Business Type", formData.businessType);
+    submitData.append("Estimated Tables", formData.tables);
+
+    // FormSubmit Helpers
+    submitData.append("_replyto", formData.email);
+    submitData.append("_subject", "New Specialist Quote Request - Smart Table");
+    submitData.append("_captcha", "false");
+    submitData.append("g-recaptcha-response", recaptchaToken);
+
+    try {
+      await fetch("https://formsubmit.co/admin@smarttable.co.nz", {
+        method: "POST",
+        body: submitData,
+        headers: { Accept: "application/json" },
+      });
+      navigate("/thank-you");
+    } catch (error) {
+      console.error("Form submit error:", error);
+      alert("Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
+      setRecaptchaToken("");
+    }
+  };
 
   // ---------- Feature data (used for Basic/Premium preview) ----------
   const featureHighlights = [
@@ -90,7 +153,6 @@ const HomePage = () => {
       img: require("../assets/images/Uber Eats.png"),
       desc: "Connect with leading delivery platforms like Uber Eats to expand your reach and grow sales.",
     },
-    // Extra for Basic preview
     {
       title: "Table Management",
       img: require("../assets/images/Table Management.png"),
@@ -111,7 +173,6 @@ const HomePage = () => {
       img: require("../assets/images/Staff Permission.png"),
       desc: "Control who can view or perform actions with role-based permissions for managers and staff.",
     },
-    // Premium extras
     {
       title: "Custom Discount",
       img: require("../assets/images/Custom Discount.png"),
@@ -127,14 +188,8 @@ const HomePage = () => {
       img: require("../assets/images/Payment Type.png"),
       desc: "Accept EFTPOS, cash, and split payments with a seamless checkout experience.",
     },
-    {
-      title: "QR Ordering",
-      img: require("../assets/images/QR Ordering 1.png"),
-      desc: "Allow customers to scan a QR code at their table to browse the menu, place orders, and pay directly from their own devices — enabling a faster, contactless dining experience.",
-    },
   ];
 
-  // esc to close any open preview
   const [selectedBasic, setSelectedBasic] = useState(null);
   const [selectedPremium, setSelectedPremium] = useState(null);
 
@@ -159,77 +214,175 @@ const HomePage = () => {
   return (
     <div>
       <AppHeader />
-
-      {/* Hero (image background) */}
       <section
         className="full-banner full-banner--image"
         style={{ backgroundImage: `url(${heroImg})` }}
         aria-label="Smart Table restaurant hero"
       >
         <div className="full-banner__overlay" />
-        <div className="banner-content">
-          <h1>
-            ELEVATE DINING
-            <br />
-            SIMPLIFY OPERATIONS
-          </h1>
-          <p>
-            Enhance your customers&apos; experience while reducing costs and
-            increasing efficiency with Smart Table
-          </p>
-          <Link
-            to="/contact"
-            className="banner-button"
-            onClick={() => window.scrollTo(0, 0)}
-          >
-            CONTACT US
-          </Link>
-        </div>
-      </section>
+        <div className="banner-container">
+          <div className="banner-left">
+            <h1>
+              Operate smarter with Smart Table —
+              <span className="sub-headline">
+                Powerful POS & Kiosks customised for your restaurant
+              </span>
+            </h1>
+            <p>
+              Enhance your customers' experience while reducing costs and
+              increasing efficiency with Smart Table.
+            </p>
+            <div className="banner-trust-badges">
+              <span>✔ Intuitive POS</span>
+              <span>✔ 24/7 Support</span>
+              <span>✔ Real-time Analytics</span>
+            </div>
+          </div>
 
-      {/* Solutions picker */}
-      <section id="why" className="why-smart-table-icons">
-        <div className="content-wrapper">
-          <h2 className="section-title">
-            Find Smart Table solutions tailored to your Restaurant
-          </h2>
-          <div className="content-wrapper" />
-          <hr className="section-divider" />
+          <div className="banner-right">
+            <div className="specialist-card">
+              <form onSubmit={handleFinalSubmit}>
+                {formStep === 1 ? (
+                  <div className="step-content">
+                    <h3>Talk to a Specialist</h3>
+                    <div className="form-group">
+                      <label>Select a business type</label>
+                      <select
+                        className="form-select"
+                        required
+                        value={formData.businessType}
+                        onChange={(e) =>
+                          setFormData({
+                            ...formData,
+                            businessType: e.target.value,
+                          })
+                        }
+                      >
+                        <option value="" disabled>
+                          Select Restaurant Type
+                        </option>
+                        <option value="Fine Dining">
+                          Fine Dining / Dine-in
+                        </option>
+                        <option value="Takeaway">
+                          Takeaway / Quick Service
+                        </option>
+                        <option value="Cafe">Cafe / Bakery</option>
+                        <option value="Bar">Bar / Nightclub</option>
+                      </select>
+                    </div>
 
-          <div className="sol-grid">
-            {[
-              { label: "Full Service Restaurant", icon: "cloche" },
-              { label: "Quick Service Restaurant", icon: "burger" },
-              { label: "Bar", icon: "martini" },
-              { label: "Food Court", icon: "foodcourt" },
-              { label: "Cafe", icon: "coffee" },
-              { label: "Self Service", icon: "kiosk" },
-              { label: "Enterprise", icon: "building" },
-              { label: "Online Ordering", icon: "phonecart" },
-            ].map((it) => (
-              <Link
-                key={it.label}
-                to="/pricing"
-                className="sol-card"
-                onClick={() => window.scrollTo(0, 0)}
-                aria-label={`${it.label} – view pricing`}
-              >
-                <span className="sol-icon">{getIcon(it.icon)}</span>
-                <span className="sol-text">{it.label}</span>
-              </Link>
-            ))}
+                    <div className="form-group">
+                      <label>Estimated Table Number</label>
+                      <select
+                        className="form-select"
+                        required
+                        value={formData.tables}
+                        onChange={(e) =>
+                          setFormData({ ...formData, tables: e.target.value })
+                        }
+                      >
+                        <option value="" disabled>
+                          Estimated Table Number
+                        </option>
+                        <option value="1-5">1 - 5 Tables</option>
+                        <option value="5-20">5 - 20 Tables</option>
+                        <option value="20+">20+ Tables</option>
+                        <option value="none">N/A (Takeaway only)</option>
+                      </select>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="form-submit-btn"
+                      onClick={handleNextStep}
+                    >
+                      Get Started
+                    </button>
+                  </div>
+                ) : (
+                  <div className="step-content fade-in">
+                    <h3>Contact Details</h3>
+                    <div className="form-group">
+                      <input
+                        type="text"
+                        placeholder="Full Name"
+                        required
+                        className="form-input"
+                        value={formData.fullName}
+                        onChange={(e) =>
+                          setFormData({ ...formData, fullName: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="email"
+                        placeholder="Email Address"
+                        required
+                        className="form-input"
+                        value={formData.email}
+                        onChange={(e) =>
+                          setFormData({ ...formData, email: e.target.value })
+                        }
+                      />
+                    </div>
+                    <div className="form-group">
+                      <input
+                        type="tel"
+                        placeholder="Phone Number"
+                        className="form-input"
+                        value={formData.phone}
+                        onChange={(e) =>
+                          setFormData({ ...formData, phone: e.target.value })
+                        }
+                      />
+                    </div>
+
+                    <div
+                      style={{
+                        margin: "10px 0",
+                        transform: "scale(0.8)",
+                        transformOrigin: "0 0",
+                      }}
+                    >
+                      <ReCAPTCHA
+                        sitekey="6LcBe4IrAAAAAHILeyKl2MWyYBfCbHTFy31y6DXn"
+                        onChange={(token) => setRecaptchaToken(token || "")}
+                        onExpired={() => setRecaptchaToken("")}
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="form-submit-btn"
+                      disabled={loading || !recaptchaToken}
+                    >
+                      {loading ? "Sending..." : "Request a Quote"}
+                    </button>
+                    <p className="back-link" onClick={() => setFormStep(1)}>
+                      ← Back to Step 1
+                    </p>
+                  </div>
+                )}
+              </form>
+
+              <p className="form-disclaimer">
+                By clicking {formStep === 1 ? "Get Started" : "Request a Quote"}{" "}
+                you agree to our Terms and Privacy Policy.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Features */}
+      {/* Plans Section */}
       <section id="features" className="features-section">
         <div className="content-wrapper">
-          <h2 className="section-title">App Features</h2>
+          <h2 className="section-title">Plans</h2>
           <hr className="section-divider" />
         </div>
 
-        {/* Standard */}
         <div className="plan-block">
           <h3 className="plan-subheader">Standard — $50 / month</h3>
           <p className="plan-desc">
@@ -262,12 +415,10 @@ const HomePage = () => {
             <button
               className="feature-close"
               type="button"
-              aria-label="Close preview"
               onClick={() => setSelectedBasic(null)}
             >
               &times;
             </button>
-
             {selectedBasic.img && (
               <img
                 src={selectedBasic.img}
@@ -280,10 +431,9 @@ const HomePage = () => {
           </div>
         )}
 
-        {/* PREMIUM */}
         <div className="plan-block">
           <h3 className="premium-subheader">
-            Premium — $150 / month (Includes Standard Features){" "}
+            Premium — $150 / month (Includes Standard Features)
           </h3>
           <p className="plan-desc">
             Perfect for fully-operating restaurants looking for advanced
@@ -317,7 +467,6 @@ const HomePage = () => {
             <button
               className="feature-close"
               type="button"
-              aria-label="Close preview"
               onClick={() => {
                 setSelectedPremium(null);
                 setSelectedBasic(null);
@@ -325,7 +474,6 @@ const HomePage = () => {
             >
               &times;
             </button>
-
             {selectedPremium.img && (
               <img
                 src={selectedPremium.img}
@@ -339,7 +487,7 @@ const HomePage = () => {
         )}
       </section>
 
-      {/* Optional Add-Ons (with per-feature gallery) */}
+      {/* Optional Add-Ons */}
       <section
         id="optional-addons"
         className="segmented-tab-wrapper1"
@@ -348,8 +496,6 @@ const HomePage = () => {
         <div className="content-wrapper">
           <h2 className="section-title">Optional Add-Ons</h2>
           <hr className="section-divider" />
-
-          {/* Segmented Tabs */}
           <div className="segmented-tab-background-wrapper1">
             <div className="segmented-tab-background1">
               {[
@@ -359,9 +505,7 @@ const HomePage = () => {
               ].map((tab) => (
                 <button
                   key={tab.key}
-                  className={`segmented-tab-button ${
-                    activeTab === tab.key ? "active" : ""
-                  }`}
+                  className={`segmented-tab-button ${activeTab === tab.key ? "active" : ""}`}
                   onClick={() => setActiveTab(tab.key)}
                 >
                   {tab.label}
@@ -370,7 +514,6 @@ const HomePage = () => {
             </div>
           </div>
 
-          {/* Tab Content */}
           <div className="segmented-tab-features">
             {activeTab === "ordering" && (
               <>
@@ -384,30 +527,27 @@ const HomePage = () => {
                       "$200/month/kiosk",
                     ],
                     content:
-                      "Elevate your guest experience with our versatile freestanding or counter-top kiosks. Decide between our compact 14-inch model or the high-impact 21-inch display to perfectly suit your restaurant's unique floor plan and budget. Both options empower guests to browse your full menu at their own pace and complete payments without staff assistance, drastically reducing peak-hour wait times. Whether you are looking for a space-saving solution or a visual powerhouse to showcase your dishes, these kiosks are the ideal tool for any quick-service environment looking to streamline operations and maximize efficiency.",
+                      "Elevate your guest experience with our versatile freestanding or counter-top kiosks.",
                     images: [
                       require("../assets/images/Self-Ordering Kiosk.png"),
-                      // add more images here when available
                     ],
                   },
                   {
                     title: "Portable Tablet - ($25/month/tablet)",
                     content:
-                      "Lightweight handheld tablets that staff can carry around the venue to take orders directly at the table. Improves service efficiency, minimizes errors, and allows staff to stay closer to guests. Ideal for larger restaurants or outdoor dining areas where mobility is key.",
+                      "Lightweight handheld tablets that staff can carry around the venue to take orders directly at the table.",
                     images: [require("../assets/images/Kiosk 1.png")],
                   },
                   {
                     title: "Table Order Kiosk - ($40/month/tablet)",
                     content:
-                      "Secure, table-mounted tablets designed for contactless ordering. Guests can browse the full menu, customize items, and send orders straight to the kitchen. Enhances customer experience by giving diners complete control over their meal ordering process.",
+                      "Secure, table-mounted tablets designed for contactless ordering.",
                     images: [require("../assets/images/Table Kiosk.png")],
                   },
                 ].map((feature, index) => (
                   <div
                     key={index}
-                    className={`feature-split-row ${
-                      index % 2 === 0 ? "normal" : "reverse"
-                    }`}
+                    className={`feature-split-row ${index % 2 === 0 ? "normal" : "reverse"}`}
                     style={{ padding: "30px 0" }}
                   >
                     <div className="feature-split-image">
@@ -436,8 +576,6 @@ const HomePage = () => {
                     </div>
                   </div>
                 ))}
-
-                {/* Steps Section */}
                 <section
                   id="kiosk-steps"
                   className="section kiosk-steps-section"
@@ -447,8 +585,6 @@ const HomePage = () => {
                     <h2 className="section-title">
                       Smart Ordering in 3 Steps Using Table Kiosk
                     </h2>
-                  </div>
-                  <div className="content-wrapper">
                     <hr className="section-divider" />
                     <ImageCarousel />
                   </div>
@@ -461,21 +597,19 @@ const HomePage = () => {
                   {
                     title: "Kitchen Display System - ($30/month)",
                     content:
-                      "Replace messy paper dockets with a digital kitchen display system. Orders are routed to the right stations in real time with bump and recall functions. Includes item timers and station-specific views to keep the back-of-house efficient.",
+                      "Replace messy paper dockets with a digital kitchen display system.",
                     images: [require("../assets/images/KDS 1.png")],
                   },
                   {
                     title: "Service Display - ($30/month)",
                     content:
-                      "Front-of-house screens that keep staff updated on which orders are ready to serve. Improves communication between kitchen and floor staff, ensuring smooth service. Helps reduce delays and ensures customers receive their food at the right time.",
+                      "Front-of-house screens that keep staff updated on ready orders.",
                     images: [require("../assets/images/Coming Soon1.png")],
                   },
                 ].map((feature, index) => (
                   <div
                     key={index}
-                    className={`feature-split-row ${
-                      index % 2 === 0 ? "normal" : "reverse"
-                    }`}
+                    className={`feature-split-row ${index % 2 === 0 ? "normal" : "reverse"}`}
                     style={{ padding: "30px 0" }}
                   >
                     <div className="feature-split-image">
@@ -498,17 +632,17 @@ const HomePage = () => {
                   {
                     title: "Pickup & Service Display - ($30/month)",
                     content:
-                      "Dedicated display for pickup counters showing ready orders. Guests can clearly see when their order is ready without staff intervention. Streamlines hand-off, reduces congestion, and keeps operations flowing smoothly.",
+                      "Dedicated display for pickup counters showing ready orders.",
                   },
                   {
                     title: "Customer Facing Display - ($30/month)",
                     content:
-                      "Checkout-facing screen that shows items, totals, and payment details in real time. Improves transparency, builds trust, and allows guests to confirm their orders. Also supports tips, split payments, and digital receipt options.",
+                      "Checkout-facing screen that shows items and totals in real time.",
                   },
                   {
                     title: "Digital Menu Display - ($30/month)",
                     content:
-                      "Dynamic digital boards that update automatically with your POS. Supports daypart scheduling, promotions, and live price syncing. Reduces printing costs and keeps menus accurate across all locations.",
+                      "Dynamic digital boards that update automatically with your POS.",
                   },
                 ].map((feature, index) => (
                   <div
@@ -526,45 +660,41 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ Section */}
       <section id="faq" className="section faq-section">
         <div className="content-wrapper">
           <h2 className="section-title">FAQ for Smart Table</h2>
-        </div>
-        <div className="content-wrapper">
           <hr className="section-divider" />
           <div className="faq-list">
             {[
               {
                 question: "Does Smart Table Kiosk provide hardware?",
                 answer:
-                  "Yes, you can decide whether you want to purchase software only or including hardware. Hardware for Self-Ordering Kiosk and Table Order Kiosk will be provided by us within the cost provided",
+                  "Yes, hardware for Self-Ordering Kiosk and Table Order Kiosk will be provided by us within the cost provided.",
               },
               {
                 question: "Does Smart Table Kiosk support multiple languages?",
                 answer:
-                  "Yes, we currently support English, Korean, Chinese & Japanese. If you require additional languages, please reach out to us for customization options.",
+                  "Yes, we currently support English, Korean, Chinese & Japanese.",
               },
               {
-                question:
-                  "Is internet connectivity required for the Smart Table App to function?",
+                question: "Is internet connectivity required?",
                 answer:
-                  "Yes, an internet connection is required for the Smart Table App to function properly. However, if the connection is lost, the table kiosks will automatically display QR codes to allow customers to continue ordering without disruption.",
+                  "Yes, however, if connection is lost, kiosks display QR codes to continue ordering.",
               },
               {
-                question: "What happens if the Smart Table malfunctions?",
+                question: "What happens if it malfunctions?",
                 answer:
-                  "While we prioritise reliability, in the rare event of a malfunction, our 24/7 online management support is available to ensure uninterrupted restaurant operations.",
+                  "Our 24/7 online management support is available to ensure uninterrupted operations.",
               },
               {
-                question: "How can I get a Smart Table for my business?",
-                answer:
-                  "Contact us today, and our team will get back to you as soon as possible! Email us at: contact@smarttable.co.nz",
+                question: "How can I get a Smart Table?",
+                answer: "Email us at: contact@smarttable.co.nz",
               },
               {
-                question: "Can customers customise their orders?",
+                question: "Can customers customise orders?",
                 answer:
-                  "Yes, customers can modify their orders using the menu options and add special instructions, which are sent directly to both the POS and KDS.",
+                  "Yes, they can modify orders and add special instructions.",
               },
             ].map((item, idx) => (
               <details className="faq-item" key={idx}>
@@ -579,7 +709,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA Section */}
       <section className="ready-to-start">
         <div className="content-wrapper">
           <h2 className="section-title">Ready to get Started?</h2>
@@ -605,99 +735,5 @@ const HomePage = () => {
     </div>
   );
 };
-
-// ---------- Icons for the solutions cards ----------
-function getIcon(name) {
-  const common = {
-    width: 28,
-    height: 28,
-    viewBox: "0 0 24 24",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.8,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-    "aria-hidden": "true",
-    focusable: "false",
-  };
-  switch (name) {
-    case "cloche":
-      return (
-        <svg {...common}>
-          <path d="M4 11h16" />
-          <path d="M6 11a6 6 0 0 1 12 0" />
-          <path d="M3 17h18" />
-          <path d="M12 5v-1" />
-          <path d="M5 17v1a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-1" />
-        </svg>
-      );
-    case "burger":
-      return (
-        <svg {...common}>
-          <path d="M3 10h18M4 14h16" />
-          <rect x="4" y="6" width="16" height="4" rx="2" />
-          <rect x="4" y="14" width="16" height="4" rx="2" />
-        </svg>
-      );
-    case "martini":
-      return (
-        <svg {...common}>
-          <path d="M3 3h18L12 12 3 3z" />
-          <path d="M12 12v7" />
-          <path d="M8 21h8" />
-        </svg>
-      );
-    case "foodcourt":
-      return (
-        <svg {...common}>
-          <path d="M6 10h12" />
-          <path d="M12 10v4" />
-          <path d="M5 10v6M5 16h3M5 12h3" />
-          <path d="M19 10v6M16 16h3M16 12h3" />
-        </svg>
-      );
-    case "coffee":
-      return (
-        <svg {...common}>
-          <path d="M6 8h11a3 3 0 0 1 0 6H6a3 3 0 0 1-3-3" />
-          <path d="M5 14v1a4 4 0 0 0 4 4h4a4 4 0 0 0 4-4v-1" />
-          <path d="M9 5c0 1-.8 1.5-.8 2.5M12 5c0 1-.8 1.5-.8 2.5M15 5c0 1-.8 1.5-.8 2.5" />
-        </svg>
-      );
-    case "kiosk":
-      return (
-        <svg {...common}>
-          <rect x="4" y="3" width="16" height="18" rx="2" />
-          <rect x="7" y="6" width="10" height="7" rx="1" />
-          <path d="M12 13v4m0 0l-2-2m2 2l2-2" />
-        </svg>
-      );
-    case "building":
-      return (
-        <svg {...common}>
-          <rect x="6" y="3" width="12" height="18" rx="2" />
-          <path d="M9 7h2m2 0h2M9 11h2m2 0h2M9 15h2m2 0h2" />
-          <path d="M11 21v-3h2v3" />
-        </svg>
-      );
-    case "phonecart":
-      return (
-        <svg {...common}>
-          <rect x="5" y="2" width="10" height="20" rx="2" />
-          <circle cx="10" cy="18" r="0.7" />
-          <path d="M14.5 8h4l-.6 3.2a1 1 0 0 1-1 .8H14" />
-          <circle cx="15" cy="14.5" r="1" />
-          <circle cx="18" cy="14.5" r="1" />
-        </svg>
-      );
-    default:
-      return (
-        <svg {...common}>
-          <rect x="4" y="3" width="16" height="18" rx="2" />
-          <path d="M8 7h2m4 0h2M8 11h2m4 0h2M8 15h2m4 0h2M10 21v-3h4v3" />
-        </svg>
-      );
-  }
-}
 
 export default HomePage;
