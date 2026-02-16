@@ -228,10 +228,6 @@ const HomePage = () => {
                 Powerful POS & Kiosks customised for your restaurant
               </span>
             </h1>
-            <p>
-              Enhance your customers' experience while reducing costs and
-              increasing efficiency with Smart Table.
-            </p>
             <div className="banner-trust-badges">
               <span>✔ Intuitive POS</span>
               <span>✔ 24/7 Support</span>
