@@ -1,7 +1,10 @@
 footer {
-  padding: 40px 20px;
-  color: white;
-  font-family: "Roboto", sans-serif;
+  padding: 60px 20px; /* Increased padding for a more premium feel */
+  background-color: #ffffff; /* Essential for the white theme */
+  color: #2e2e48;
+  font-family:
+    "Inter", "Roboto", sans-serif; /* Inter is closer to Proton's look */
+  border-top: 1px solid #e2e8f0; /* Subtle separation from the body */
 }
 
 .footer-columns {
@@ -11,6 +14,7 @@ footer {
   max-width: 1100px;
   margin: 0 auto;
   gap: 40px;
+  text-align: left;
 }
 
 .footer-column {
@@ -19,26 +23,27 @@ footer {
 }
 
 .footer-column h4 {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-  font-weight: bold;
+  color: #1b3662; /* Your Theme Colour */
+  font-size: 1.1rem; /* Slightly smaller but bolder is more modern */
+  margin-bottom: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .footer-column a {
   display: block;
-  color: white;
+  color: #53536b; /* Muted deep grey-blue */
   text-decoration: none;
   font-size: 0.95rem;
-  margin-bottom: 6px;
+  margin-bottom: 10px; /* More breathing room */
+  transition: color 0.2s ease;
 }
 
 .footer-column a:hover {
-  text-decoration: underline;
+  color: #1b3662; /* Changes to your brand color on hover */
+  text-decoration: none; /* Modern clean look usually avoids underlines */
 }
 
-.footer-columns {
-  text-align: left;
-}
 .footer-column h4,
 .footer-column a {
   text-align: left;

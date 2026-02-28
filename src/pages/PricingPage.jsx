@@ -205,7 +205,7 @@ function PricingCalculator() {
                         <option key={n} value={n}>
                           {n}
                         </option>
-                      )
+                      ),
                     )}
                   </select>
                 </div>
@@ -225,7 +225,7 @@ function PricingCalculator() {
           style={{
             border: 0,
             height: 1,
-            background: "#e8e8ef",
+            background: "White",
             margin: "12px 0 16px",
           }}
         />
@@ -313,7 +313,6 @@ const PricingPage = () => {
       <AppHeader />
       <div className="spacer" />
 
-      {/* Plans */}
       <section className="features-section">
         <div className="content-wrapper">
           <h2 className="feature-section-title section-title">Pricing Plans</h2>
@@ -328,11 +327,15 @@ const PricingPage = () => {
                 {option.badge && (
                   <span className="plan-badge">{option.badge}</span>
                 )}
+
                 <h3 className="plan-title" style={{ color: option.color }}>
                   {option.title}
                 </h3>
+
                 <p className="plan-price">{option.price}</p>
+
                 {option.blurb && <p className="plan-blurb">{option.blurb}</p>}
+
                 {option.features?.length > 0 && (
                   <>
                     <hr className="plan-divider" />

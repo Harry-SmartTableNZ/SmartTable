@@ -1,58 +1,89 @@
-/* Override any global styles that might affect this component */
-.responsive-header,
-.responsive-header *,
-.responsive-header *::before,
-.responsive-header *::after {
-  box-sizing: border-box !important;
-}
+/* AppHeader.css */
 
 .app-header {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  padding: 20px 0;
-  z-index: 100;
-  background: none; /* or a semi-transparent background if needed */
+  z-index: 1000;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  transition: transform 0.3s ease-in-out; /* Smooth slide effect */
 }
 
-.app-header-logo {
-  display: flex;
-  align-items: center;
+/* Visibility Classes */
+.nav-visible {
+  transform: translateY(0);
 }
 
-.app-header-logo img {
-  height: 50px;
-  width: auto;
-  display: block;
-}
-
-/* Responsive logo for small screens */
-@media (max-width: 768px) {
-  .app-header-logo img {
-    height: 35px;
-  }
-}
-
-@media (max-width: 480px) {
-  .app-header-logo img {
-    height: 30px;
-  }
+.nav-hidden {
+  transform: translateY(-100%);
 }
 
 .app-header-box {
-  background-color: rgba(27, 54, 98, 0.4); /* semi-transparent */
-  backdrop-filter: blur(12px); /* blur effect */
-  -webkit-backdrop-filter: blur(12px); /* Safari support */
   max-width: 1100px;
   margin: 0 auto;
-  padding: 20px 30px;
-  border-radius: 35px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 10px 30px;
+  background: transparent; /* Removed the semi-transparent blue */
 }
 
 .app-header-box nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+}
+
+.app-header-logo img {
+  height: 45px;
+  width: auto;
+  /* Sharpens the logo if the source file is large */
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* --- MOBILE FIXES --- */
+
+/* Target the '3 lines' (hamburger) inside ResponsiveNav */
+/* You may need to inspect your ResponsiveNav component to find the exact class */
+.hamburger-button,
+.mobile-menu-icon,
+.responsive-header button svg {
+  color: #1b3662 !important; /* Your theme blue */
+  fill: #1b3662 !important;
+}
+
+/* If your 3 lines are <span> elements */
+.hamburger-lines span {
+  background-color: #1b3662 !important;
+}
+
+@media (max-width: 768px) {
+  .app-header-box {
+    padding: 8px 20px;
+  }
+  .app-header-logo img {
+    height: 35px;
+  }
+}
+
+/* AppHeader.css */
+
+/* This targets the header specifically when it's on the homepage */
+.home-header {
+  background-color: #ffffff !important; /* Force pure white */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Subtle separation */
+}
+
+/* This kills the "Pill" shape and grey background on the homepage */
+.home-header .app-header-box {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important; /* Removes the rounded ends from image_ab663c.png */
+  max-width: 100%;
+  padding: 10px 40px;
+}
+
+/* Keep the text sharp navy blue */
+.home-header .nav-link,
+.home-header .responsive-nav-button {
+  color: #1b3662 !important;
 }

@@ -1,25 +1,34 @@
 * {
   margin: 0;
+
   padding: 0;
+
   box-sizing: border-box;
+
   font-family: "Roboto", sans-serif;
 }
 
 /* Universal mobile overflow fix */
+
 *,
 *::before,
 *::after {
   max-width: 100%;
+
   box-sizing: border-box;
 }
 
 /* Mobile-first responsive containers */
+
 .container,
 .content-wrapper,
 .section {
   width: 100%;
+
   max-width: 100%;
+
   padding-left: 20px;
+
   padding-right: 20px;
 }
 
@@ -28,91 +37,104 @@
   .content-wrapper,
   .section {
     max-width: 1100px;
+
     margin: 0 auto;
   }
 }
 
 body {
-  background: 
-    /* 큰 흰색 원형 spot 1 */ radial-gradient(
-      circle 400px at 20% 30%,
-      rgba(255, 255, 255, 0.2),
-      transparent 70%
-    ),
-    /* 큰 흰색 원형 spot 2 */
-      radial-gradient(
-        circle 300px at 80% 70%,
-        rgba(255, 255, 255, 0.25),
-        transparent 70%
-      ),
-    /* 큰 흰색 원형 spot 3 */
-      radial-gradient(
-        circle 250px at 60% 85%,
-        rgba(255, 255, 255, 0.12),
-        transparent 70%
-      ),
-    /* 기존 파란 배경 */ linear-gradient(to bottom, #0a0a0a, #122347, #22497a);
-
-  background-attachment: fixed;
-  background-size: cover;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  color: #fff;
+  background: #ffffff;
+  position: relative;
 }
+
+/* Gradient layer */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      ellipse 120% 60% at 50% -10%,
+      rgba(94, 92, 230, 0.12) 0%,
+      rgba(94, 92, 230, 0.05) 40%,
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 120% 60% at 50% 110%,
+      rgba(94, 92, 230, 0.1) 0%,
+      rgba(94, 92, 230, 0.04) 45%,
+      transparent 80%
+    );
+
+  pointer-events: none;
+}
+
+/* REMOVE OR COMMENT OUT the body::before block */
+/* It likely contains a grey filter or blur that is washing out your colors */
+/* body::before { ... } */
 
 html {
   overflow-x: hidden;
+
   width: 100%;
 }
 
 html,
 body {
   margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
 
-body::before {
-  content: "";
-  position: fixed; /* absolute 대신 fixed */
-  inset: 0;
-  background: inherit;
-  filter: blur(40px);
-  z-index: -1;
+  padding: 0;
+
+  height: 100%;
+
+  width: 100%;
 }
 
 .features-section {
   padding: 80px 20px;
+
   width: 100%;
 }
 
 .features-section .content-wrapper {
   max-width: 1100px;
+
   margin: 0 auto;
 }
 
 .section {
-  color: white;
+  color: #1b3662;
+
   padding: 60px 20px;
+
   max-width: 1100px;
+
   margin: 0 auto;
 }
 
 .section-title {
   font-size: 2.5rem;
+
   font-weight: 700;
+
   text-align: left;
-  color: white;
+
+  color: #1b3662;
+
   margin-bottom: 40px;
 }
 
 .section-divider {
   border: none;
+
   height: 2px;
-  background-color: white;
+
+  background-color: #1b3662;
+
   width: 100%;
+
   margin: 20px 0 40px 0;
 }
 
@@ -121,7 +143,7 @@ body::before {
 .section h3,
 .section p,
 .section strong {
-  color: white;
+  color: #1b3662;
 }
 
 .content-wrapper {
@@ -135,29 +157,38 @@ body::before {
 body,
 #root {
   position: relative;
+
   z-index: 0;
 }
 
 /* Additional mobile overflow prevention */
+
 #root {
   width: 100%;
+
   max-width: 100vw;
+
   overflow-x: hidden;
 }
 
 .App {
   width: 100%;
+
   max-width: 100vw;
+
   overflow-x: hidden;
 }
 
 /* Ensure all images are responsive */
+
 img {
   max-width: 100%;
+
   height: auto;
 }
 
 /* Prevent text overflow */
+
 p,
 h1,
 h2,
@@ -166,30 +197,41 @@ h4,
 h5,
 h6 {
   word-wrap: break-word;
+
   overflow-wrap: break-word;
 }
 
 /* Fix for any grid/flex items that might overflow */
+
 .benefits-grid,
 .feature-card-grid,
 .smart-table-icon-grid,
 .feature-tag-grid {
   width: 100%;
+
   max-width: 100%;
+
   overflow-x: hidden;
 }
 
 .image-carousel__img {
   display: block;
+
   width: 100%;
+
   height: auto;
+
   max-width: 100%;
+
   object-fit: contain;
+
   border-radius: 20px;
+
   box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
 }
 
 /* Make slide narrower than screen on small phones */
+
 @media (max-width: 400px) {
   .image-carousel .swiper-slide {
     width: 100vw !important; /* adjust 88–95vw for your taste */
@@ -199,11 +241,15 @@ h6 {
 @media (min-width: 600px) {
   .slide-inner {
     max-width: 500px; /* 👈 원하는 최대 크기 지정 */
+
     margin: 0 auto; /* 중앙 정렬 */
   }
+
   .image-carousel__img {
     width: 100%;
+
     max-height: 400px; /* 👈 세로도 너무 크면 제한 */
+
     object-fit: contain;
   }
 }

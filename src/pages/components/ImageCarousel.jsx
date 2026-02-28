@@ -91,8 +91,8 @@ export default function ImageCarousel() {
           border-radius: 20px;
           box-shadow: 0 10px 35px rgba(0,0,0,.3);
         }
-        .image-carousel__title { margin-top: 15px; color: #fff; text-align: center; }
-        .image-carousel__desc  { color: #ccc; font-size: .9rem; text-align: center; }
+        .image-carousel__title { margin-top: 15px; color: #1b3662; text-align: center; }
+        .image-carousel__desc  { color: #1b3662; font-size: .9rem; text-align: center; }
 
         /* 데스크탑/태블릿: 기존 레이아웃 유지 */
         .image-carousel .swiper-slide { width: auto; }

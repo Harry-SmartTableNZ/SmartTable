@@ -1,5 +1,5 @@
 .spacer {
-  height: 140px;
+  height: 80px;
 }
 
 .feature-section-title {
@@ -171,11 +171,6 @@ button:hover {
   padding-top: 80px !important;
 }
 
-html,
-body {
-  height: 100%;
-}
-
 .pricing-page {
   display: flex;
   flex-direction: column;
@@ -199,12 +194,20 @@ body {
 
 /* Card container override for your inline style */
 .plan-card {
-  border: 2px solid;
-  border-radius: 14px;
-  padding: 20px 22px;
-  background: rgba(255, 255, 255, 0.03);
-  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.18);
-  position: relative;
+  background: #ffffff; /* Solid white */
+  border: 1px solid rgba(27, 54, 98, 0.1); /* Subtle blue-gray border */
+  border-radius: 20px; /* Modern rounder corners */
+  padding: 32px 24px;
+  box-shadow: 0 10px 30px rgba(27, 54, 98, 0.06); /* Soft blue-tinted shadow */
+  color: #1a1a1a;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(27, 54, 98, 0.12);
 }
 
 .plan-badge {
@@ -221,22 +224,17 @@ body {
 }
 
 .plan-title {
-  margin: 0 0 8px 0;
-  font-size: 22px;
-  font-weight: 700;
+  color: #1b3662; /* Your brand blue */
+  font-weight: 800;
 }
 
 .plan-price {
-  margin: 0 0 10px 0;
-  font-size: 19px;
-  font-weight: 800;
-  color: #eaf2ff;
+  color: #1a1a1a;
+  font-size: 32px;
 }
 
 .plan-blurb {
-  margin: 0 0 10px 0;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 15px;
+  color: #6b7280; /* Soft gray for descriptions */
 }
 
 .plan-divider {
@@ -258,21 +256,19 @@ body {
   display: grid;
   gap: 8px;
 }
+
+/* Checklist items */
 .feature-item {
-  position: relative;
-  padding-left: 22px;
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 14px;
-  line-height: 1.5;
+  color: #4b5563;
 }
+
 .feature-item::before {
-  content: "✓";
-  position: absolute;
+  content: "✔";
   left: 0;
   top: 0;
-  transform: translateY(2px);
-  font-weight: 800;
-  color: #7dd3fc; /* subtle cyan check */
+  color: #1b3662; /* Brand blue checkmarks instead of cyan */
+  font-weight: bold;
+  margin: 10px;
 }
 
 /* Keep the two cards balanced on wide screens */
@@ -459,6 +455,7 @@ body {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+  background: #fff;
 }
 
 /* form rows */
@@ -467,6 +464,7 @@ body {
   gap: 12px;
   grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr);
   align-items: center;
+  background: #fff;
   margin: 8px 0;
 }
 .form-select {

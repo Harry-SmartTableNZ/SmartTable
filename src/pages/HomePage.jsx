@@ -212,8 +212,10 @@ const HomePage = () => {
     };
 
   return (
-    <div>
-      <AppHeader />
+    <div className="home-page-container">
+      {" "}
+      {/* Add this wrapper */}
+      <AppHeader isHome={true} />
       <section
         className="full-banner full-banner--image"
         style={{ backgroundImage: `url(${heroImg})` }}
@@ -371,7 +373,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
       {/* Plans Section */}
       <section id="features" className="features-section">
         <div className="content-wrapper">
@@ -482,7 +483,6 @@ const HomePage = () => {
           </div>
         )}
       </section>
-
       {/* Optional Add-Ons */}
       <section
         id="optional-addons"
@@ -655,7 +655,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
       {/* FAQ Section */}
       <section id="faq" className="section faq-section">
         <div className="content-wrapper">
@@ -704,7 +703,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="ready-to-start">
         <div className="content-wrapper">
@@ -726,7 +724,6 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );

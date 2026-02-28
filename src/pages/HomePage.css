@@ -290,7 +290,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: white;
+  color: #1b3662;
   position: relative;
   padding: 0 20px;
   padding-top: 120px;
@@ -379,7 +379,7 @@
   border-radius: 12px;
   padding: 20px;
   text-align: left;
-  color: white;
+  color: #1b3662;
   box-shadow: none;
   transition: transform 0.2s ease;
 }
@@ -409,7 +409,7 @@
 }
 
 .highlighted-feature p {
-  color: white;
+  color: #1b3662;
 }
 
 .ready-to-start {
@@ -423,15 +423,15 @@
 }
 
 .ready-to-start p {
-  color: white;
+  color: #1b3662;
 }
 
 .cta-button {
   display: inline-block;
   padding: 15px 40px;
-  border: 1px solid white;
+  border: 1px solid #1b3662;
   border-radius: 5px;
-  color: white;
+  color: #1b3662;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.3s ease;
@@ -483,7 +483,7 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-  color: white;
+  color: #1b3662;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -526,7 +526,7 @@
 
 .faq-item {
   background: transparent;
-  color: white;
+  color: #1b3662;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding: 12px 0;
   font-weight: 500;
@@ -561,7 +561,7 @@
   margin-top: 8px;
   font-size: 0.95rem;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.85);
+  color: #1b3662(255, 255, 255, 0.85);
 }
 
 .feature-card-grid {
@@ -594,7 +594,7 @@
 }
 .feature-card-text {
   padding: 16px;
-  color: white;
+  color: #1b3662;
 }
 
 .feature-card-text h3 {
@@ -634,7 +634,7 @@
   gap: 14px 20px;
   max-width: 960px; /* stops the line from running wall-to-wall */
   margin: 24px auto 0;
-  padding: 0 12px; /* keeps pill edges off the sides */
+  padding: 10px, 12px; /* keeps pill edges off the sides */
 }
 
 .feature-tag {
@@ -645,7 +645,7 @@
   word-wrap: break-word;
   background-color: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
+  color: #1b3662;
   padding: 12px 20px;
   font-size: 0.9rem;
   font-weight: 600;
@@ -687,7 +687,7 @@
 }
 
 .feature-overlay-content {
-  background: #fff;
+  background: #1b3662;
   padding: 30px;
   border-radius: 12px;
   text-align: center;
@@ -732,19 +732,19 @@
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 10px;
-  color: #ffffff;
+  color: #1b3662;
 }
 
 .smart-table-icon-card p {
   font-size: 0.95rem;
-  color: #ffffff;
+  color: #1b3662;
 }
 
 .selected-feature-display {
   margin-top: 0 !important;
   background-color: transparent;
   border-radius: 12px;
-  color: white;
+  color: #1b3662;
   padding: 5px;
   text-align: center;
   max-width: 800px;
@@ -942,7 +942,7 @@
 
 /* Title & divider on dark */
 .why-smart-table-icons .section-title {
-  color: #eaf2ff;
+  color: #1b3662;
 }
 .why-smart-table-icons .section-divider {
   border: 0;
@@ -962,7 +962,7 @@
   box-shadow: 0 10px 30px rgba(2, 6, 23, 0.18);
   backdrop-filter: blur(8px); /* subtle glass blur */
   -webkit-backdrop-filter: blur(8px);
-  color: #e9f1ff; /* brighter text */
+  color: #1b3662; /* brighter text */
 }
 .sol-card:hover,
 .sol-card:focus-visible {
@@ -979,13 +979,13 @@
   box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.35);
 }
 .sol-text {
-  color: #e9f1ff;
+  color: #1b3662;
 }
 
 /* ===== Feature “pills” below to match dark look ===== */
 .features-section .feature-tag {
   background: rgba(255, 255, 255, 0.06);
-  color: #dbe8ff;
+  color: #1b3662;
   border: 1px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 6px 16px rgba(2, 6, 23, 0.25);
 }
@@ -993,12 +993,12 @@
 .features-section .feature-tag:focus-visible {
   border-color: rgba(56, 189, 248, 0.55);
   background: rgba(56, 189, 248, 0.12);
-  color: #f6fbff;
+  color: #1b3662;
 }
 
 /* optional: soften section spacing to feel tighter on dark */
 .features-section .section-title {
-  color: #eaf2ff;
+  color: #1b3662;
 }
 .features-section .section-divider {
   border: 0;
@@ -1036,7 +1036,7 @@
   font-size: 1.8rem;
   font-weight: 700;
   margin: 40px 0 12px;
-  color: #eaf2ff;
+  color: #1b3662;
   padding-bottom: 10px;
   display: inline-block; /* 텍스트 폭만 차지 */
   position: relative;
@@ -1056,10 +1056,11 @@
   font-size: 1.8rem;
   font-weight: 700;
   margin: 40px 0 12px;
-  color: #eaf2ff;
+  color: #1b3662;
   padding-bottom: 10px;
   display: inline-block; /* 텍스트 폭만 차지 */
   position: relative;
+  background: transparent;
 }
 
 .premium-subheader::after {
@@ -1077,7 +1078,7 @@
 .plan-desc {
   margin: 4px 0 24px;
   font-size: 1.05rem;
-  color: #cdd9f8;
+  color: #1b3662;
 }
 
 /* (선택) pill 왼쪽 정렬을 강제하고 싶으면 사용 */
@@ -1089,12 +1090,14 @@
 .plan-block {
   padding-left: 20px; /* 위 content-wrapper 와 동일 */
   margin: 0;
+  background: transparent;
 }
 
 .plan-block {
   max-width: 1100px; /* .content-wrapper와 동일 */
   margin: 0 auto; /* 가운데 정렬(왼쪽 기준선 동일해짐) */
   padding: 0 20px; /* 좌우 패딩도 동일 */
+  background: transparent;
 }
 
 /* 기본값: pill은 가운데 */
@@ -1127,9 +1130,9 @@
   line-height: 1; /* ⟵ 글자 높이 보정 */
   font-size: 18px;
   font-weight: 700;
-  color: #fff;
+  color: #1b3662;
 
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid #1b3662(255, 255, 255, 0.8);
   background: rgba(0, 0, 0, 0.55);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
   cursor: pointer;
@@ -1191,7 +1194,7 @@
 }
 
 .addon-body {
-  color: #eaf2ff;
+  color: #1b3662;
 }
 
 .addon-title {
@@ -1203,7 +1206,7 @@
 .addon-desc {
   margin: 0;
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: #1b3662(255, 255, 255, 0.85);
 }
 
 /* Mobile: stack media on top for very small screens */
@@ -1224,14 +1227,14 @@
 .highlighted-feature .section-divider {
   border: 0;
   height: 1px;
-  background-color: white; /* Solid white divider */
+  background-color: #1b3662; /* Solid white divider */
 }
 
 .segmented-tabs {
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
-  background: #eaf3ff;
+  background: #1b3662;
   border-radius: 9999px;
   padding: 6px;
 }
@@ -1250,7 +1253,7 @@
 }
 
 .segmented-tabs button.active {
-  background: white;
+  background: #1b3662;
   color: #007bff;
   font-weight: 600;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -1287,7 +1290,7 @@
 
 .feature-split-text {
   flex: 1 1 50%;
-  color: #eaf2ff;
+  color: #1b3662;
 }
 
 .feature-split-text h3 {
@@ -1299,7 +1302,7 @@
 .feature-split-text p {
   font-size: 1rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.9);
+  color: #1b3662(255, 255, 255, 0.9);
 }
 
 /* ===== Tablet 이하: 세로 스택 & 여백 축소 ===== */
@@ -1366,7 +1369,7 @@
   .feature-split-text {
     width: 90%;
     text-align: center;
-    color: #eaf2ff;
+    color: #1b3662;
   }
 
   /* 타이포 살짝 축소 */
@@ -1394,7 +1397,7 @@
   display: grid;
   place-items: center;
   padding: 0 24px;
-  color: #fff;
+  color: #1b3662;
 
   /* 배경 이미지 */
   background-size: cover;
@@ -1517,7 +1520,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  color: #fff;
+  color: #1b3662;
 }
 
 .feature-text-block {
@@ -1531,7 +1534,7 @@
   font-size: 1.15rem;
   font-size: 30px;
   font-weight: 700;
-  color: #ffffff;
+  color: #1b3662;
   margin-bottom: 20px;
   line-height: 1.4;
 }
@@ -1539,7 +1542,7 @@
 .feature-text-desc {
   font-size: 0.97rem;
   line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
+  color: #1b3662(255, 255, 255, 0.85);
   max-width: 1300px;
   font-size: 15px;
 }

@@ -1,7 +1,10 @@
+/* ContactPage.css */
+
 .contact-page {
   padding-top: 120px;
   padding-bottom: 50px;
-  color: #fff;
+  /* Proton uses a deep blue-grey for text, never pure black */
+  color: #2e2e48;
   min-height: 100vh;
 }
 
@@ -9,113 +12,165 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 60px 20px;
+  padding: 5px, 20px;
   margin-bottom: 50px;
 }
 
 .contact-page-content-wrapper {
   display: flex;
-  gap: 60px;
+  gap: 80px; /* Increased gap for more "air" */
   flex-wrap: wrap;
+  max-width: 1100px;
 }
 
 .contact-left {
-  flex: 1 1 300px;
+  flex: 1 1 400px;
 }
 
 .contact-subtitle {
-  color: #00bcd4;
-  font-weight: 500;
-  margin-bottom: 10px;
+  /* Proton's signature purple-blue accent */
+  color: #6d4aff;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
 }
 
 .contact-title {
   font-size: 48px;
-  font-weight: 700;
-  margin: 0 0 20px;
+  font-weight: 800; /* Bolder headers */
+  margin: 0 0 24px;
+  color: #1a1a2e;
+  line-height: 1.1;
 }
 
 .contact-description {
-  font-size: 16px;
-  color: #ccc;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #53536b; /* Softer grey for subtext */
 }
 
 .contact-right {
-  flex: 1 1 300px;
+  flex: 1 1 400px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  /* Thin, crisp border instead of dark-mode transparency */
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px; /* Slightly more space between inputs */
 }
 
 .form-label {
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #2e2e48;
 }
 
 .required-asterisk {
-  color: #00bcd4;
+  color: #f44336; /* Red for requirements */
 }
 
-.form-input {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
-}
-
+.form-input,
 .form-textarea {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  resize: vertical;
+  padding: 12px 16px;
+  border: 1px solid #ccd2db;
+  border-radius: 8px;
+  background-color: #fcfcfd;
+  color: #2e2e48;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: #6d4aff;
+  background-color: #ffffff;
+  /* Soft glow effect */
+  box-shadow: 0 0 0 4px rgba(109, 74, 255, 0.1);
 }
 
 .privacy-checkbox-container {
   display: flex;
-  justify-content: space-between;
+  gap: 12px;
   align-items: center;
   font-size: 14px;
-  white-space: nowrap;
-  width: 100%;
-}
-
-.privacy-text {
-  flex: 1;
+  color: #53536b;
 }
 
 .privacy-link {
-  color: #00bcd4;
+  color: #6d4aff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.privacy-link:hover {
   text-decoration: underline;
 }
 
 .button-container {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  margin-top: 10px;
 }
 
 .submit-button {
-  padding: 10px 20px;
-  background-color: #00bcd4;
+  flex: 2;
+  padding: 14px 24px;
+  background-color: #6d4aff;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s;
+}
+
+.submit-button:hover {
+  background-color: #5839e6;
+}
+
+.submit-button:disabled {
+  background-color: #ccd2db;
 }
 
 .reset-button {
-  padding: 10px 20px;
-  background-color: #fff;
-  color: #000;
-  border: none;
-  border-radius: 5px;
+  flex: 1;
+  padding: 14px 20px;
+  background-color: transparent;
+  color: #53536b;
+  border: 1px solid #ccd2db;
+  border-radius: 8px;
+  font-weight: 500;
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
+.reset-button:hover {
+  background-color: #f4f4f7;
+}
+
+.form-input,
+.form-textarea {
+  padding: 12px 16px;
+  border: 1px solid #d1d9e0; /* Slightly darker border for visibility */
+  border-radius: 8px;
+  background-color: #ffffff; /* Pure white background for inputs */
+  color: #2e2e48;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+/* Ensure labels are high contrast */
+.form-label {
+  color: #1a1a2e;
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block; /* Ensures label is above the input */
 }
