@@ -524,9 +524,7 @@ const HomePage = () => {
                     ],
                     content:
                       "Elevate your guest experience with our versatile freestanding or counter-top kiosks.",
-                    images: [
-                      require("../assets/images/Self-Ordering Kiosk.png"),
-                    ],
+                    images: [require("../assets/images/Kiosk photo 2.png")],
                   },
                   {
                     title: "Portable Tablet - ($25/month/tablet)",

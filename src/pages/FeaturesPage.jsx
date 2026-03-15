@@ -25,7 +25,7 @@ import Image21 from "../assets/images/Coming Soon1.png";
 import Image22 from "../assets/images/Coming Soon1.png";
 import Image23 from "../assets/images/QR Ordering 1.png";
 import Image24 from "../assets/images/Staff Timesheet.png";
-import Image25 from "../assets/images/Self-Ordering Kiosk.png";
+import Image25 from "../assets/images/Kiosk photo 1.png";
 
 import "./FeaturesPage.css";
 import AppHeader from "./components/AppHeader";
