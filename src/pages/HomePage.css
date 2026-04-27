@@ -1561,3 +1561,185 @@
     font-size: 0.95rem;
   }
 }
+
+/* Logo Carousel Styles */
+.logo-carousel-container {
+  padding: 40px 0;
+  background-color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.logo-item {
+  height: 60px; /* Adjust height based on your logos */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-item img {
+  max-height: 100%;
+  width: auto;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+/* The Magic: Infinite Loop Animation */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+  /* -50% because we duplicate the list to create the loop */
+}
+
+/* Trustpilot Section below logos */
+.trust-summary {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 0;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.trust-stars {
+  color: #00b67a; /* Trustpilot Green */
+  font-weight: bold;
+}
+
+/* Update this section in your code */
+.carousels-main-wrapper {
+  padding: 50px 0 0 0;
+  margin-bottom: 0; /* Removes the bottom margin */
+  border-bottom: none; /* Removes the faint grey line at the bottom */
+}
+
+/* Header styling for the sections */
+.carousel-header {
+  text-align: center;
+  font-size: 24px;
+  color: #1b3662;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+/* Base style for all scrolling carousels */
+.scrolling-carousel-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin-bottom: 40px; /* Space between the two carousels */
+}
+
+/* Container for all logos to display as a row */
+.logo-track {
+  display: inline-flex; /* flex 대신 inline-flex로 변경 */
+  align-items: center;
+  width: auto; /* Ensure the track is as wide as all logos combined */
+  animation-duration: 17.5s; /* Speed - adjust as needed */
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  gap: 60px; /* Space between each logo */
+}
+
+/* Animation for Row 1: Left to Right */
+.logo-track-L2R {
+  animation-name: scrollL2R;
+}
+
+/* Animation for Row 2: Right to Left */
+.logo-track-R2L {
+  animation-name: scrollR2L;
+}
+
+/* Size and Border style for logo items (makes them look like Image 0) */
+.logo-item {
+  height: 100px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid #eaeaea;  <-- DELETE OR COMMENT OUT THIS LINE */
+  border-radius: 8px;
+  padding: 10px;
+}
+
+/* Target the image inside the wrapper */
+.logo-item img {
+  max-height: 80%; /* Ensure image fits within wrapper height */
+  width: auto; /* Maintain aspect ratio */
+  object-fit: contain;
+}
+
+/* Defines the animation logic */
+@keyframes scrollL2R {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scrollR2L {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Optimized Mobile View */
+@media (max-width: 768px) {
+  .logo-track {
+    display: flex !important;
+    width: max-content !important; /* 중요: 트랙이 내부 로고 합계만큼 늘어나게 함 */
+    flex-wrap: nowrap; /* 줄바꿈 절대 방지 */
+    gap: 20px;
+    animation-duration: 10s; /* Speed - adjust as needed */
+    gap: 20px;
+  }
+
+  .logo-item {
+    flex: 0 0 auto !important; /* 중요: 모바일에서도 너비가 절대 줄어들지 않음 */
+    width: 150px; /* 로고 하나당 적절한 너비를 고정 (필요시 조절) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* 애니메이션은 -50% 그대로 유지 (2번 복제했으므로 딱 맞음) */
+  @keyframes scrollL2R {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-33.333%);
+    }
+  }
+
+  @keyframes scrollR2L {
+    0% {
+      transform: translateX(-33.333%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .logo-item img {
+    max-height: 100%;
+  }
+
+  .carousel-header {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+}

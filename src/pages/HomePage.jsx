@@ -41,6 +41,8 @@ const HomePage = () => {
   const [activeTab, setActiveTab] = useState("ordering");
   const [loading, setLoading] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState("");
+  const [selectedBasic, setSelectedBasic] = useState(null);
+  const [selectedPremium, setSelectedPremium] = useState(null);
 
   // --- Form State ---
   const [formStep, setFormStep] = useState(1);
@@ -53,55 +55,51 @@ const HomePage = () => {
     company: "",
   });
 
-  const handleNextStep = (e) => {
-    e.preventDefault();
-    if (formData.businessType && formData.tables) {
-      setFormStep(2);
-    } else {
-      alert("Please select both options to continue.");
-    }
+  // --- Logo Data ---
+
+  const integratedCompaniesLogos = [
+    { name: "Verifone", src: require("../assets/images/Verifone.jpg") },
+    { name: "Windcave", src: require("../assets/images/Windcave.jpg") },
+    { name: "Shift4", src: require("../assets/images/Shift4.jpg") },
+    { name: "Smartpay", src: require("../assets/images/Smartpay.jpg") },
+    { name: "Sektor", src: require("../assets/images/Sektor.jpg") },
+    { name: "Uber Eats", src: require("../assets/images/Uber Eats.jpg") },
+  ];
+
+  const clientLogos = [
+    { name: "Faro", src: require("../assets/images/Faro.jpg") },
+    { name: "BBQ", src: require("../assets/images/BBQ.jpg") },
+    { name: "Chimac", src: require("../assets/images/Chimac.jpg") },
+    {
+      name: "Hello Chicago",
+      src: require("../assets/images/Hello Chicago.jpg"),
+    },
+    {
+      name: "Top 1 Korean Restuarnt",
+      src: require("../assets/images/Top 1.jpg"),
+    },
+    { name: "Kchicken", src: require("../assets/images/Kchicken.jpg") },
+    { name: "U-Sushi", src: require("../assets/images/U-Sushi.jpg") },
+  ];
+
+  // --- Carousel Component ---
+  const LogoCarousel = ({ logoList, direction = "L2R" }) => {
+    const directionClass =
+      direction === "R2L" ? "logo-track-R2L" : "logo-track-L2R";
+
+    return (
+      <div className="scrolling-carousel-container">
+        <div className={`logo-track ${directionClass}`}>
+          {[...logoList, ...logoList, ...logoList].map((logo, index) => (
+            <div className="logo-item" key={index}>
+              <img src={logo.src} alt={logo.name} />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   };
 
-  const handleFinalSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!recaptchaToken) {
-      alert("Please verify that you are not a robot.");
-      return;
-    }
-
-    setLoading(true);
-
-    const submitData = new FormData();
-    submitData.append("Full Name", formData.fullName);
-    submitData.append("Email", formData.email);
-    submitData.append("Phone", formData.phone);
-    submitData.append("Business Type", formData.businessType);
-    submitData.append("Estimated Tables", formData.tables);
-
-    // FormSubmit Helpers
-    submitData.append("_replyto", formData.email);
-    submitData.append("_subject", "New Specialist Quote Request - Smart Table");
-    submitData.append("_captcha", "false");
-    submitData.append("g-recaptcha-response", recaptchaToken);
-
-    try {
-      await fetch("https://formsubmit.co/admin@smarttable.co.nz", {
-        method: "POST",
-        body: submitData,
-        headers: { Accept: "application/json" },
-      });
-      navigate("/thank-you");
-    } catch (error) {
-      console.error("Form submit error:", error);
-      alert("Something went wrong. Please try again later.");
-    } finally {
-      setLoading(false);
-      setRecaptchaToken("");
-    }
-  };
-
-  // ---------- Feature data (used for Basic/Premium preview) ----------
   const featureHighlights = [
     {
       title: "Point of Sales (POS)",
@@ -190,9 +188,7 @@ const HomePage = () => {
     },
   ];
 
-  const [selectedBasic, setSelectedBasic] = useState(null);
-  const [selectedPremium, setSelectedPremium] = useState(null);
-
+  // --- Logic Helpers ---
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -211,11 +207,54 @@ const HomePage = () => {
       desc: "",
     };
 
+  const handleNextStep = (e) => {
+    e.preventDefault();
+    if (formData.businessType && formData.tables) {
+      setFormStep(2);
+    } else {
+      alert("Please select both options to continue.");
+    }
+  };
+
+  const handleFinalSubmit = async (e) => {
+    e.preventDefault();
+    if (!recaptchaToken) {
+      alert("Please verify that you are not a robot.");
+      return;
+    }
+    setLoading(true);
+    const submitData = new FormData();
+    submitData.append("Full Name", formData.fullName);
+    submitData.append("Email", formData.email);
+    submitData.append("Phone", formData.phone);
+    submitData.append("Business Type", formData.businessType);
+    submitData.append("Estimated Tables", formData.tables);
+    submitData.append("_replyto", formData.email);
+    submitData.append("_subject", "New Specialist Quote Request - Smart Table");
+    submitData.append("_captcha", "false");
+    submitData.append("g-recaptcha-response", recaptchaToken);
+
+    try {
+      await fetch("https://formsubmit.co/admin@smarttable.co.nz", {
+        method: "POST",
+        body: submitData,
+        headers: { Accept: "application/json" },
+      });
+      navigate("/thank-you");
+    } catch (error) {
+      console.error("Form submit error:", error);
+      alert("Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
+      setRecaptchaToken("");
+    }
+  };
+
   return (
     <div className="home-page-container">
-      {" "}
-      {/* Add this wrapper */}
       <AppHeader isHome={true} />
+
+      {/* Hero Banner Section */}
       <section
         className="full-banner full-banner--image"
         style={{ backgroundImage: `url(${heroImg})` }}
@@ -336,7 +375,6 @@ const HomePage = () => {
                         }
                       />
                     </div>
-
                     <div
                       style={{
                         margin: "10px 0",
@@ -350,7 +388,6 @@ const HomePage = () => {
                         onExpired={() => setRecaptchaToken("")}
                       />
                     </div>
-
                     <button
                       type="submit"
                       className="form-submit-btn"
@@ -364,7 +401,6 @@ const HomePage = () => {
                   </div>
                 )}
               </form>
-
               <p className="form-disclaimer">
                 By clicking {formStep === 1 ? "Get Started" : "Request a Quote"}{" "}
                 you agree to our Terms and Privacy Policy.
@@ -373,6 +409,20 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* --- Dual Carousel Section --- */}
+      <div className="container">
+        <div className="carousels-main-wrapper">
+          <div className="carousel-header">
+            Companies Integrated With Our App
+          </div>
+          <LogoCarousel logoList={integratedCompaniesLogos} direction="R2L" />
+
+          <div className="carousel-header">Our Clients</div>
+          <LogoCarousel logoList={clientLogos} direction="L2R" />
+        </div>
+      </div>
+
       {/* Plans Section */}
       <section id="features" className="features-section">
         <div className="content-wrapper">
@@ -434,7 +484,7 @@ const HomePage = () => {
           </h3>
           <p className="plan-desc">
             Perfect for fully-operating restaurants looking for advanced
-            functionality and growth.
+            functionality.
           </p>
         </div>
 
@@ -464,10 +514,7 @@ const HomePage = () => {
             <button
               className="feature-close"
               type="button"
-              onClick={() => {
-                setSelectedPremium(null);
-                setSelectedBasic(null);
-              }}
+              onClick={() => setSelectedPremium(null)}
             >
               &times;
             </button>
@@ -483,6 +530,7 @@ const HomePage = () => {
           </div>
         )}
       </section>
+
       {/* Optional Add-Ons */}
       <section
         id="optional-addons"
@@ -523,19 +571,18 @@ const HomePage = () => {
                       "$200/month/kiosk",
                     ],
                     content:
-                      "Elevate your guest experience with our versatile freestanding or counter-top kiosks.",
+                      "Elevate your guest experience with our versatile kiosks.",
                     images: [require("../assets/images/Kiosk photo 2.png")],
                   },
                   {
                     title: "Portable Tablet - ($25/month/tablet)",
-                    content:
-                      "Lightweight handheld tablets that staff can carry around the venue to take orders directly at the table.",
+                    content: "Lightweight handheld tablets for table service.",
                     images: [require("../assets/images/Kiosk 1.png")],
                   },
                   {
                     title: "Table Order Kiosk - ($40/month/tablet)",
                     content:
-                      "Secure, table-mounted tablets designed for contactless ordering.",
+                      "Secure, table-mounted tablets for contactless ordering.",
                     images: [require("../assets/images/Table Kiosk.png")],
                   },
                 ].map((feature, index) => (
@@ -547,7 +594,11 @@ const HomePage = () => {
                     <div className="feature-split-image">
                       <FeatureGallery
                         images={feature.images}
-                        alt={feature.title}
+                        alt={
+                          Array.isArray(feature.title)
+                            ? feature.title
+                            : feature.title
+                        }
                       />
                     </div>
                     <div className="feature-split-text">
@@ -576,9 +627,7 @@ const HomePage = () => {
                   style={{ marginTop: "20px" }}
                 >
                   <div className="content-wrapper">
-                    <h2 className="section-title">
-                      Smart Ordering in 3 Steps Using Table Kiosk
-                    </h2>
+                    <h2 className="section-title">Smart Ordering in 3 Steps</h2>
                     <hr className="section-divider" />
                     <ImageCarousel />
                   </div>
@@ -590,14 +639,12 @@ const HomePage = () => {
                 {[
                   {
                     title: "Kitchen Display System - ($30/month)",
-                    content:
-                      "Replace messy paper dockets with a digital kitchen display system.",
+                    content: "Digital kitchen display system.",
                     images: [require("../assets/images/KDS 1.png")],
                   },
                   {
                     title: "Service Display - ($30/month)",
-                    content:
-                      "Front-of-house screens that keep staff updated on ready orders.",
+                    content: "Keep staff updated on ready orders.",
                     images: [require("../assets/images/Coming Soon1.png")],
                   },
                 ].map((feature, index) => (
@@ -625,18 +672,15 @@ const HomePage = () => {
                 {[
                   {
                     title: "Pickup & Service Display - ($30/month)",
-                    content:
-                      "Dedicated display for pickup counters showing ready orders.",
+                    content: "Pickup counter display.",
                   },
                   {
                     title: "Customer Facing Display - ($30/month)",
-                    content:
-                      "Checkout-facing screen that shows items and totals in real time.",
+                    content: "Checkout-facing screen.",
                   },
                   {
                     title: "Digital Menu Display - ($30/month)",
-                    content:
-                      "Dynamic digital boards that update automatically with your POS.",
+                    content: "Dynamic digital boards.",
                   },
                 ].map((feature, index) => (
                   <div
@@ -653,6 +697,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
       {/* FAQ Section */}
       <section id="faq" className="section faq-section">
         <div className="content-wrapper">
@@ -663,7 +708,7 @@ const HomePage = () => {
               {
                 question: "Does Smart Table Kiosk provide hardware?",
                 answer:
-                  "Yes, hardware for Self-Ordering Kiosk and Table Order Kiosk will be provided by us within the cost provided.",
+                  "Yes, hardware for Self-Ordering Kiosk and Table Order Kiosk will be provided by us.",
               },
               {
                 question: "Does Smart Table Kiosk support multiple languages?",
@@ -677,8 +722,7 @@ const HomePage = () => {
               },
               {
                 question: "What happens if it malfunctions?",
-                answer:
-                  "Our 24/7 online management support is available to ensure uninterrupted operations.",
+                answer: "Our 24/7 online management support is available.",
               },
               {
                 question: "How can I get a Smart Table?",
@@ -701,6 +745,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
       {/* CTA Section */}
       <section className="ready-to-start">
         <div className="content-wrapper">

@@ -15,7 +15,6 @@ import Image9 from "../assets/images/Online Reservation 1.png";
 import Image10 from "../assets/images/Loyalty.png";
 import Image11 from "../assets/images/Custom Discount.png";
 import Image12 from "../assets/images/Uber Eats.png";
-import Image14 from "../assets/images/Coming Soon1.png";
 import Image16 from "../assets/images/Kiosk 1.png";
 import Image17 from "../assets/images/Table Kiosk.png";
 import Image18 from "../assets/images/KDS 1.png";
@@ -26,6 +25,7 @@ import Image22 from "../assets/images/Coming Soon1.png";
 import Image23 from "../assets/images/QR Ordering 1.png";
 import Image24 from "../assets/images/Staff Timesheet.png";
 import Image25 from "../assets/images/Kiosk photo 1.png";
+import Image26 from "../assets/images/Inventory management.png";
 
 import "./FeaturesPage.css";
 import AppHeader from "./components/AppHeader";
@@ -173,7 +173,7 @@ const FeaturesPage = () => {
                   title: "Inventory Management",
                   content:
                     "Monitor stock levels, ingredient usage, and supplier orders in real-time to prevent shortages. Receive automatic alerts when items run low and generate purchase orders instantly.",
-                  image: Image14,
+                  image: Image26,
                 },
               ],
               addons: [
