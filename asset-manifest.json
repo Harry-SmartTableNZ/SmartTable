@@ -1,9 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.082cbb8f.css",
-    "main.js": "/static/js/main.13664fdf.js",
-    "static/js/453.2e38ae9d.chunk.js": "/static/js/453.2e38ae9d.chunk.js",
-    "static/media/Staff Timesheet.png": "/static/media/Staff Timesheet.cbff6f8f36fa80571669.png",
+    "main.css": "/static/css/main.e2325b42.css",
+    "main.js": "/static/js/main.f5886935.js",
+    "static/js/453.4f109603.chunk.js": "/static/js/453.4f109603.chunk.js",
     "static/media/Kiosk 1.png": "/static/media/Kiosk 1.2ccc57a239080f058800.png",
     "static/media/Kiosk 2.png": "/static/media/Kiosk 2.bc7a305f68d72e088992.png",
     "static/media/Kiosk photo 1.png": "/static/media/Kiosk photo 1.020a5437c6a1acd18583.png",
@@ -17,8 +16,10 @@
     "static/media/Kiosk 3.png": "/static/media/Kiosk 3.ea2d56d649c6f7d84fd2.png",
     "static/media/Multi KDS.png": "/static/media/Multi KDS.a000ab56a22e82662485.png",
     "static/media/POS 1.png": "/static/media/POS 1.6e72708185da5b02cb9e.png",
+    "static/media/Staff Timesheet.png": "/static/media/Staff Timesheet.bfeef039a2c66d887cd2.png",
     "static/media/Kiosk 4.png": "/static/media/Kiosk 4.e33cf41a86ee203d6c52.png",
     "static/media/Loyalty.png": "/static/media/Loyalty.0ce5ffd89444c1b2bff3.png",
+    "static/media/Inventory management.png": "/static/media/Inventory management.0c93a3adb14fef8611d2.png",
     "static/media/Payment Type.png": "/static/media/Payment Type.7af3940774e3945ccc57.png",
     "static/media/Sales Analytics.png": "/static/media/Sales Analytics.2ed7638528acc6a45272.png",
     "static/media/Table Management.png": "/static/media/Table Management.4133022146bd88328c08.png",
@@ -29,13 +30,16 @@
     "static/media/DarkLogo.png": "/static/media/DarkLogo.887a0f09ada4ce171cd5.png",
     "static/media/Online Reservation 1.png": "/static/media/Online Reservation 1.7212379d52a41bac969e.png",
     "static/media/Coming Soon1.png": "/static/media/Coming Soon1.6f0b92302e05249990a5.png",
+    "static/media/Top 1.jpg": "/static/media/Top 1.8c3afb188bc3e7af2141.jpg",
+    "static/media/BBQ.jpg": "/static/media/BBQ.7013e2c70d5471a3df7f.jpg",
+    "static/media/Chimac.jpg": "/static/media/Chimac.3a5ba734ce111acaa11b.jpg",
     "index.html": "/index.html",
-    "main.082cbb8f.css.map": "/static/css/main.082cbb8f.css.map",
-    "main.13664fdf.js.map": "/static/js/main.13664fdf.js.map",
-    "453.2e38ae9d.chunk.js.map": "/static/js/453.2e38ae9d.chunk.js.map"
+    "main.e2325b42.css.map": "/static/css/main.e2325b42.css.map",
+    "main.f5886935.js.map": "/static/js/main.f5886935.js.map",
+    "453.4f109603.chunk.js.map": "/static/js/453.4f109603.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.082cbb8f.css",
-    "static/js/main.13664fdf.js"
+    "static/css/main.e2325b42.css",
+    "static/js/main.f5886935.js"
   ]
 }
