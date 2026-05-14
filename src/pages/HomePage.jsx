@@ -495,7 +495,7 @@ const HomePage = () => {
             "Online Ordering",
             "Online Reservation",
             "Loyalty Program",
-            "Custom Discount",
+            "Promotions",
             "Uber Eats Integration",
             "Staff Timesheets",
             "Inventory Management",
