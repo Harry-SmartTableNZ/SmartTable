@@ -17,7 +17,7 @@ import Image11 from "../assets/images/Custom Discount.png";
 import Image12 from "../assets/images/Uber Eats.png";
 import Image16 from "../assets/images/Kiosk 1.png";
 import Image17 from "../assets/images/Table Kiosk.png";
-import Image18 from "../assets/images/KDS 1.png";
+import Image18 from "../assets/images/KDS.png";
 import Image19 from "../assets/images/Coming Soon1.png";
 import Image20 from "../assets/images/Coming Soon1.png";
 import Image21 from "../assets/images/Coming Soon1.png";

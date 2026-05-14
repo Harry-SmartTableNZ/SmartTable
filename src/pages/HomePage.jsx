@@ -56,7 +56,6 @@ const HomePage = () => {
   });
 
   // --- Logo Data ---
-
   const integratedCompaniesLogos = [
     { name: "Verifone", src: require("../assets/images/Verifone.jpg") },
     { name: "Windcave", src: require("../assets/images/Windcave.jpg") },
@@ -89,7 +88,10 @@ const HomePage = () => {
 
     return (
       <div className="scrolling-carousel-container">
-        <div className={`logo-track ${directionClass}`}>
+        <div
+          className={`logo-track ${directionClass}`}
+          style={{ willChange: "transform", transform: "translateZ(0)" }}
+        >
           {[...logoList, ...logoList, ...logoList].map((logo, index) => (
             <div className="logo-item" key={index}>
               <img src={logo.src} alt={logo.name} />
@@ -108,7 +110,7 @@ const HomePage = () => {
     },
     {
       title: "Kitchen Display System",
-      img: require("../assets/images/KDS 1.png"),
+      img: require("../assets/images/KDS.png"),
       desc: "Replace paper dockets with real-time digital displays that streamline kitchen operations.",
     },
     {
@@ -138,7 +140,7 @@ const HomePage = () => {
     },
     {
       title: "Inventory Management",
-      img: require("../assets/images/Coming Soon1.png"),
+      img: require("../assets/images/Inventory management.png"),
       desc: "Monitor stock levels in real time to reduce waste and keep your supplies in check.",
     },
     {
@@ -172,7 +174,7 @@ const HomePage = () => {
       desc: "Control who can view or perform actions with role-based permissions for managers and staff.",
     },
     {
-      title: "Custom Discount",
+      title: "Promotions",
       img: require("../assets/images/Custom Discount.png"),
       desc: "Configure percentage or fixed discounts with rules that suit your business policies.",
     },
@@ -543,7 +545,7 @@ const HomePage = () => {
           <div className="segmented-tab-background-wrapper1">
             <div className="segmented-tab-background1">
               {[
-                { key: "ordering", label: "Ordering" },
+                { key: "ordering", label: "Kiosks" },
                 { key: "kitchen", label: "Kitchen" },
                 { key: "displays", label: "Displays" },
               ].map((tab) => (
@@ -640,7 +642,7 @@ const HomePage = () => {
                   {
                     title: "Kitchen Display System - ($30/month)",
                     content: "Digital kitchen display system.",
-                    images: [require("../assets/images/KDS 1.png")],
+                    images: [require("../assets/images/KDS.png")],
                   },
                   {
                     title: "Service Display - ($30/month)",
