@@ -24,7 +24,7 @@ import Image21 from "../assets/images/Coming Soon1.png";
 import Image22 from "../assets/images/Coming Soon1.png";
 import Image23 from "../assets/images/QR Ordering 1.png";
 import Image24 from "../assets/images/Staff Timesheet.png";
-import Image25 from "../assets/images/Kiosk photo 1.png";
+import Image25 from "../assets/images/Kiosk Photo 1.png";
 import Image26 from "../assets/images/Inventory management.png";
 
 import "./FeaturesPage.css";
@@ -152,7 +152,7 @@ const FeaturesPage = () => {
                   image: Image10,
                 },
                 {
-                  title: "Custom Discount",
+                  title: "Promotions",
                   content:
                     "Create flexible discounts and promotions that can be applied per item, order, or customer group. From happy hour specials to staff perks, each discount is tracked in reports for transparency.",
                   image: Image11,

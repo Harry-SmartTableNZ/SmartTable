@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./components/Footer";
 import ImageCarousel from "./components/ImageCarousel";
 import "./HomePage.css";
@@ -6,6 +6,63 @@ import AppHeader from "./components/AppHeader";
 import { Link, useNavigate } from "react-router-dom";
 import heroImg from "../assets/images/FullBanner.jpeg";
 import ReCAPTCHA from "react-google-recaptcha";
+
+// --- Static Logo Data ---
+// Moved outside the component to prevent re-creation on every render cycle.
+const integratedCompaniesLogos = [
+  { name: "Verifone", src: require("../assets/images/Verifone.jpg") },
+  { name: "Windcave", src: require("../assets/images/Windcave.jpg") },
+  { name: "Shift4", src: require("../assets/images/Shift4.jpg") },
+  { name: "Smartpay", src: require("../assets/images/Smartpay.jpg") },
+  { name: "Sektor", src: require("../assets/images/Sektor.jpg") },
+  { name: "Uber Eats", src: require("../assets/images/Uber Eats.jpg") },
+];
+
+const clientLogos = [
+  { name: "Faro", src: require("../assets/images/Faro.jpg") },
+  { name: "BBQ", src: require("../assets/images/BBQ.jpg") },
+  { name: "Chimac", src: require("../assets/images/Chimac.jpg") },
+  { name: "Sushi & Bento", src: require("../assets/images/Sushi & Bento.jpg") },
+  { name: "PhoTen", src: require("../assets/images/PhoTen.jpg") },
+  {
+    name: "Hello Chicago",
+    src: require("../assets/images/Hello Chicago.jpg"),
+  },
+  {
+    name: "Top 1 Korean Restuarnt",
+    src: require("../assets/images/Top 1.jpg"),
+  },
+  { name: "Kchicken", src: require("../assets/images/Kchicken.jpg") },
+  { name: "U-Sushi", src: require("../assets/images/U-Sushi.jpg") },
+];
+
+// --- Carousel Component ---
+// Defined outside to prevent re-definition on every HomePage render.
+// Wrapping in React.memo ensures it only re-renders if props actually change.
+const LogoCarousel = React.memo(({ logoList, direction = "L2R" }) => {
+  const directionClass =
+    direction === "R2L" ? "logo-track-R2L" : "logo-track-L2R";
+
+  return (
+    <div className="scrolling-carousel-container">
+      <div
+        className={`logo-track ${directionClass}`}
+        style={{ willChange: "transform", transform: "translateZ(0)" }}
+      >
+        {/* 
+          Mapping 3 copies ensures the track is long enough to fill the viewport.
+          For a continuous loop, your CSS keyframes should move exactly the width 
+          of one set (e.g., translateX(-33.333%)).
+        */}
+        {[...logoList, ...logoList, ...logoList].map((logo, index) => (
+          <div className="logo-item" key={index}>
+            <img src={logo.src} alt={logo.name} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+});
 
 /** Mini gallery for each feature (thumbs + main image) */
 function FeatureGallery({ images = [], alt }) {
@@ -54,53 +111,6 @@ const HomePage = () => {
     phone: "",
     company: "",
   });
-
-  // --- Logo Data ---
-  const integratedCompaniesLogos = [
-    { name: "Verifone", src: require("../assets/images/Verifone.jpg") },
-    { name: "Windcave", src: require("../assets/images/Windcave.jpg") },
-    { name: "Shift4", src: require("../assets/images/Shift4.jpg") },
-    { name: "Smartpay", src: require("../assets/images/Smartpay.jpg") },
-    { name: "Sektor", src: require("../assets/images/Sektor.jpg") },
-    { name: "Uber Eats", src: require("../assets/images/Uber Eats.jpg") },
-  ];
-
-  const clientLogos = [
-    { name: "Faro", src: require("../assets/images/Faro.jpg") },
-    { name: "BBQ", src: require("../assets/images/BBQ.jpg") },
-    { name: "Chimac", src: require("../assets/images/Chimac.jpg") },
-    {
-      name: "Hello Chicago",
-      src: require("../assets/images/Hello Chicago.jpg"),
-    },
-    {
-      name: "Top 1 Korean Restuarnt",
-      src: require("../assets/images/Top 1.jpg"),
-    },
-    { name: "Kchicken", src: require("../assets/images/Kchicken.jpg") },
-    { name: "U-Sushi", src: require("../assets/images/U-Sushi.jpg") },
-  ];
-
-  // --- Carousel Component ---
-  const LogoCarousel = ({ logoList, direction = "L2R" }) => {
-    const directionClass =
-      direction === "R2L" ? "logo-track-R2L" : "logo-track-L2R";
-
-    return (
-      <div className="scrolling-carousel-container">
-        <div
-          className={`logo-track ${directionClass}`}
-          style={{ willChange: "transform", transform: "translateZ(0)" }}
-        >
-          {[...logoList, ...logoList, ...logoList].map((logo, index) => (
-            <div className="logo-item" key={index}>
-              <img src={logo.src} alt={logo.name} />
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  };
 
   const featureHighlights = [
     {
@@ -413,16 +423,12 @@ const HomePage = () => {
       </section>
 
       {/* --- Dual Carousel Section --- */}
-      <div className="container">
-        <div className="carousels-main-wrapper">
-          <div className="carousel-header">
-            Companies Integrated With Our App
-          </div>
-          <LogoCarousel logoList={integratedCompaniesLogos} direction="R2L" />
+      <div className="carousels-main-wrapper">
+        <div className="carousel-header">Companies Integrated With Our App</div>
+        <LogoCarousel logoList={integratedCompaniesLogos} direction="R2L" />
 
-          <div className="carousel-header">Our Clients</div>
-          <LogoCarousel logoList={clientLogos} direction="L2R" />
-        </div>
+        <div className="carousel-header">Our Clients</div>
+        <LogoCarousel logoList={clientLogos} direction="L2R" />
       </div>
 
       {/* Plans Section */}
@@ -574,7 +580,7 @@ const HomePage = () => {
                     ],
                     content:
                       "Elevate your guest experience with our versatile kiosks.",
-                    images: [require("../assets/images/Kiosk photo 2.png")],
+                    images: [require("../assets/images/Kiosk Photo 1.png")],
                   },
                   {
                     title: "Portable Tablet - ($25/month/tablet)",
