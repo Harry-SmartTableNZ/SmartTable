@@ -23,10 +23,10 @@ const ContactPage = () => {
 
     const formData = new FormData(event.target);
 
-    // Web3Forms 전송용 객체 생성
+    // Web3Forms 전송용 객체 생성 (FormData를 JSON 객체로 변환)
     const object = Object.fromEntries(formData);
 
-    // 리캡차 토큰을 Web3Forms 가 인식하는 필드명으로 추가
+    // 리캡차 토큰 추가
     object["g-recaptcha-response"] = recaptchaToken;
 
     const body = JSON.stringify(object);
@@ -43,8 +43,8 @@ const ContactPage = () => {
 
       const res = await response.json();
 
-      if (res.success) {
-        navigate("/thank-you"); // ✅ 성공 시 바로 땡큐 페이지로 이동
+      if (response.ok && res.success) {
+        navigate("/thank-you");
       } else {
         throw new Error(res.message || "Submission failed on the server.");
       }
@@ -87,6 +87,11 @@ const ContactPage = () => {
                 type="hidden"
                 name="subject"
                 value="New Submission from Smart Table Contact Form"
+              />
+              <input
+                type="hidden"
+                name="from_name"
+                value="Smart Table - Contact Page"
               />
               <input
                 type="hidden"
@@ -142,7 +147,10 @@ const ContactPage = () => {
                 <button
                   type="reset"
                   className="reset-button"
-                  onClick={() => setRecaptchaToken("")}
+                  onClick={() => {
+                    setRecaptchaToken("");
+                    // 리캡차 UI도 초기화하고 싶다면 별도의 ref를 사용해야 합니다.
+                  }}
                 >
                   Reset
                 </button>

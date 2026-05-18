@@ -239,6 +239,7 @@ const HomePage = () => {
     const submitData = {
       access_key: "8291d6f9-6561-4655-bb8e-894d91a34d16",
       name: formData.fullName,
+      from_name: "Smart Table - Home Page Quote",
       email: formData.email,
       phone: formData.phone,
       businessType: formData.businessType,
