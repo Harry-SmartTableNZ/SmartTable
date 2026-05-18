@@ -11,39 +11,49 @@ const ContactPage = () => {
   const [recaptchaToken, setRecaptchaToken] = useState("");
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Stop the normal redirect
+    event.preventDefault(); // 기본 리다이렉트 방지
     setLoading(true);
 
-    // Require captcha
+    // 구글 리캡차 검증 요구
     if (!recaptchaToken) {
       alert("Please verify that you are not a robot.");
       setLoading(false);
       return;
     }
 
-    // Copy email input into _replyto before sending
-    const emailValue = event.target.email.value;
-    event.target._replyto.value = emailValue;
-
     const formData = new FormData(event.target);
 
-    // Include the captcha token (FormSubmit may ignore it, but we gate on the client)
-    formData.append("g-recaptcha-response", recaptchaToken);
+    // Web3Forms 전송용 객체 생성
+    const object = Object.fromEntries(formData);
+
+    // 리캡차 토큰을 Web3Forms 가 인식하는 필드명으로 추가
+    object["g-recaptcha-response"] = recaptchaToken;
+
+    const body = JSON.stringify(object);
 
     try {
-      await fetch("https://formsubmit.co/contact@smarttable.co.nz", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: body,
       });
 
-      navigate("/thank-you"); // ✅ straight to Thank You
+      const res = await response.json();
+
+      if (res.success) {
+        navigate("/thank-you"); // ✅ 성공 시 바로 땡큐 페이지로 이동
+      } else {
+        throw new Error(res.message || "Submission failed on the server.");
+      }
     } catch (error) {
       console.error("Form submit error:", error);
       alert("Something went wrong. Please try again later.");
     } finally {
       setLoading(false);
-      // reset captcha token so it must be solved again
+      // 리캡차 토큰 초기화 (재인증 필요하게 만듦)
       setRecaptchaToken("");
     }
   };
@@ -67,17 +77,22 @@ const ContactPage = () => {
           {/* Right Side (Form) */}
           <div className="contact-right">
             <form onSubmit={handleSubmit} className="contact-form">
-              {/* Hidden fields */}
+              {/* Web3Forms 전송에 필요한 히든 필드들 */}
               <input
                 type="hidden"
-                name="_autoresponse"
-                value="Thank you for contacting Smart Table! We'll get back to you shortly."
+                name="access_key"
+                value="8291d6f9-6561-4655-bb8e-894d91a34d16"
               />
-              {/* Keep CAPTCHA off on FormSubmit's side to avoid their challenge page */}
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_honey" />
-              <input type="hidden" name="_replyto" id="hidden-replyto" />
+              <input
+                type="hidden"
+                name="subject"
+                value="New Submission from Smart Table Contact Form"
+              />
+              <input
+                type="hidden"
+                name="botcheck"
+                style={{ display: "none" }}
+              />
 
               <label className="form-label">
                 Name<span className="required-asterisk"> *</span>

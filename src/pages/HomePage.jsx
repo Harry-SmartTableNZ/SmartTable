@@ -235,23 +235,34 @@ const HomePage = () => {
       return;
     }
     setLoading(true);
-    const submitData = new FormData();
-    submitData.append("Full Name", formData.fullName);
-    submitData.append("Email", formData.email);
-    submitData.append("Phone", formData.phone);
-    submitData.append("Business Type", formData.businessType);
-    submitData.append("Estimated Tables", formData.tables);
-    submitData.append("_replyto", formData.email);
-    submitData.append("_subject", "New Specialist Quote Request - Smart Table");
-    submitData.append("_captcha", "false");
-    submitData.append("g-recaptcha-response", recaptchaToken);
+
+    const submitData = {
+      access_key: "8291d6f9-6561-4655-bb8e-894d91a34d16",
+      name: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      businessType: formData.businessType,
+      tables: formData.tables,
+      subject: "New Specialist Quote Request - Smart Table",
+      "g-recaptcha-response": recaptchaToken,
+    };
 
     try {
-      await fetch("https://formsubmit.co/admin@smarttable.co.nz", {
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: submitData,
-        headers: { Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(submitData),
       });
+
+      const res = await response.json();
+
+      if (!res.success) {
+        throw new Error(res.message || "Server responded with an error");
+      }
+
       navigate("/thank-you");
     } catch (error) {
       console.error("Form submit error:", error);
