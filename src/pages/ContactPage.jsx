@@ -3,32 +3,25 @@ import Footer from "./components/Footer";
 import AppHeader from "./components/AppHeader";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault(); // 기본 리다이렉트 방지
     setLoading(true);
 
-    // 구글 리캡차 검증 요구
-    if (!recaptchaToken) {
-      alert("Please verify that you are not a robot.");
+    const formData = new FormData(event.target);
+
+    // 스팸 봇 필터링 (botcheck 필드에 값이 차 있으면 봇으로 판단하고 차단)
+    if (formData.get("botcheck")) {
       setLoading(false);
       return;
     }
 
-    const formData = new FormData(event.target);
-
-    // Web3Forms 전송용 객체 생성 (FormData를 JSON 객체로 변환)
+    // Web3Forms 전송용 객체 생성
     const object = Object.fromEntries(formData);
-
-    // 리캡차 토큰 추가
-    object["g-recaptcha-response"] = recaptchaToken;
-
     const body = JSON.stringify(object);
 
     try {
@@ -44,17 +37,16 @@ const ContactPage = () => {
       const res = await response.json();
 
       if (response.ok && res.success) {
+        // 성공 시 리액트 라우터로 thank-you 페이지 이동
         navigate("/thank-you");
       } else {
-        throw new Error(res.message || "Submission failed on the server.");
+        alert(`Error: ${res.message || "Submission failed"}`);
       }
     } catch (error) {
       console.error("Form submit error:", error);
       alert("Something went wrong. Please try again later.");
     } finally {
       setLoading(false);
-      // 리캡차 토큰 초기화 (재인증 필요하게 만듦)
-      setRecaptchaToken("");
     }
   };
 
@@ -93,11 +85,8 @@ const ContactPage = () => {
                 name="from_name"
                 value="Smart Table - Contact Page"
               />
-              <input
-                type="hidden"
-                name="botcheck"
-                style={{ display: "none" }}
-              />
+              {/* 스팸 봇을 낚기 위한 보이지 않는 허니팟 필드 */}
+              <input type="text" name="botcheck" style={{ display: "none" }} />
 
               <label className="form-label">
                 Name<span className="required-asterisk"> *</span>
@@ -127,31 +116,15 @@ const ContactPage = () => {
                 className="form-textarea"
               />
 
-              {/* reCAPTCHA */}
-              <div style={{ margin: "12px 0 16px" }}>
-                <ReCAPTCHA
-                  sitekey="6LcBe4IrAAAAAHILeyKl2MWyYBfCbHTFy31y6DXn"
-                  onChange={(token) => setRecaptchaToken(token || "")}
-                  onExpired={() => setRecaptchaToken("")}
-                />
-              </div>
-
-              <div className="button-container">
+              <div className="button-container" style={{ marginTop: "20px" }}>
                 <button
                   type="submit"
                   className="submit-button"
-                  disabled={loading || !recaptchaToken}
+                  disabled={loading}
                 >
                   {loading ? "Sending..." : "Submit"}
                 </button>
-                <button
-                  type="reset"
-                  className="reset-button"
-                  onClick={() => {
-                    setRecaptchaToken("");
-                    // 리캡차 UI도 초기화하고 싶다면 별도의 ref를 사용해야 합니다.
-                  }}
-                >
+                <button type="reset" className="reset-button">
                   Reset
                 </button>
               </div>
