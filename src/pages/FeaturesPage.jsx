@@ -9,7 +9,7 @@ import Image3 from "../assets/images/Menu Management.png";
 import Image4 from "../assets/images/Sales Analytics.png";
 import Image5 from "../assets/images/Orders.png";
 import Image6 from "../assets/images/Staff Permission.png";
-import Image7 from "../assets/images/Payment Type.png";
+import Image7 from "../assets/images/Pickup Display.png";
 import Image8 from "../assets/images/Online Ordering 1.png";
 import Image9 from "../assets/images/Online Reservation 1.png";
 import Image10 from "../assets/images/Loyalty.png";
@@ -18,14 +18,12 @@ import Image12 from "../assets/images/Uber Eats.png";
 import Image16 from "../assets/images/Kiosk 1.png";
 import Image17 from "../assets/images/Table Kiosk.png";
 import Image18 from "../assets/images/KDS.png";
-import Image19 from "../assets/images/Coming Soon1.png";
-import Image20 from "../assets/images/Coming Soon1.png";
-import Image21 from "../assets/images/Coming Soon1.png";
 import Image22 from "../assets/images/Coming Soon1.png";
 import Image23 from "../assets/images/QR Ordering 1.png";
 import Image24 from "../assets/images/Staff Timesheet.png";
 import Image25 from "../assets/images/Kiosk Photo 1.png";
 import Image26 from "../assets/images/Inventory management.png";
+import Image27 from "../assets/images/Customer Display.png";
 
 import "./FeaturesPage.css";
 import AppHeader from "./components/AppHeader";
@@ -90,18 +88,6 @@ const FeaturesPage = () => {
                   image: Image1,
                 },
                 {
-                  title: "Table Management",
-                  content:
-                    "Visually manage your entire floor plan with drag-and-drop table assignments, real-time status tracking, and color-coded availability.",
-                  image: Image2,
-                },
-                {
-                  title: "Menu Management",
-                  content:
-                    "Easily customize and update your menu items, prices, and categories with flexible scheduling options for breakfast, lunch, and dinner. Changes sync instantly across POS, kiosks, and online orders.",
-                  image: Image3,
-                },
-                {
                   title: "Sales & Analytics",
                   content:
                     "Gain deep insights into your business performance with real-time dashboards showing total sales, popular items, and order trends. Compare day, week, and month statistics to identify growth patterns and seasonal shifts. ",
@@ -120,30 +106,10 @@ const FeaturesPage = () => {
                   image: Image6,
                 },
                 {
-                  title: "Multiple Payment Type",
-                  content:
-                    "Accept cash, EFTPOS, credit card, or contactless payments with built-in split bill options for groups. Transactions automatically sync with the POS and are logged for reporting.",
-                  image: Image7,
-                },
-              ],
-              Premium: [
-                {
                   title: "Online Ordering",
                   content:
                     "Allow customers to browse your live menu and place orders directly from your website or mobile devices. Orders instantly sync with your POS and kitchen display, clearly marked for pickup or delivery.",
                   image: Image8,
-                },
-                {
-                  title: "Online Reservation",
-                  content:
-                    "Let guests book tables online with real-time availability linked to your POS seating plan. Reservations appear instantly on your dashboard, helping your team prepare for incoming bookings.",
-                  image: Image9,
-                },
-                {
-                  title: "QR Ordering",
-                  content:
-                    "Empower your guests with a seamless, contactless ordering experience. With QR Ordering, customers can simply scan a QR code at their table to instantly access your digital menu, customize their selections, and place orders directly from their own devices.",
-                  image: Image23,
                 },
                 {
                   title: "Loyalty Program",
@@ -157,6 +123,33 @@ const FeaturesPage = () => {
                     "Create flexible discounts and promotions that can be applied per item, order, or customer group. From happy hour specials to staff perks, each discount is tracked in reports for transparency.",
                   image: Image11,
                 },
+                {
+                  title: "Menu Management",
+                  content:
+                    "Easily customize and update your menu items, prices, and categories with flexible scheduling options for breakfast, lunch, and dinner. Changes sync instantly across POS, kiosks, and online orders.",
+                  image: Image3,
+                },
+                {
+                  title: "Table Management",
+                  content:
+                    "Visually manage your entire floor plan with drag-and-drop table assignments, real-time status tracking, and color-coded availability.",
+                  image: Image2,
+                },
+              ],
+              Premium: [
+                {
+                  title: "Online Reservation",
+                  content:
+                    "Let guests book tables online with real-time availability linked to your POS seating plan. Reservations appear instantly on your dashboard, helping your team prepare for incoming bookings.",
+                  image: Image9,
+                },
+                {
+                  title: "QR Ordering",
+                  content:
+                    "Empower your guests with a seamless, contactless ordering experience. With QR Ordering, customers can simply scan a QR code at their table to instantly access your digital menu, customize their selections, and place orders directly from their own devices.",
+                  image: Image23,
+                },
+
                 {
                   title: "Uber Eats Integration",
                   content:
@@ -202,22 +195,16 @@ const FeaturesPage = () => {
                   image: Image18,
                 },
                 {
-                  title: "Service Display",
-                  content:
-                    "Show ready orders on a staff-facing screen to streamline communication between kitchen and service teams. Highlight completed items, pending plates, and pickup priorities.",
-                  image: Image19,
-                },
-                {
                   title: "Pickup & Service Display",
                   content:
                     "Offer customers a clear view of their order status on a pickup screen in real-time. Display order numbers, progress updates, and notifications for ready-to-collect items.",
-                  image: Image20,
+                  image: Image7,
                 },
                 {
                   title: "Customer Facing Display",
                   content:
                     "Enhance transparency at checkout with a dual-screen setup showing the customer’s order details, pricing, and promotional content. Encourage upsells while providing confidence and clarity during every transaction.",
-                  image: Image21,
+                  image: Image27,
                 },
                 {
                   title: "Digital Menu Display",

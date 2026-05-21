@@ -464,8 +464,10 @@ const HomePage = () => {
             "Menu Management",
             "Sales & Analytics",
             "Order Records",
+            "Online Ordering",
             "Staff Access Control",
-            "Multiple Payment Type",
+            "Loyalty Program",
+            "Promotions",
           ].map((title) => (
             <button
               key={title}
@@ -510,10 +512,8 @@ const HomePage = () => {
 
         <div className="feature-tag-grid" style={{ gap: "12px 14px" }}>
           {[
-            "Online Ordering",
             "Online Reservation",
-            "Loyalty Program",
-            "Promotions",
+
             "Uber Eats Integration",
             "Staff Timesheets",
             "Inventory Management",
@@ -584,10 +584,10 @@ const HomePage = () => {
                 {[
                   {
                     title: [
-                      "14 inch Self-Ordering Kiosk",
+                      "Self-Ordering Kiosk (Countertop)",
                       "$100/month/kiosk",
                       "",
-                      "21 inch Self-Ordering Kiosk",
+                      "Self-Ordering Kiosk (Floor Standing)",
                       "$200/month/kiosk",
                     ],
                     content:
@@ -662,11 +662,6 @@ const HomePage = () => {
                     content: "Digital kitchen display system.",
                     images: [require("../assets/images/KDS.png")],
                   },
-                  {
-                    title: "Service Display - ($30/month)",
-                    content: "Keep staff updated on ready orders.",
-                    images: [require("../assets/images/Coming Soon1.png")],
-                  },
                 ].map((feature, index) => (
                   <div
                     key={index}
@@ -689,29 +684,44 @@ const HomePage = () => {
             )}
             {activeTab === "displays" && (
               <div className="feature-text-only">
-                {[
-                  {
-                    title: "Pickup & Service Display - ($30/month)",
-                    content: "Pickup counter display.",
-                  },
-                  {
-                    title: "Customer Facing Display - ($30/month)",
-                    content: "Checkout-facing screen.",
-                  },
-                  {
-                    title: "Digital Menu Display - ($30/month)",
-                    content: "Dynamic digital boards.",
-                  },
-                ].map((feature, index) => (
-                  <div
-                    key={index}
-                    className="feature-text-block"
-                    style={{ padding: "18px 0" }}
-                  >
-                    <h3 className="feature-text-title">{feature.title}</h3>
-                    <p className="feature-text-desc">{feature.content}</p>
-                  </div>
-                ))}
+                <>
+                  {[
+                    {
+                      title: "Pickup & Service Display - ($40/month)",
+                      content: "Pickup counter display.",
+                      images: [require("../assets/images/Pickup Display.png")],
+                    },
+                    {
+                      title: "Customer Facing Display - ($40/month)",
+                      content: "Checkout-facing screen.",
+                      images: [
+                        require("../assets/images/Customer Display.png"),
+                      ],
+                    },
+                    {
+                      title: "Digital Menu Display - ($40/month)",
+                      content: "Dynamic digital boards.",
+                      images: [require("../assets/images/Coming Soon1.png")],
+                    },
+                  ].map((feature, index) => (
+                    <div
+                      key={index}
+                      className={`feature-split-row ${index % 2 === 0 ? "normal" : "reverse"}`}
+                      style={{ padding: "30px 0" }}
+                    >
+                      <div className="feature-split-image">
+                        <FeatureGallery
+                          images={feature.images}
+                          alt={feature.title}
+                        />
+                      </div>
+                      <div className="feature-split-text">
+                        <h3>{feature.title}</h3>
+                        <p>{feature.content}</p>
+                      </div>
+                    </div>
+                  ))}
+                </>
               </div>
             )}
           </div>

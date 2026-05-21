@@ -7,18 +7,22 @@ import AppHeader from "./components/AppHeader";
 function PricingCalculator() {
   // ---- 가격 상수 ----
   const PLAN_PRICE = { standard: 50, premium: 150 };
-  const RENTAL_TABLET_PRICE = 50;
 
   const ADDON_PRICES = {
-    kds: 30,
+    kds: 40,
     selfKiosk14inch: 100,
     selfKiosk21inch: 200,
     tableKiosk: 40,
     portableTablet: 25,
-    serviceDisplay: 30,
-    pickupServiceDisplay: 30,
-    customerFacingDisplay: 30,
-    digitalMenuDisplay: 30,
+    serviceDisplay: 40,
+    pickupServiceDisplay: 40,
+    customerFacingDisplay: 40,
+    digitalMenuDisplay: 40,
+    onlineReservation: 40,
+    inventoryManagement: 40,
+    staffTimesheet: 40,
+    uberEats: 40,
+    qrOrdering: 40,
   };
 
   const ADDON_MAX_QTY = {
@@ -31,23 +35,34 @@ function PricingCalculator() {
     pickupServiceDisplay: 5,
     customerFacingDisplay: 5,
     digitalMenuDisplay: 5,
+    onlineReservation: 1,
+    inventoryManagement: 1,
+    staffTimesheet: 1,
+    uberEats: 1,
+    qrOrdering: 1,
   };
 
-  const addonList = [
+  const baseAddons = [
     { key: "kds", label: "Kitchen Display System" },
-    { key: "selfKiosk14inch", label: "Self-Ordering Kiosk - 14 Inch " },
-    { key: "selfKiosk21inch", label: "Self-Ordering Kiosk - 21 Inch " },
+    { key: "selfKiosk14inch", label: "Self-Ordering Kiosk - Countertop " },
+    { key: "selfKiosk21inch", label: "Self-Ordering Kiosk - Floor Standing " },
     { key: "tableKiosk", label: "Table Order Kiosk" },
     { key: "portableTablet", label: "Portable Tablet" },
-    { key: "serviceDisplay", label: "Service Display" },
     { key: "pickupServiceDisplay", label: "Pickup & Service Display" },
     { key: "customerFacingDisplay", label: "Customer Facing Display" },
     { key: "digitalMenuDisplay", label: "Digital Menu Display" },
   ];
 
+  const standardOnlyAddons = [
+    { key: "onlineReservation", label: "Online Reservation" },
+    { key: "inventoryManagement", label: "Inventory Management" },
+    { key: "staffTimesheet", label: "Staff Timesheet/Roster" },
+    { key: "uberEats", label: "Uber Eats Integration" },
+    { key: "qrOrdering", label: "QR Code Ordering" },
+  ];
+
   // ---- UI 상태 ----
   const [plan, setPlan] = useState("standard");
-  const [rentHardware, setRentHardware] = useState("no");
   const [tabletCount, setTabletCount] = useState(1);
 
   const [addonsQuestion, setAddonsQuestion] = useState("no");
@@ -57,20 +72,31 @@ function PricingCalculator() {
     selfKiosk21inch: { enabled: false, qty: 1 },
     tableKiosk: { enabled: false, qty: 1 },
     portableTablet: { enabled: false, qty: 1 },
-    serviceDisplay: { enabled: false, qty: 1 },
     pickupServiceDisplay: { enabled: false, qty: 1 },
     customerFacingDisplay: { enabled: false, qty: 1 },
     digitalMenuDisplay: { enabled: false, qty: 1 },
+    onlineReservation: { enabled: false, qty: 1 },
+    inventoryManagement: { enabled: false, qty: 1 },
+    staffTimesheet: { enabled: false, qty: 1 },
+    uberEats: { enabled: false, qty: 1 },
+    qrOrdering: { enabled: false, qty: 1 },
   });
+
+  const addonList =
+    plan === "standard" ? [...standardOnlyAddons, ...baseAddons] : baseAddons;
 
   // ---- 합계 계산 ----
   let total = PLAN_PRICE[plan];
-  if (rentHardware === "yes") total += RENTAL_TABLET_PRICE * tabletCount;
+  // 1 tablet included, extra $40 each
+  if (tabletCount > 1) total += (tabletCount - 1) * 40;
+
   if (addonsQuestion === "yes") {
-    for (const k of Object.keys(addons)) {
-      const { enabled, qty } = addons[k];
-      if (enabled && qty > 0) total += (ADDON_PRICES[k] || 0) * qty;
-    }
+    addonList.forEach((a) => {
+      const state = addons[a.key];
+      if (state.enabled && state.qty > 0) {
+        total += (ADDON_PRICES[a.key] || 0) * state.qty;
+      }
+    });
   }
 
   // 하드웨어 포함 안내
@@ -106,40 +132,25 @@ function PricingCalculator() {
           </select>
         </div>
 
-        {/* Hardware rental */}
+        {/* Tablet count */}
         <div className="form-row">
-          <label htmlFor="rentHw">
-            Do you want to rent POS/KDS tablets from Smart Table?
+          <label htmlFor="tabletCount">
+            Number of tablets used in the restaurant
           </label>
           <select
-            id="rentHw"
-            value={rentHardware}
-            onChange={(e) => setRentHardware(e.target.value)}
+            id="tabletCount"
+            value={tabletCount}
+            onChange={(e) => setTabletCount(Number(e.target.value))}
             className="form-select"
           >
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
+            {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+              <option key={n} value={n}>
+                {n}{" "}
+                {n === 1 ? "(1st Tablet Free)" : `(+$${(n - 1) * 40}/mo extra)`}
+              </option>
+            ))}
           </select>
         </div>
-
-        {/* Tablet count (only when yes) */}
-        {rentHardware === "yes" && (
-          <div className="form-row">
-            <label htmlFor="tabletCount">Number of Tablets</label>
-            <select
-              id="tabletCount"
-              value={tabletCount}
-              onChange={(e) => setTabletCount(Number(e.target.value))}
-              className="form-select"
-            >
-              {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
-                <option key={n} value={n}>
-                  {n}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
 
         {/* Add-ons master yes/no */}
         <div className="form-row">
@@ -179,7 +190,7 @@ function PricingCalculator() {
                   <label htmlFor={`chk-${a.key}`} className="addon-label">
                     {a.label}
                     <span className="addon-price">
-                      (${ADDON_PRICES[a.key]}/month each
+                      (${ADDON_PRICES[a.key]}/month
                       {isIncludingHardware(a.key) ? ", Including hardware" : ""}
                       )
                     </span>
@@ -236,12 +247,14 @@ function PricingCalculator() {
             {PLAN_PRICE[plan]}/month)
           </div>
           <div>
-            Hardware Rental:{" "}
-            <strong>{rentHardware === "yes" ? "Yes" : "No"}</strong>
-            {rentHardware === "yes" &&
-              ` — ${tabletCount} tablet${
-                tabletCount > 1 ? "s" : ""
-              } @ $${RENTAL_TABLET_PRICE}`}
+            Tablets: <strong>{tabletCount}</strong>{" "}
+            {tabletCount > 1 ? (
+              <span>
+                (1 Free + {tabletCount - 1} @ $40 = +${(tabletCount - 1) * 40})
+              </span>
+            ) : (
+              "(Included)"
+            )}
           </div>
 
           {addonsQuestion === "yes" && (
@@ -282,12 +295,14 @@ const PricingPage = () => {
       color: "#00bcd4",
       features: [
         "Point of Sales (POS)",
-        "Table Management",
-        "Menu Management",
+        "Online Ordering",
         "Sales & Analytics",
         "Order Records",
         "Staff Access Control",
-        "Multiple Payment Types",
+        "Loyalty Program",
+        "Promotions",
+        "Menu Management",
+        "Table Management",
       ],
     },
     {
@@ -297,13 +312,11 @@ const PricingPage = () => {
         "Advanced tools to grow online sales and streamline complex workflows.",
       color: "#e35484ff",
       features: [
-        "Online Ordering",
         "Online Reservation",
-        "Loyalty Program",
-        "Custom Discount",
         "Uber Eats Integration",
-        "Staff Timesheets",
+        "Staff Timesheets/Roster",
         "Inventory Management",
+        "QR Ordering",
       ],
     },
   ];
