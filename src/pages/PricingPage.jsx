@@ -134,9 +134,7 @@ function PricingCalculator() {
 
         {/* Tablet count */}
         <div className="form-row">
-          <label htmlFor="tabletCount">
-            Number of tablets used in the restaurant
-          </label>
+          <label htmlFor="tabletCount">Number of connected Device</label>
           <select
             id="tabletCount"
             value={tabletCount}
@@ -145,8 +143,7 @@ function PricingCalculator() {
           >
             {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
               <option key={n} value={n}>
-                {n}{" "}
-                {n === 1 ? "(1st Tablet Free)" : `(+$${(n - 1) * 40}/mo extra)`}
+                {n} {n === 1 ? "(+$0/mo)" : `(+$${(n - 1) * 40}/mo extra)`}
               </option>
             ))}
           </select>
@@ -247,7 +244,7 @@ function PricingCalculator() {
             {PLAN_PRICE[plan]}/month)
           </div>
           <div>
-            Tablets: <strong>{tabletCount}</strong>{" "}
+            Connected Device: <strong>{tabletCount}</strong>{" "}
             {tabletCount > 1 ? (
               <span>
                 (1 Free + {tabletCount - 1} @ $40 = +${(tabletCount - 1) * 40})
