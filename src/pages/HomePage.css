@@ -1668,3 +1668,83 @@
     padding: 0 20px;
   }
 }
+
+/* ==========================================================================
+   Kiosk Interactive Slider Layout (FINAL TWEAKS)
+   ========================================================================== */
+
+.feature-split-image.kiosk-slider-container {
+  position: relative !important;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+  /* 1. FIXED: Changed from #f9f9f9 to pure white */
+
+  display: block;
+}
+
+.kiosk-slides-wrapper {
+  display: flex;
+  width: 100%;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+
+.kiosk-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Extra safety to ensure individual slide backgrounds are also white */
+}
+
+.kiosk-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.slider-btn {
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-size: 24px !important;
+  width: 45px !important;
+  height: 45px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  z-index: 99 !important;
+  border-radius: 50%;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+  user-select: none;
+  padding: 0 !important;
+}
+
+.slider-btn:hover {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.slider-btn.prev {
+  left: 15px !important;
+  right: auto !important;
+}
+
+.slider-btn.next {
+  right: 15px !important;
+  left: auto !important;
+}
+
+.slider-btn:active {
+  transform: translateY(-50%) scale(0.9) !important;
+}

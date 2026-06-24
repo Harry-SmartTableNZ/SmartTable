@@ -10,9 +10,10 @@ function PricingCalculator() {
 
   const ADDON_PRICES = {
     kds: 40,
-    selfKiosk14inch: 100,
-    selfKiosk21inch: 200,
-    tableKiosk: 40,
+    selfKiosk14inch: 75,
+    selfKiosk21inch: 150,
+    selfKiosk17inch: 125,
+    tableKiosk: 30,
     portableTablet: 25,
     serviceDisplay: 40,
     pickupServiceDisplay: 40,
@@ -28,6 +29,7 @@ function PricingCalculator() {
   const ADDON_MAX_QTY = {
     kds: 5,
     selfKiosk14inch: 5,
+    selfKiosk17inch: 5,
     selfKiosk21inch: 5,
     tableKiosk: 50,
     portableTablet: 20,
@@ -44,11 +46,19 @@ function PricingCalculator() {
 
   const baseAddons = [
     { key: "kds", label: "Kitchen Display System" },
-    { key: "selfKiosk14inch", label: "Self-Ordering Kiosk - Countertop " },
+    {
+      key: "selfKiosk14inch",
+      label: "Self-Ordering Kiosk - Standard Countertop ",
+    },
+    {
+      key: "selfKiosk17inch",
+      label: "Self-Ordering Kiosk - Premium Countertop ",
+    },
+
     { key: "selfKiosk21inch", label: "Self-Ordering Kiosk - Floor Standing " },
     { key: "tableKiosk", label: "Table Order Kiosk" },
     { key: "portableTablet", label: "Portable Tablet" },
-    { key: "pickupServiceDisplay", label: "Pickup & Service Display" },
+    { key: "pickupServiceDisplay", label: "Pickup Display" },
     { key: "customerFacingDisplay", label: "Customer Facing Display" },
     { key: "digitalMenuDisplay", label: "Digital Menu Display" },
   ];
@@ -56,7 +66,7 @@ function PricingCalculator() {
   const standardOnlyAddons = [
     { key: "onlineReservation", label: "Online Reservation" },
     { key: "inventoryManagement", label: "Inventory Management" },
-    { key: "staffTimesheet", label: "Staff Timesheet/Roster" },
+    { key: "staffTimesheet", label: "Staff Scheduling and Timesheets" },
     { key: "uberEats", label: "Uber Eats Integration" },
     { key: "qrOrdering", label: "QR Code Ordering" },
   ];
@@ -70,7 +80,8 @@ function PricingCalculator() {
     kds: { enabled: false, qty: 1 },
     selfKiosk14inch: { enabled: false, qty: 1 },
     selfKiosk21inch: { enabled: false, qty: 1 },
-    tableKiosk: { enabled: false, qty: 1 },
+    selfKiosk17inch: { enabled: false, qty: 1 },
+    tableKiosk: { enabled: false, qty: 3 }, // Default to minimum 3
     portableTablet: { enabled: false, qty: 1 },
     pickupServiceDisplay: { enabled: false, qty: 1 },
     customerFacingDisplay: { enabled: false, qty: 1 },
@@ -87,8 +98,17 @@ function PricingCalculator() {
 
   // ---- 합계 계산 ----
   let total = PLAN_PRICE[plan];
-  // 1 tablet included, extra $40 each
-  if (tabletCount > 1) total += (tabletCount - 1) * 40;
+
+  // 1 tablet included, extra $25 each
+  if (tabletCount > 1) total += (tabletCount - 1) * 25;
+
+  // Check if Countertop, Floor Standing, or Table Order Kiosk is selected
+  const hasKioskSelected =
+    addonsQuestion === "yes" &&
+    ((addons.selfKiosk14inch.enabled && addons.selfKiosk14inch.qty > 0) ||
+      (addons.selfKiosk17inch.enabled && addons.selfKiosk17inch.qty > 0) ||
+      (addons.selfKiosk21inch.enabled && addons.selfKiosk21inch.qty > 0) ||
+      (addons.tableKiosk.enabled && addons.tableKiosk.qty > 0));
 
   if (addonsQuestion === "yes") {
     addonList.forEach((a) => {
@@ -99,9 +119,16 @@ function PricingCalculator() {
     });
   }
 
+  // Deduct software subscription fee ($50) if any kiosk variant is bundled
+  if (hasKioskSelected) {
+    total -= 50;
+  }
+
   // 하드웨어 포함 안내
   const isIncludingHardware = (key) =>
-    (key === "selfKiosk14inch") | (key === "selfKiosk21inch") ||
+    key === "selfKiosk14inch" ||
+    key === "selfKiosk21inch" ||
+    key === "selfKiosk17inch" ||
     key === "tableKiosk" ||
     key === "portableTablet";
 
@@ -143,7 +170,8 @@ function PricingCalculator() {
           >
             {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
               <option key={n} value={n}>
-                {n} {n === 1 ? "(+$0/mo)" : `(+$${(n - 1) * 40}/mo extra)`}
+                {n}
+                {n > 1 ? ` (+$${(n - 1) * 25}/mo extra)` : ""}
               </option>
             ))}
           </select>
@@ -170,7 +198,9 @@ function PricingCalculator() {
           <div className="addons-wrap">
             {addonList.map((a) => {
               const state = addons[a.key];
+              const minQty = a.key === "tableKiosk" ? 3 : 1; // Dynamic minimum quantity
               const maxQty = ADDON_MAX_QTY[a.key] || 20;
+
               return (
                 <div key={a.key} className="addon-row">
                   <input
@@ -180,7 +210,15 @@ function PricingCalculator() {
                     onChange={(e) =>
                       setAddons((prev) => ({
                         ...prev,
-                        [a.key]: { ...prev[a.key], enabled: e.target.checked },
+                        [a.key]: {
+                          ...prev[a.key],
+                          enabled: e.target.checked,
+                          // Force valid starting qty if enabled
+                          qty:
+                            e.target.checked && prev[a.key].qty < minQty
+                              ? minQty
+                              : prev[a.key].qty,
+                        },
                       }))
                     }
                   />
@@ -208,13 +246,14 @@ function PricingCalculator() {
                     className="form-select addon-qty"
                     aria-label={`${a.label} quantity`}
                   >
-                    {Array.from({ length: maxQty }, (_, i) => i + 1).map(
-                      (n) => (
-                        <option key={n} value={n}>
-                          {n}
-                        </option>
-                      ),
-                    )}
+                    {Array.from(
+                      { length: maxQty - minQty + 1 },
+                      (_, i) => i + minQty,
+                    ).map((n) => (
+                      <option key={n} value={n}>
+                        {n}
+                      </option>
+                    ))}
                   </select>
                 </div>
               );
@@ -247,7 +286,7 @@ function PricingCalculator() {
             Connected Device: <strong>{tabletCount}</strong>{" "}
             {tabletCount > 1 ? (
               <span>
-                (1 Free + {tabletCount - 1} @ $40 = +${(tabletCount - 1) * 40})
+                (1 Free + {tabletCount - 1} @ $25 = +${(tabletCount - 1) * 25})
               </span>
             ) : (
               "(Included)"
@@ -275,6 +314,13 @@ function PricingCalculator() {
                 )}
               </ul>
             </>
+          )}
+
+          {/* Explicitly show bundle discount line-item if applied */}
+          {hasKioskSelected && (
+            <div style={{ marginTop: 10, color: "#00bcd4", fontWeight: "600" }}>
+              Kiosk Bundle Discount: <span>-$50.00</span>
+            </div>
           )}
         </div>
       </div>
@@ -311,7 +357,7 @@ const PricingPage = () => {
       features: [
         "Online Reservation",
         "Uber Eats Integration",
-        "Staff Timesheets/Roster",
+        "Staff Scheduling and Timesheets",
         "Inventory Management",
         "QR Ordering",
       ],

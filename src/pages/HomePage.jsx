@@ -8,7 +8,6 @@ import heroImg from "../assets/images/FullBanner.jpeg";
 import ReCAPTCHA from "react-google-recaptcha";
 
 // --- Static Logo Data ---
-// Moved outside the component to prevent re-creation on every render cycle.
 const integratedCompaniesLogos = [
   { name: "Verifone", src: require("../assets/images/Verifone.jpg") },
   { name: "Windcave", src: require("../assets/images/Windcave.jpg") },
@@ -24,10 +23,7 @@ const clientLogos = [
   { name: "Chimac", src: require("../assets/images/Chimac.jpg") },
   { name: "Sushi & Bento", src: require("../assets/images/Sushi & Bento.jpg") },
   { name: "PhoTen", src: require("../assets/images/PhoTen.jpg") },
-  {
-    name: "Hello Chicago",
-    src: require("../assets/images/Hello Chicago.jpg"),
-  },
+  { name: "Hello Chicago", src: require("../assets/images/Hello Chicago.jpg") },
   {
     name: "Top 1 Korean Restuarnt",
     src: require("../assets/images/Top 1.jpg"),
@@ -37,8 +33,6 @@ const clientLogos = [
 ];
 
 // --- Carousel Component ---
-// Defined outside to prevent re-definition on every HomePage render.
-// Wrapping in React.memo ensures it only re-renders if props actually change.
 const LogoCarousel = React.memo(({ logoList, direction = "L2R" }) => {
   const directionClass =
     direction === "R2L" ? "logo-track-R2L" : "logo-track-L2R";
@@ -49,11 +43,6 @@ const LogoCarousel = React.memo(({ logoList, direction = "L2R" }) => {
         className={`logo-track ${directionClass}`}
         style={{ willChange: "transform", transform: "translateZ(0)" }}
       >
-        {/* 
-          Mapping 3 copies ensures the track is long enough to fill the viewport.
-          For a continuous loop, your CSS keyframes should move exactly the width 
-          of one set (e.g., translateX(-33.333%)).
-        */}
         {[...logoList, ...logoList, ...logoList].map((logo, index) => (
           <div className="logo-item" key={index}>
             <img src={logo.src} alt={logo.name} />
@@ -100,6 +89,40 @@ const HomePage = () => {
   const [recaptchaToken, setRecaptchaToken] = useState("");
   const [selectedBasic, setSelectedBasic] = useState(null);
   const [selectedPremium, setSelectedPremium] = useState(null);
+
+  // --- Kiosk Main Image Slider State ---
+  const [kioskSlide, setKioskSlide] = useState(0);
+
+  // Kiosk specific data collection for sliding feature
+  const kioskSlidesData = [
+    {
+      title: "Self-Order Kiosk (Standard Countertop)",
+      price: "$75/month/kiosk",
+      img: require("../assets/images/Kiosk Photo 1.png"),
+    },
+    {
+      title: "Self-Order Kiosk (Premium Countertop)",
+      price: "$125/month/kiosk",
+      img: require("../assets/images/Kiosk Photo 3.png"),
+    },
+    {
+      title: "Self-Order Kiosk (Floor Standing)",
+      price: "$150/month/kiosk",
+      img: require("../assets/images/Kiosk Photo 2.png"),
+    },
+  ];
+
+  const nextKioskSlide = () => {
+    setKioskSlide((prev) =>
+      prev === kioskSlidesData.length - 1 ? 0 : prev + 1,
+    );
+  };
+
+  const prevKioskSlide = () => {
+    setKioskSlide((prev) =>
+      prev === 0 ? kioskSlidesData.length - 1 : prev - 1,
+    );
+  };
 
   // --- Form State ---
   const [formStep, setFormStep] = useState(1);
@@ -189,7 +212,7 @@ const HomePage = () => {
       desc: "Configure percentage or fixed discounts with rules that suit your business policies.",
     },
     {
-      title: "Staff Timesheets",
+      title: "Staff Scheduling and Timesheets",
       img: require("../assets/images/Staff Timesheet.png"),
       desc: "Track staff logins and work hours for payroll accuracy and operational visibility.",
     },
@@ -200,7 +223,6 @@ const HomePage = () => {
     },
   ];
 
-  // --- Logic Helpers ---
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -234,7 +256,7 @@ const HomePage = () => {
       alert("Please verify that you are not a robot.");
       return;
     }
-    setLoading(true);
+    loading(true);
 
     const submitData = {
       access_key: "8291d6f9-6561-4655-bb8e-894d91a34d16",
@@ -259,11 +281,7 @@ const HomePage = () => {
       });
 
       const res = await response.json();
-
-      if (!res.success) {
-        throw new Error(res.message || "Server responded with an error");
-      }
-
+      if (!res.success) throw new Error(res.message || "Server error");
       navigate("/thank-you");
     } catch (error) {
       console.error("Form submit error:", error);
@@ -438,7 +456,6 @@ const HomePage = () => {
       <div className="carousels-main-wrapper">
         <div className="carousel-header">Companies Integrated With Our App</div>
         <LogoCarousel logoList={integratedCompaniesLogos} direction="R2L" />
-
         <div className="carousel-header">Our Clients</div>
         <LogoCarousel logoList={clientLogos} direction="L2R" />
       </div>
@@ -513,9 +530,8 @@ const HomePage = () => {
         <div className="feature-tag-grid" style={{ gap: "12px 14px" }}>
           {[
             "Online Reservation",
-
             "Uber Eats Integration",
-            "Staff Timesheets",
+            "Staff Scheduling and Timesheets",
             "Inventory Management",
             "QR Ordering",
           ].map((title) => (
@@ -581,26 +597,97 @@ const HomePage = () => {
           <div className="segmented-tab-features">
             {activeTab === "ordering" && (
               <>
+                {/* INTERACTIVE CAROUSEL ROW FOR KIOSKS */}
+                <div
+                  className="feature-split-row normal wrapper-kiosk-carousel"
+                  style={{ padding: "30px 0" }}
+                >
+                  {/* Outer Slider Box Container */}
+                  <div className="feature-split-image kiosk-slider-container">
+                    <button
+                      className="slider-btn prev"
+                      type="button"
+                      onClick={prevKioskSlide}
+                    >
+                      &#10094;
+                    </button>
+
+                    {/* Sliding film strip containing all three images horizontally */}
+                    <div
+                      className="kiosk-slides-wrapper"
+                      style={{ transform: `translateX(-${kioskSlide * 100}%)` }}
+                    >
+                      {kioskSlidesData.map((slide, index) => (
+                        <div className="kiosk-slide" key={index}>
+                          <img src={slide.img} alt={slide.title} />
+                        </div>
+                      ))}
+                    </div>
+
+                    <button
+                      className="slider-btn next"
+                      type="button"
+                      onClick={nextKioskSlide}
+                    >
+                      &#10095;
+                    </button>
+
+                    {/* Inline Slide Indicator Dots */}
+                    <div className="carousel-nav-dots">
+                      {kioskSlidesData.map((_, idx) => (
+                        <span
+                          key={idx}
+                          className={`nav-dot ${idx === kioskSlide ? "active" : ""}`}
+                          onClick={() => setKioskSlide(idx)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="feature-split-text">
+                    <h3>
+                      {kioskSlidesData.map((slide, i) => (
+                        <span
+                          key={i}
+                          style={{
+                            display: "block",
+                            color: i === kioskSlide ? "#00bcd4" : "inherit",
+                            fontWeight: i === kioskSlide ? "700" : "400",
+                            fontSize: i === kioskSlide ? "1.1em" : "0.9em",
+                            transition: "all 0.3s ease",
+                            marginBottom: "8px",
+                          }}
+                        >
+                          {slide.title}
+                          <span
+                            style={{
+                              display: "block",
+                              fontSize: "0.85em",
+                              opacity: 0.8,
+                              fontWeight: "normal",
+                              margin: "2px 0 6px",
+                            }}
+                          >
+                            {slide.price}
+                          </span>
+                        </span>
+                      ))}
+                    </h3>
+                    <p style={{ marginTop: "15px" }}>
+                      Elevate your guest experience with our versatile kiosks.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Remaining Static Rows */}
                 {[
-                  {
-                    title: [
-                      "Self-Ordering Kiosk (Countertop)",
-                      "$100/month/kiosk",
-                      "",
-                      "Self-Ordering Kiosk (Floor Standing)",
-                      "$200/month/kiosk",
-                    ],
-                    content:
-                      "Elevate your guest experience with our versatile kiosks.",
-                    images: [require("../assets/images/Kiosk Photo 1.png")],
-                  },
                   {
                     title: "Portable Tablet - ($25/month/tablet)",
                     content: "Lightweight handheld tablets for table service.",
                     images: [require("../assets/images/Kiosk 1.png")],
                   },
                   {
-                    title: "Table Order Kiosk - ($40/month/tablet)",
+                    title: "Table Order Kiosk - ($30/month/tablet)",
                     content:
                       "Secure, table-mounted tablets for contactless ordering.",
                     images: [require("../assets/images/Table Kiosk.png")],
@@ -608,39 +695,22 @@ const HomePage = () => {
                 ].map((feature, index) => (
                   <div
                     key={index}
-                    className={`feature-split-row ${index % 2 === 0 ? "normal" : "reverse"}`}
+                    className={`feature-split-row ${index % 2 !== 0 ? "normal" : "reverse"}`}
                     style={{ padding: "30px 0" }}
                   >
                     <div className="feature-split-image">
                       <FeatureGallery
                         images={feature.images}
-                        alt={
-                          Array.isArray(feature.title)
-                            ? feature.title
-                            : feature.title
-                        }
+                        alt={feature.title}
                       />
                     </div>
                     <div className="feature-split-text">
-                      <h3>
-                        {Array.isArray(feature.title)
-                          ? feature.title.map((line, i) => (
-                              <span
-                                key={i}
-                                style={{
-                                  display: "block",
-                                  minHeight: line === "" ? "20px" : "auto",
-                                }}
-                              >
-                                {line}
-                              </span>
-                            ))
-                          : feature.title}
-                      </h3>
+                      <h3>{feature.title}</h3>
                       <p>{feature.content}</p>
                     </div>
                   </div>
                 ))}
+
                 <section
                   id="kiosk-steps"
                   className="section kiosk-steps-section"
@@ -654,13 +724,53 @@ const HomePage = () => {
                 </section>
               </>
             )}
+
             {activeTab === "kitchen" && (
               <>
                 {[
                   {
-                    title: "Kitchen Display System - ($30/month)",
+                    title: "Kitchen Display System - ($40/month)",
                     content: "Digital kitchen display system.",
                     images: [require("../assets/images/KDS.png")],
+                  },
+                ].map((feature, index) => (
+                  <div
+                    key={index}
+                    className="feature-split-row normal"
+                    style={{ padding: "30px 0" }}
+                  >
+                    <div className="feature-split-image">
+                      <FeatureGallery
+                        images={feature.images}
+                        alt={feature.title}
+                      />
+                    </div>
+                    <div className="feature-split-text">
+                      <h3>{feature.title}</h3>
+                      <p>{feature.content}</p>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+
+            {activeTab === "displays" && (
+              <div className="feature-text-only">
+                {[
+                  {
+                    title: "Pickup Display - ($40/month)",
+                    content: "Pickup counter display.",
+                    images: [require("../assets/images/Pickup Display.png")],
+                  },
+                  {
+                    title: "Customer Facing Display - ($40/month)",
+                    content: "Checkout-facing screen.",
+                    images: [require("../assets/images/Customer Display.png")],
+                  },
+                  {
+                    title: "Digital Menu Display - ($40/month)",
+                    content: "Dynamic digital boards.",
+                    images: [require("../assets/images/Coming Soon1.png")],
                   },
                 ].map((feature, index) => (
                   <div
@@ -680,48 +790,6 @@ const HomePage = () => {
                     </div>
                   </div>
                 ))}
-              </>
-            )}
-            {activeTab === "displays" && (
-              <div className="feature-text-only">
-                <>
-                  {[
-                    {
-                      title: "Pickup & Service Display - ($40/month)",
-                      content: "Pickup counter display.",
-                      images: [require("../assets/images/Pickup Display.png")],
-                    },
-                    {
-                      title: "Customer Facing Display - ($40/month)",
-                      content: "Checkout-facing screen.",
-                      images: [
-                        require("../assets/images/Customer Display.png"),
-                      ],
-                    },
-                    {
-                      title: "Digital Menu Display - ($40/month)",
-                      content: "Dynamic digital boards.",
-                      images: [require("../assets/images/Coming Soon1.png")],
-                    },
-                  ].map((feature, index) => (
-                    <div
-                      key={index}
-                      className={`feature-split-row ${index % 2 === 0 ? "normal" : "reverse"}`}
-                      style={{ padding: "30px 0" }}
-                    >
-                      <div className="feature-split-image">
-                        <FeatureGallery
-                          images={feature.images}
-                          alt={feature.title}
-                        />
-                      </div>
-                      <div className="feature-split-text">
-                        <h3>{feature.title}</h3>
-                        <p>{feature.content}</p>
-                      </div>
-                    </div>
-                  ))}
-                </>
               </div>
             )}
           </div>

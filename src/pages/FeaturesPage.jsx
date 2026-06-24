@@ -21,7 +21,7 @@ import Image18 from "../assets/images/KDS.png";
 import Image22 from "../assets/images/Coming Soon1.png";
 import Image23 from "../assets/images/QR Ordering 1.png";
 import Image24 from "../assets/images/Staff Timesheet.png";
-import Image25 from "../assets/images/Kiosk Photo 1.png";
+import Image25 from "../assets/images/Kiosk Photo 2.png";
 import Image26 from "../assets/images/Inventory management.png";
 import Image27 from "../assets/images/Customer Display.png";
 
@@ -157,7 +157,7 @@ const FeaturesPage = () => {
                   image: Image12,
                 },
                 {
-                  title: "Staff Timesheets",
+                  title: "Staff Scheduling and Timesheets",
                   content:
                     "Track staff clock-ins and clock-outs directly through your POS, linked to assigned shifts. Automatically calculate hours worked and export timesheets for payroll.",
                   image: Image24,
@@ -195,7 +195,7 @@ const FeaturesPage = () => {
                   image: Image18,
                 },
                 {
-                  title: "Pickup & Service Display",
+                  title: "Pickup Display",
                   content:
                     "Offer customers a clear view of their order status on a pickup screen in real-time. Display order numbers, progress updates, and notifications for ready-to-collect items.",
                   image: Image7,
