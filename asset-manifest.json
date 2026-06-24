@@ -1,10 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.f3bc878f.css",
-    "main.js": "/static/js/main.3657f0ee.js",
+    "main.css": "/static/css/main.1a8cde6c.css",
+    "main.js": "/static/js/main.6ccc12d4.js",
     "static/js/453.4f109603.chunk.js": "/static/js/453.4f109603.chunk.js",
-    "static/media/Kiosk Photo 1.png": "/static/media/Kiosk Photo 1.cd46452ca4a3df68ac3f.png",
+    "static/media/Kiosk Photo 1.png": "/static/media/Kiosk Photo 1.a6e7441dd5c9e3dd165b.png",
     "static/media/Table Kiosk.png": "/static/media/Table Kiosk.271b78876e87eeb14336.png",
+    "static/media/Kiosk Photo 3.png": "/static/media/Kiosk Photo 3.f8a9d42dd1794643cff3.png",
+    "static/media/Kiosk Photo 2.png": "/static/media/Kiosk Photo 2.958eb81d6516efdbfade.png",
     "static/media/Kiosk 1.png": "/static/media/Kiosk 1.2ccc57a239080f058800.png",
     "static/media/Customer Display.png": "/static/media/Customer Display.93ff79460d7a66766c71.png",
     "static/media/Pickup Display.png": "/static/media/Pickup Display.9c880959c9b8c892d7e9.png",
@@ -37,12 +39,12 @@
     "static/media/BBQ.jpg": "/static/media/BBQ.7013e2c70d5471a3df7f.jpg",
     "static/media/Chimac.jpg": "/static/media/Chimac.3a5ba734ce111acaa11b.jpg",
     "index.html": "/index.html",
-    "main.f3bc878f.css.map": "/static/css/main.f3bc878f.css.map",
-    "main.3657f0ee.js.map": "/static/js/main.3657f0ee.js.map",
+    "main.1a8cde6c.css.map": "/static/css/main.1a8cde6c.css.map",
+    "main.6ccc12d4.js.map": "/static/js/main.6ccc12d4.js.map",
     "453.4f109603.chunk.js.map": "/static/js/453.4f109603.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f3bc878f.css",
-    "static/js/main.3657f0ee.js"
+    "static/css/main.1a8cde6c.css",
+    "static/js/main.6ccc12d4.js"
   ]
 }
