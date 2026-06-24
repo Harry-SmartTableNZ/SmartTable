@@ -5,7 +5,6 @@ import "./HomePage.css";
 import AppHeader from "./components/AppHeader";
 import { Link, useNavigate } from "react-router-dom";
 import heroImg from "../assets/images/FullBanner.jpeg";
-import ReCAPTCHA from "react-google-recaptcha";
 
 // --- Static Logo Data ---
 const integratedCompaniesLogos = [
@@ -86,14 +85,12 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("ordering");
   const [loading, setLoading] = useState(false);
-  const [recaptchaToken, setRecaptchaToken] = useState("");
   const [selectedBasic, setSelectedBasic] = useState(null);
   const [selectedPremium, setSelectedPremium] = useState(null);
 
   // --- Kiosk Main Image Slider State ---
   const [kioskSlide, setKioskSlide] = useState(0);
 
-  // Kiosk specific data collection for sliding feature
   const kioskSlidesData = [
     {
       title: "Self-Order Kiosk (Standard Countertop)",
@@ -132,7 +129,6 @@ const HomePage = () => {
     fullName: "",
     email: "",
     phone: "",
-    company: "",
   });
 
   const featureHighlights = [
@@ -252,23 +248,22 @@ const HomePage = () => {
 
   const handleFinalSubmit = async (e) => {
     e.preventDefault();
-    if (!recaptchaToken) {
-      alert("Please verify that you are not a robot.");
+    setLoading(true);
+
+    const formElement = e.target;
+    const dynamicFormData = new FormData(formElement);
+
+    // Spam honeypot logic validation
+    if (dynamicFormData.get("botcheck")) {
+      setLoading(false);
       return;
     }
-    loading(true);
 
-    const submitData = {
-      access_key: "8291d6f9-6561-4655-bb8e-894d91a34d16",
-      name: formData.fullName,
-      from_name: "Smart Table - Home Page Quote",
-      email: formData.email,
-      phone: formData.phone,
-      businessType: formData.businessType,
-      tables: formData.tables,
-      subject: "New Specialist Quote Request - Smart Table",
-      "g-recaptcha-response": recaptchaToken,
-    };
+    const objectData = Object.fromEntries(dynamicFormData);
+
+    // Explicitly pair React selection inputs to form parameters
+    objectData["Business Type"] = formData.businessType;
+    objectData["Estimated Tables"] = formData.tables;
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -277,18 +272,21 @@ const HomePage = () => {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: JSON.stringify(submitData),
+        body: JSON.stringify(objectData),
       });
 
       const res = await response.json();
-      if (!res.success) throw new Error(res.message || "Server error");
-      navigate("/thank-you");
+
+      if (response.ok && res.success) {
+        navigate("/thank-you");
+      } else {
+        alert(`Error: ${res.message || "Submission failed"}`);
+      }
     } catch (error) {
       console.error("Form submit error:", error);
       alert("Something went wrong. Please try again later.");
     } finally {
       setLoading(false);
-      setRecaptchaToken("");
     }
   };
 
@@ -382,9 +380,34 @@ const HomePage = () => {
                 ) : (
                   <div className="step-content fade-in">
                     <h3>Contact Details</h3>
+
+                    {/* Web3Forms required static inputs */}
+                    <input
+                      type="hidden"
+                      name="access_key"
+                      value="8291d6f9-6561-4655-bb8e-894d91a34d16"
+                    />
+                    <input
+                      type="hidden"
+                      name="subject"
+                      value="New Specialist Quote Request - Smart Table"
+                    />
+                    <input
+                      type="hidden"
+                      name="from_name"
+                      value="Smart Table - Home Page Quote"
+                    />
+                    {/* Anti-spam Honeypot */}
+                    <input
+                      type="text"
+                      name="botcheck"
+                      style={{ display: "none" }}
+                    />
+
                     <div className="form-group">
                       <input
                         type="text"
+                        name="name"
                         placeholder="Full Name"
                         required
                         className="form-input"
@@ -397,6 +420,7 @@ const HomePage = () => {
                     <div className="form-group">
                       <input
                         type="email"
+                        name="email"
                         placeholder="Email Address"
                         required
                         className="form-input"
@@ -409,6 +433,7 @@ const HomePage = () => {
                     <div className="form-group">
                       <input
                         type="tel"
+                        name="phone"
                         placeholder="Phone Number"
                         className="form-input"
                         value={formData.phone}
@@ -417,28 +442,16 @@ const HomePage = () => {
                         }
                       />
                     </div>
-                    <div
-                      style={{
-                        margin: "10px 0",
-                        transform: "scale(0.8)",
-                        transformOrigin: "0 0",
-                      }}
-                    >
-                      <ReCAPTCHA
-                        sitekey="6LcBe4IrAAAAAHILeyKl2MWyYBfCbHTFy31y6DXn"
-                        onChange={(token) => setRecaptchaToken(token || "")}
-                        onExpired={() => setRecaptchaToken("")}
-                      />
-                    </div>
+
                     <button
                       type="submit"
                       className="form-submit-btn"
-                      disabled={loading || !recaptchaToken}
+                      disabled={loading}
                     >
                       {loading ? "Sending..." : "Request a Quote"}
                     </button>
                     <p className="back-link" onClick={() => setFormStep(1)}>
-                      ← Back to Step 1
+                      {`← Back to Step 1`}
                     </p>
                   </div>
                 )}
@@ -602,7 +615,6 @@ const HomePage = () => {
                   className="feature-split-row normal wrapper-kiosk-carousel"
                   style={{ padding: "30px 0" }}
                 >
-                  {/* Outer Slider Box Container */}
                   <div className="feature-split-image kiosk-slider-container">
                     <button
                       className="slider-btn prev"
@@ -612,7 +624,6 @@ const HomePage = () => {
                       &#10094;
                     </button>
 
-                    {/* Sliding film strip containing all three images horizontally */}
                     <div
                       className="kiosk-slides-wrapper"
                       style={{ transform: `translateX(-${kioskSlide * 100}%)` }}
@@ -632,7 +643,6 @@ const HomePage = () => {
                       &#10095;
                     </button>
 
-                    {/* Inline Slide Indicator Dots */}
                     <div className="carousel-nav-dots">
                       {kioskSlidesData.map((_, idx) => (
                         <span
