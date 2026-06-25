@@ -48,14 +48,14 @@ function PricingCalculator() {
     { key: "kds", label: "Kitchen Display System" },
     {
       key: "selfKiosk14inch",
-      label: "Self-Ordering Kiosk - Standard Countertop ",
+      label: "Self-Order Kiosk - Standard Countertop ",
     },
     {
       key: "selfKiosk17inch",
-      label: "Self-Ordering Kiosk - Premium Countertop ",
+      label: "Self-Order Kiosk - Premium Countertop ",
     },
 
-    { key: "selfKiosk21inch", label: "Self-Ordering Kiosk - Floor Standing " },
+    { key: "selfKiosk21inch", label: "Self-Order Kiosk - Floor Standing " },
     { key: "tableKiosk", label: "Table Order Kiosk" },
     { key: "portableTablet", label: "Portable Tablet" },
     { key: "pickupServiceDisplay", label: "Pickup Display" },

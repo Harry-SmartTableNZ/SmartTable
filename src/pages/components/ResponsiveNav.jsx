@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./ResponsiveNav.css";
 
@@ -7,9 +7,23 @@ const ResponsiveNav = () => {
   const [isFeaturesOpen, setIsFeaturesOpen] = useState(false);
   const location = useLocation();
 
+  // Automatically handle hash scrolling when the location or hash changes
+  useEffect(() => {
+    if (location.hash) {
+      // Small timeout ensures the DOM has fully rendered the target section
+      setTimeout(() => {
+        const id = location.hash.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
-    setIsFeaturesOpen(false); // reset dropdown on open/close
+    setIsFeaturesOpen(false); // Reset dropdown on open/close
   };
 
   const closeMobileMenu = () => {
@@ -31,22 +45,25 @@ const ResponsiveNav = () => {
     <div className="responsive-nav-links">
       {/* Desktop Navigation */}
       <div className="responsive-desktop-nav">
-        <Link to="/" className="responsive-nav-link">
+        <Link
+          to="/"
+          className={`responsive-nav-link ${isActive("/") ? "active" : ""}`}
+        >
           Home
         </Link>
 
         <div className="responsive-dropdown">
           <Link
             to="/Features"
-            className="responsive-dropdown-toggle responsive-nav-link"
+            className={`responsive-dropdown-toggle responsive-nav-link ${isActive("/Features") ? "active" : ""}`}
           >
             Features
           </Link>
           <div className="responsive-dropdown-content">
-            <Link to="/Features#Standard" className="responsive-dropdown-link">
+            <Link to="/Features#standard" className="responsive-dropdown-link">
               Standard Features
             </Link>
-            <Link to="/Features#Premium" className="responsive-dropdown-link">
+            <Link to="/Features#premium" className="responsive-dropdown-link">
               Premium Features
             </Link>
             <Link to="/Features#addons" className="responsive-dropdown-link">
@@ -55,10 +72,16 @@ const ResponsiveNav = () => {
           </div>
         </div>
 
-        <Link to="/pricing" className="responsive-nav-link">
+        <Link
+          to="/pricing"
+          className={`responsive-nav-link ${isActive("/pricing") ? "active" : ""}`}
+        >
           Pricing
         </Link>
-        <Link to="/contact" className="responsive-nav-link">
+        <Link
+          to="/contact"
+          className={`responsive-nav-link ${isActive("/contact") ? "active" : ""}`}
+        >
           Contact
         </Link>
       </div>
@@ -85,9 +108,7 @@ const ResponsiveNav = () => {
         <div className="responsive-mobile-nav-content">
           <Link
             to="/"
-            className={`responsive-mobile-nav-link ${
-              isActive("/") ? "active" : ""
-            }`}
+            className={`responsive-mobile-nav-link ${isActive("/") ? "active" : ""}`}
             onClick={closeMobileMenu}
           >
             Home
@@ -106,18 +127,18 @@ const ResponsiveNav = () => {
           {isFeaturesOpen && (
             <div className="responsive-mobile-dropdown-links">
               <Link
-                to="/Features#Standard Features"
+                to="/Features#standard"
                 className={`responsive-mobile-nav-link ${
-                  isActive("/Features", "#Standard Features") ? "active" : ""
+                  isActive("/Features", "#standard") ? "active" : ""
                 }`}
                 onClick={closeMobileMenu}
               >
                 Standard Features
               </Link>
               <Link
-                to="/Features#Premium Features"
+                to="/Features#premium"
                 className={`responsive-mobile-nav-link ${
-                  isActive("/Features", "#Premium Features") ? "active" : ""
+                  isActive("/Features", "#premium") ? "active" : ""
                 }`}
                 onClick={closeMobileMenu}
               >
@@ -137,9 +158,7 @@ const ResponsiveNav = () => {
 
           <Link
             to="/pricing"
-            className={`responsive-mobile-nav-link ${
-              isActive("/pricing") ? "active" : ""
-            }`}
+            className={`responsive-mobile-nav-link ${isActive("/pricing") ? "active" : ""}`}
             onClick={closeMobileMenu}
           >
             Pricing
@@ -147,9 +166,7 @@ const ResponsiveNav = () => {
 
           <Link
             to="/contact"
-            className={`responsive-mobile-nav-link ${
-              isActive("/contact") ? "active" : ""
-            }`}
+            className={`responsive-mobile-nav-link ${isActive("/contact") ? "active" : ""}`}
             onClick={closeMobileMenu}
           >
             Contact

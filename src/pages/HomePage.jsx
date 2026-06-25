@@ -544,7 +544,7 @@ const HomePage = () => {
           {[
             "Online Reservation",
             "Uber Eats Integration",
-            "Staff Scheduling and Timesheets",
+            "Staff Timesheets",
             "Inventory Management",
             "QR Ordering",
           ].map((title) => (

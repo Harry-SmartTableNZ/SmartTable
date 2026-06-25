@@ -31,15 +31,29 @@ import AppHeader from "./components/AppHeader";
 const FeaturesPage = () => {
   const [openIndex, setOpenIndex] = useState(null);
   const location = useLocation();
+
+  // Keep the internal state keys capitalized to match your data object keys below
   const [activeTab, setActiveTab] = useState("Standard");
 
   useEffect(() => {
-    const hash = location.hash.replace("#", "");
-    if (["Standard", "Premium", "addons"].includes(hash)) {
-      setActiveTab(hash);
-      const el = document.getElementById("feature-tabs");
+    // 1. Convert incoming hash to lowercase for reliable matching
+    const hash = location.hash.replace("#", "").toLowerCase();
+
+    // 2. Map lowercase hashes to your data map's structural case keys
+    const tabMapping = {
+      standard: "Standard",
+      premium: "Premium",
+      addons: "addons",
+    };
+
+    if (tabMapping[hash]) {
+      // Switch to the correct active tab view structure
+      setActiveTab(tabMapping[hash]);
+
+      // 3. Target the wrapper section element present in your DOM layout below
+      const el = document.getElementById("feature-tabs-container");
       if (el) {
-        const yOffset = -80;
+        const yOffset = -100; // Adjusted offset to clearly show the tab headers
         const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
       }
@@ -51,7 +65,9 @@ const FeaturesPage = () => {
       <AppHeader />
 
       <div className="features-page-skin">
+        {/* Added id="feature-tabs-container" here so your scroll hook can find it */}
         <section
+          id="feature-tabs-container"
           className="segmented-tab-wrapper"
           style={{ marginTop: "80px" }}
         >
@@ -171,7 +187,7 @@ const FeaturesPage = () => {
               ],
               addons: [
                 {
-                  title: "Self Ordering Kiosk",
+                  title: "Self Order Kiosk",
                   content:
                     "Empower customers to browse the menu, customize items, and place orders at a freestanding kiosk. Reduce queues and wait times during peak hours while improving order accuracy.",
                   image: Image25,

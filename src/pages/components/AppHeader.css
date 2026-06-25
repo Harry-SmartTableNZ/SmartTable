@@ -46,9 +46,25 @@
 /* You may need to inspect your ResponsiveNav component to find the exact class */
 .hamburger-button,
 .mobile-menu-icon,
-.responsive-header button svg {
-  color: #1b3662 !important; /* Your theme blue */
+.responsive-header button svg,
+.hamburger-button {
+  color: #1b3662 !important;
   fill: #1b3662 !important;
+  transition: color 0.2s ease;
+}
+
+/* 2. OPEN STATE: Targets the button when the navigation container is open/active */
+/* If ResponsiveNav adds an active class to its wrapper when opened */
+/* Normal state */
+.responsive-header button svg {
+  color: #1b3662 !important;
+  fill: #1b3662 !important;
+}
+
+/* When header has the mobile-menu-active class, turn the icon white */
+.mobile-menu-active .responsive-header button svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
 }
 
 /* If your 3 lines are <span> elements */

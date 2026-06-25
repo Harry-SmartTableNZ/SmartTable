@@ -4,17 +4,16 @@ import ResponsiveNav from "./ResponsiveNav";
 import "./AppHeader.css";
 
 export default function AppHeader({ isHome }) {
-  // 1. Add isHome here
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  // Track if the mobile drawer is open
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const controlNavbar = () => {
-      // Show if we've scrolled up, or if we are at the very top
       if (window.scrollY < lastScrollY || window.scrollY < 50) {
         setIsVisible(true);
       } else {
-        // Hide if we are scrolling down
         setIsVisible(false);
       }
       setLastScrollY(window.scrollY);
@@ -26,15 +25,16 @@ export default function AppHeader({ isHome }) {
 
   return (
     <header
-      /* 2. Add the conditional "home-header" class */
-      className={`app-header ${isVisible ? "nav-visible" : "nav-hidden"} ${isHome ? "home-header" : ""}`}
+      /* Added mobile-menu-active class conditionally here */
+      className={`app-header ${isVisible ? "nav-visible" : "nav-hidden"} ${isHome ? "home-header" : ""} ${isMenuOpen ? "mobile-menu-active" : ""}`}
     >
       <div className="app-header-box">
         <nav>
           <div className="app-header-logo">
             <img src={logo} alt="Smart Table Logo" />
           </div>
-          <ResponsiveNav />
+          {/* Pass down a function to toggle the state inside ResponsiveNav */}
+          <ResponsiveNav onToggleMenu={setIsMenuOpen} />
         </nav>
       </div>
     </header>

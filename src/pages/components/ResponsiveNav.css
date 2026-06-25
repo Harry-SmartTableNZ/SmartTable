@@ -112,6 +112,7 @@
 /* Hamburger to X animation */
 .responsive-hamburger-open .responsive-hamburger-line:nth-child(1) {
   transform: rotate(45deg) translate(7px, 7px) !important;
+  background-color: white !important; /* Forces top line to turn white */
 }
 
 .responsive-hamburger-open .responsive-hamburger-line:nth-child(2) {
@@ -120,6 +121,7 @@
 
 .responsive-hamburger-open .responsive-hamburger-line:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -7px) !important;
+  background-color: white !important; /* Forces bottom line to turn white */
 }
 
 /* Mobile Navigation */
